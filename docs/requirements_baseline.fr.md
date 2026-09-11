@@ -53,7 +53,7 @@ Lorsque l'actionneur de direction commandée est indisponible et que le Differen
 - un écart latéral maximal par rapport à la trajectoire nominale `<= 0,50 m` ;
 - une décélération induite par le freinage `<= 0,35 g` pendant cet essai.
 
-Avec les paramètres actuels, l'autorité statique de lacet produite uniquement par les freins est d'environ 4,33 kN·m, soit environ 17 % de l'autorité nominale combinée direction-freinage. Une exigence uniforme de 60 % de l'autorité de direction serait donc irréalisable et masquerait la limite réelle du mécanisme de secours.
+Avec le jeu de paramètres `REF-2026-01`, l'autorité statique de lacet produite uniquement par les freins est d'environ 5,37 kN·m, soit environ 37,6 % de l'autorité nominale combinée direction-freinage limitée par l'adhérence. L'autorité de direction est plafonnée par `mu*Fz` au lieu d'extrapoler la raideur de dérive linéaire jusqu'à l'angle de direction maximal. Une exigence uniforme visant à reproduire 60 % de la capacité nominale de direction reste inadaptée, car le freinage différentiel ne peut pas reproduire indépendamment l'angle de direction ou la force latérale sans provoquer de décélération longitudinale.
 
 ## Preuves requises pour Gate 3
 

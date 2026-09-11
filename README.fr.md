@@ -20,6 +20,8 @@ Ce dépôt constitue une référence de développement et de validation Gate 2. 
 - limites physiques des forces de freinage et de l'angle de direction ;
 - limites de variation des forces de freinage et de la direction ;
 - masques nommés pour les défauts d'un seul actionneur ;
+- traçabilité documentée des paramètres du véhicule de référence ;
+- campagne de validation du modèle en boucle ouverte sans allocateur ;
 - calcul statique de l'autorité résiduelle ;
 - tests unitaires MATLAB ;
 - scénarios nominaux, de saturation, de défaut de frein et de perte de direction ;
@@ -68,13 +70,19 @@ La version exacte de MATLAB utilisée devra être enregistrée lors de la premi�
 
 ## Exécution de la validation
 
-Ouvrir MATLAB à la racine du dépôt puis exécuter :
+Ouvrir MATLAB à la racine du dépôt puis exécuter la campagne complète :
 
 ```matlab
-summary = run_project_validation();
+results = run_project_validation();
 ```
 
-Cette commande lance les tests unitaires et tous les scénarios configurés. Les preuves CSV, MAT et PNG sont générées dans `validation/results/`. Ce dossier est volontairement exclu de Git, car son contenu peut être régénéré.
+Cette commande lance la campagne du modèle sans allocateur, les tests unitaires et les scénarios de l'allocateur. Les preuves CSV, MAT et PNG sont générées dans `validation/results/`. Ce dossier est volontairement exclu de Git, car son contenu peut être régénéré.
+
+Pour valider uniquement le modèle, sans appeler l'allocateur :
+
+```matlab
+plantSummary = run_plant_validation();
+```
 
 Les contrôles statiques peuvent être lancés séparément :
 
@@ -96,11 +104,14 @@ validation/                       Campagne de validation automatisée
 tests/                            Tests unitaires MATLAB
 docs/                             Documentation technique bilingue
 run_project_validation.m          Point d'entrée de validation du dépôt
+run_plant_validation.m            Point d'entrée de validation sans allocateur
 ```
 
 ## Documentation
 
 - [Référence numérique des exigences](docs/requirements_baseline.fr.md)
+- [Paramètres du véhicule et du modèle](docs/parameters.fr.md)
+- [Validation du modèle en boucle ouverte sans allocateur](docs/plant_validation.fr.md)
 - [Choix de la chaîne d'outils MATLAB/Simulink](docs/toolchain_decision.fr.md)
 - Les matrices de traçabilité anglaise et française se trouvent dans `docs/verification/`.
 

@@ -53,7 +53,7 @@ If the commanded steering effector is unavailable and Differential-Braking Backu
 - peak lateral-path deviation from the nominal trajectory `<= 0.50 m`;
 - brake-induced deceleration no greater than `0.35 g` during that test.
 
-For the current parameters, static brake-only yaw authority is approximately 4.33 kN·m, or about 17% of the combined nominal steer-plus-brake yaw authority. A blanket 60% steering-authority requirement would therefore be infeasible and would conceal the real limitation of the backup mechanism.
+For parameter set `REF-2026-01`, static brake-only yaw authority is approximately 5.37 kN·m, or about 37.6% of the saturation-limited combined nominal steer-plus-brake yaw authority. Steering authority is capped by `mu*Fz` rather than extrapolating linear cornering stiffness to the maximum steering angle. A blanket requirement to reproduce 60% of nominal steering capability remains inappropriate because differential braking cannot reproduce steering angle or lateral force independently of longitudinal deceleration.
 
 ## Required Gate 3 evidence
 

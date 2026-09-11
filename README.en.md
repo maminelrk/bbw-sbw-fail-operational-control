@@ -20,6 +20,8 @@ Implemented:
 - physical force and steering bounds;
 - brake-force and steering-rate bounds;
 - named single-effector fault masks;
+- documented reference-vehicle parameter provenance;
+- allocator-free open-loop plant validation campaign;
 - static residual-authority calculations;
 - MATLAB unit tests;
 - nominal, capacity-limit, brake-fault, and steering-loss validation scenarios;
@@ -68,13 +70,19 @@ The exact MATLAB release used for the reference results must be recorded when th
 
 ## Running the validation
 
-Open MATLAB in the repository root and run:
+Open MATLAB in the repository root and run the complete project campaign:
 
 ```matlab
-summary = run_project_validation();
+results = run_project_validation();
 ```
 
-The command runs the class-based unit tests and all configured validation scenarios. Generated CSV, MAT, and PNG evidence is written to `validation/results/`. That directory is intentionally excluded from Git because the evidence is reproducible.
+The command runs the allocator-free plant campaign, class-based unit tests, and allocator scenarios. Generated CSV, MAT, and PNG evidence is written to `validation/results/`. That directory is intentionally excluded from Git because the evidence is reproducible.
+
+To validate only the plant, without calling the allocator:
+
+```matlab
+plantSummary = run_plant_validation();
+```
 
 Individual static checks can be run with:
 
@@ -96,11 +104,14 @@ validation/                       Automated validation campaign
 tests/                            MATLAB unit tests
 docs/                             Bilingual technical documentation
 run_project_validation.m          Repository-level validation entry point
+run_plant_validation.m            Allocator-free plant validation entry point
 ```
 
 ## Documentation
 
 - [Numerical requirements baseline](docs/requirements_baseline.en.md)
+- [Reference vehicle and plant parameters](docs/parameters.en.md)
+- [Allocator-free open-loop plant validation](docs/plant_validation.en.md)
 - [MATLAB/Simulink toolchain decision](docs/toolchain_decision.en.md)
 - Traceability workbooks are stored under `docs/verification/` in English and French.
 
