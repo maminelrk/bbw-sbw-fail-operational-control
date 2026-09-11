@@ -1,0 +1,39 @@
+# MATLAB and Simulink generated files
+*.asv
+*.autosave
+*.m~
+*.slxc
+*.mex*
+slprj/
+codegen/
+*_ert_rtw/
+*_grt_rtw/
+*_rsim_rtw/
+sccprj/
+
+# Generated validation evidence
+/validation/results/
+
+# Local analysis and artifact-authoring files
+/tmp/
+/tools/
+/outputs/
+/matlab.mat
+
+# Source and assessment documents are intentionally excluded
+/reports/
+/source_documents/
+/CDC_*.pdf
+/CDC*.pdf
+/BBW___SBW_GATE_*.pdf
+/Intenship_Workflow.pdf
+
+# Editor and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.bak
+*.inspect.ndjson
