@@ -20,7 +20,7 @@ Following presentation of any validated single-effector fault flag:
 3. Every healthy brake-force command shall respect `|dFx/dt| <= 40 kN/s`, and the healthy steering command shall respect `|d(delta)/dt| <= 400 deg/s`.
 4. As a provisional driver-discontinuity proxy, the faulted trajectory shall remain within **0.05 rad/s of the nominal yaw rate during the first 200 ms** after the fault for demands inside the post-fault operational envelope.
 
-The 50 ms value is retained from the project target. With the current 20 ms first-order actuator constants, 50 ms corresponds to approximately 92% of a step response. The acceptance band is therefore defined at 90% rather than 95%. The yaw-rate criterion is a simulation proxy and must not be presented as a proven human-perception threshold without vehicle-test evidence.
+The 50 ms value is retained from the project target. One unsaturated 20 ms lag reaches approximately 92% in 50 ms, but the revised steering has a cascaded motor loop and rate limits. That calculation does not establish compliance; each transient must be measured. The yaw-rate criterion is a simulation proxy, not a proven human-perception threshold.
 
 ## REQ-03 — minimum residual capability
 
@@ -37,12 +37,12 @@ With the current static-load parameters, the predicted worst case is loss of a f
 
 ### REQ-03b — single steering-channel loss
 
-Once the dual-motor steering model exists, loss of either individual steering channel shall leave at least:
+Loss of either individual steering channel shall leave at least:
 
 - **60% of nominal road-wheel angle range**;
 - **60% of nominal steering rate**.
 
-The present single-angle plant cannot verify this sub-requirement.
+The REF-2026-02 common-rack model has independently masked A/B velocity loops. The Gate 2 bench measures range and rate in this functional model. Each drive's full range and 60% rate are assumptions, so passing the bench does not prove steering capability under road load.
 
 ### REQ-03c — complete commanded-steering loss / DBBS
 
@@ -57,4 +57,10 @@ For parameter set `REF-2026-01`, static brake-only yaw authority is approximatel
 
 ## Required Gate 3 evidence
 
+The static authority ratios are screening estimates. The 69.7% raw brake capacity does not impose the straight-line yaw constraint; the combined steering/brake denominator adds maxima that may not be simultaneously attainable. Neither replaces dynamic tests. The QP objective uses fixed priorities; its separate diagnostic `output_scale` remains an estimate of available control authority.
+
 Each single-fault test shall record the demand, mask transition, allocator command, achieved `[Fx, Mz]`, best-achievable `[Fx, Mz]`, actuator rates, yaw rate, lateral deviation, and pass/fail result for every applicable clause.
+
+Implementation note (G3-PREP-01): physical onset `t_p` is now logged separately from delivered diagnosis `t_flag`. The full timing and measurement conventions are in [the Gate 3 protocol](gate3.en.md). Its affine-oracle recovery diagnostic does not establish the 15% nonlinear envelope; a zero band-entry delay does not imply instantaneous physical recovery. Maximum residual braking/yaw authority remains unassessed. No threshold above is relaxed by this clarification.
+
+`straight_braking_screening()` gives approximately 32.5% of nominal braking after a front-corner loss when steering is held at zero and yaw moment is exactly zero, including longitudinal load transfer. This deliberately restricted calculation is not the active-steering-assisted maximum; it explains why the 69.7% raw-force figure alone cannot prove REQ-03a.

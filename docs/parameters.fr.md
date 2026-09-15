@@ -1,6 +1,6 @@
 # Paramètres de référence du véhicule et du modèle
 
-Jeu de paramètres : `REF-2026-01`
+Jeu de paramètres : `REF-2026-02` (données véhicule inchangées ; architecture de direction et réglages d'intégration révisés).
 
 Il s'agit d'un véhicule de référence construit à partir de la littérature pour le développement de la simulation. Ces valeurs ne résultent pas de l'identification d'un véhicule cible physique. Chaque entrée est classée comme **sourcée**, **calculée**, **dérivée d'une exigence** ou **supposée**. Les valeurs de substitution et les hypothèses devront être remplacées ou calibrées lorsque les données du véhicule cible seront disponibles.
 
@@ -14,7 +14,7 @@ Il s'agit d'un véhicule de référence construit à partir de la littérature p
 | `lr` | 1,61 | m | Sourcée | Distance du centre de gravité à l'essieu arrière, tableau 1 [S1] |
 | `L` | 2,66 | m | Calculée | `lf + lr` |
 | `wf` | 0,6053 | fraction | Calculée | Fraction statique sur l'essieu avant `lr/L` |
-| `tw` | 1,53 | m | Substitution sourcée | Largeur d'un véhicule de référence utilisée comme estimation de la voie, tableau 6 [S2] |
+| `tw` | 1,53 | m | Voie de substitution supposée | Le tableau 6 [S2] donne une largeur véhicule ; son emploi comme voie est une hypothèse explicite |
 | `hcg` | 0,637 | m | Substitution sourcée | Hauteur du centre de gravité d'un véhicule de référence, tableau 6 [S2] |
 | `g` | 9,80665 | m/s² | Sourcée | Pesanteur normale [S3] |
 | `mu` | 0,90 | - | Condition supposée | Condition de forte adhérence utilisée dans [S1] ; ce n'est pas une mesure pneu-chaussée du véhicule |
@@ -46,8 +46,13 @@ Le modèle d'adhérence combinée réduit la capacité latérale selon une ellip
 | `actuator_tau_Fx` | 0,020 | s | Hypothèse de conception calculée | Une réponse du premier ordre atteint 91,8 % en 50 ms |
 | `validation_dt` | 0,002 | s | Dérivée de l'exigence | Période d'allocation et de validation |
 | `allocation_effort_weight` | 1e-6 | - | Réglage numérique supposé | Rend le QP strictement convexe tout en gardant le suivi dominant |
+| `steering_channel_rate` | 240 par canal | deg/s | Capacité de conception supposée | Chaque entraînement fournit 60 % de la limite crémaillère de 400 deg/s |
+| `steering_motor_tau` | 0,010 | s | Supposée | Retard indépendant de chaque boucle interne de vitesse |
+| `yaw_tracking_tau` | 0,25 | s | Réglage supposé | Servo nominal de consigne de lacet |
+| `allocation_output_scale` | [5000; 1000] | [N; N m] | Priorités supposées | Normalisation fixe de l'objectif, distincte des diagnostics d'autorité |
+| `steering_trust_angle` | 0,5 | deg | Réglage numérique supposé | Intervalle local de linéarisation non linéaire |
 
-Les limites de force de freinage sont calculées pendant la simulation par `mu*Fz` à partir de la charge normale estimée. L'autorité utilisée par l'allocateur reste fondée sur les charges statiques ; l'allocation tenant compte des charges dynamiques constitue une amélioration ultérieure.
+L'allocateur intégré utilise les charges courantes `mu*Fz` ; les appels d'analyse statique conservent les charges statiques. Chaque entraînement est supposé couvrir toute la plage de la crémaillère commune. Ces hypothèses fonctionnelles ne représentent ni inertie de crémaillère, ni couple moteur, ni capacité sous charge routière. L'argument des 20 ms ne vaut que pour un retard unique non saturé ; il ne prouve pas l'objectif de 50 ms de la direction en cascade. Voir [Gate 2](gate2.fr.md) pour les interfaces, manœuvres et preuves.
 
 ## Sources
 

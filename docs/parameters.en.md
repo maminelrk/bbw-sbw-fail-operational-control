@@ -1,6 +1,6 @@
 # Reference vehicle and plant parameters
 
-Parameter set: `REF-2026-01`
+Parameter set: `REF-2026-02` (vehicle data unchanged; steering architecture and integration tuning revised).
 
 This is a literature-based reference vehicle for simulation development. It is not a parameter identification of a physical target vehicle. Every entry is classified as **sourced**, **calculated**, **requirement-derived**, or **assumed**. Surrogate and assumed values must be replaced or calibrated when target-vehicle data becomes available.
 
@@ -14,7 +14,7 @@ This is a literature-based reference vehicle for simulation development. It is n
 | `lr` | 1.61 | m | Sourced | CG to rear axle, Table 1 [S1] |
 | `L` | 2.66 | m | Calculated | `lf + lr` |
 | `wf` | 0.6053 | fraction | Calculated | Static front load fraction `lr/L` |
-| `tw` | 1.53 | m | Sourced surrogate | Reference-vehicle width used as the model track-width surrogate, Table 6 [S2] |
+| `tw` | 1.53 | m | Assumed track surrogate | Table 6 [S2] reports vehicle width; treating it as track width is an explicit modeling assumption |
 | `hcg` | 0.637 | m | Sourced surrogate | Reference-vehicle CG height, Table 6 [S2] |
 | `g` | 9.80665 | m/s² | Sourced | Standard gravity [S3] |
 | `mu` | 0.90 | - | Assumed operating condition | High-adhesion robustness condition used in [S1]; not a measured tire-road value for this vehicle |
@@ -46,8 +46,13 @@ The combined-slip model reduces lateral capacity according to a friction ellipse
 | `actuator_tau_Fx` | 0.020 | s | Calculated design assumption | A first-order response reaches 91.8% in 50 ms |
 | `validation_dt` | 0.002 | s | Requirement-derived | Allocator and validation period |
 | `allocation_effort_weight` | 1e-6 | - | Assumed numerical tuning | Makes the QP strictly convex while keeping tracking dominant |
+| `steering_channel_rate` | 240 per channel | deg/s | Assumed design capacity | Each drive supplies 60% of the 400 deg/s rack limit |
+| `steering_motor_tau` | 0.010 | s | Assumed | Independent inner velocity-loop lag for each drive |
+| `yaw_tracking_tau` | 0.25 | s | Assumed tuning | Nominal yaw-reference servo |
+| `allocation_output_scale` | [5000; 1000] | [N; N m] | Assumed priorities | Fixed objective normalization, separate from authority diagnostics |
+| `steering_trust_angle` | 0.5 | deg | Assumed numerical tuning | Local nonlinear-map trust interval |
 
-Brake-force bounds are calculated at runtime from `mu*Fz` using the current estimated normal load. Static allocator authority still uses static corner loads; dynamic-load-aware allocation remains a later refinement.
+Brake-force bounds in the integrated allocator use current `mu*Fz`; static screening calls retain static corner loads. Each steering drive is assumed to cover the full common-rack angle range. These are functional assumptions, without rack inertia, motor torque or road-load capacity. The 20 ms time-constant argument applies only to a single unsaturated lag; it does not prove the cascaded steering's 50 ms settling target. See [Gate 2](gate2.en.md) for interfaces, maneuvers and evidence.
 
 ## Sources
 

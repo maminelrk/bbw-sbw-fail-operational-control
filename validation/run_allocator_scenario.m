@@ -13,7 +13,7 @@ achieved = zeros(sampleCount,2);
 bestAchievable = zeros(sampleCount,2);
 trackingError = zeros(sampleCount,1);
 solverExitFlag = zeros(sampleCount,1);
-maskHistory = ones(sampleCount,5);
+maskHistory = ones(sampleCount,6);
 
 previousCommand = zeros(5,1);
 actual = zeros(5,1);
@@ -37,7 +37,7 @@ for index = 1:sampleCount
     derivative = sign(command-actual).*min(abs(command-actual)./tau, rate);
     actual = actual + Ts*derivative;
 
-    output = info.B*actual;
+    output = info.offset+info.B*actual;
     scale = max(info.output_scale, [1;1]);
 
     uCommand(index,:) = command';
@@ -57,12 +57,12 @@ history = table(time, ...
     trackingError, solverExitFlag, ...
     uCommand(:,1), uCommand(:,2), uCommand(:,3), uCommand(:,4), uCommand(:,5), ...
     uActual(:,1), uActual(:,2), uActual(:,3), uActual(:,4), uActual(:,5), ...
-    maskHistory(:,1), maskHistory(:,2), maskHistory(:,3), maskHistory(:,4), maskHistory(:,5), ...
+    maskHistory(:,1), maskHistory(:,2), maskHistory(:,3), maskHistory(:,4), maskHistory(:,5), maskHistory(:,6), ...
     'VariableNames', {'Time_s','DemandFx_N','DemandMz_Nm','AchievedFx_N','AchievedMz_Nm', ...
     'BestFx_N','BestMz_Nm','NormalizedTrackingError','SolverExitFlag', ...
     'CmdFxFL_N','CmdFxFR_N','CmdFxRL_N','CmdFxRR_N','CmdDelta_rad', ...
     'ActFxFL_N','ActFxFR_N','ActFxRL_N','ActFxRR_N','ActDelta_rad', ...
-    'MaskFL','MaskFR','MaskRL','MaskRR','MaskSteering'});
+    'MaskFL','MaskFR','MaskRL','MaskRR','MaskSteeringA','MaskSteeringB'});
 
 scenarioDirectory = fullfile(outputRoot, scenario.ScenarioID);
 if ~isfolder(scenarioDirectory)
@@ -94,7 +94,7 @@ settlingTime_s = NaN;
 if ~isnan(scenario.FaultTime_s)
     afterFault = find(history.Time_s >= scenario.FaultTime_s, 1, 'first');
     expectedMask = fault_scenario_mask(scenario.FaultScenario)';
-    applied = find(all(history{:,20:24} == expectedMask,2) & ...
+    applied = find(all(history{:,20:25} == expectedMask,2) & ...
                    history.Time_s >= scenario.FaultTime_s, 1, 'first');
     if ~isempty(applied)
         maskLatency_s = history.Time_s(applied)-scenario.FaultTime_s;

@@ -1,5 +1,7 @@
 # Validation du modèle en boucle ouverte sans allocateur
 
+Implémentation courante : REF-2026-02, à 13 états et deux entraînements sur une crémaillère commune. Le tableau numérique ci-dessous est une preuve historique REF-2026-01 ; il ne doit pas être présenté comme un résultat du modèle révisé. La campagne courante doit être exécutée dans MATLAB. Voir [Gate 2](gate2.fr.md).
+
 ## Objectif
 
 Valider les signes, le bilan des forces, la dynamique des actionneurs, la saturation des pneumatiques, le transfert de charge et la réponse du véhicule aux faibles angles avant de connecter l'allocateur de commande.
@@ -23,11 +25,11 @@ Les preuves générées sont enregistrées dans `validation/results/plant/`.
 Tous les scénarios exigent également :
 
 - des états et des forces finis ;
-- une charge normale minimale de 49,9 N sur chaque roue ;
+- une charge normale brute strictement positive sur chaque roue, avant écrêtage ;
 - une force latérale ne dépassant pas la capacité calculée en adhérence combinée ;
 - des vitesses d'état de la direction et des freins respectant les limites configurées.
 
-## Vérification numérique indépendante des équations
+## Vérification historique des équations REF-2026-01
 
 MATLAB n'est pas installé dans l'environnement de développement utilisé ici. Les mêmes équations ont donc été reproduites indépendamment en Python et intégrées avec le même pas de 2 ms par une méthode de Runge-Kutta d'ordre 4. Cette vérification permet de détecter les erreurs d'équation, de signe et de seuil, mais elle ne constitue pas le résultat officiel de validation MATLAB.
 
@@ -60,5 +62,5 @@ Ces résultats ne valident pas un véhicule physique particulier. Les coefficien
 - un modèle latéral global de pneumatique par essieu ;
 - absence de dynamique de rotation des roues et d'état de taux de glissement ;
 - absence de traînée aérodynamique et de résistance au roulement ;
-- un actionneur de direction équivalent au lieu de deux canaux indépendants ;
+- deux canaux fonctionnels en vitesse sur une crémaillère commune, sans dynamique de couple ni charge routière ;
 - absence d'identification des paramètres à partir de mesures véhicule.

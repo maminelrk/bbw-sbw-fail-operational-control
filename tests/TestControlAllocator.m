@@ -3,18 +3,20 @@ classdef TestControlAllocator < matlab.unittest.TestCase
 
     properties
         ProjectRoot
+        OriginalPath
     end
 
     methods (TestMethodSetup)
         function addProjectToPath(testCase)
             testCase.ProjectRoot = fileparts(fileparts(mfilename('fullpath')));
+            testCase.OriginalPath = path;
             addpath(testCase.ProjectRoot);
         end
     end
 
     methods (TestMethodTeardown)
         function removeProjectFromPath(testCase)
-            rmpath(testCase.ProjectRoot);
+            path(testCase.OriginalPath);
         end
     end
 
@@ -38,13 +40,13 @@ classdef TestControlAllocator < matlab.unittest.TestCase
         end
 
         function namedMasksRemoveCorrectEffectors(testCase)
-            expected = eye(5) == 0;
+            expected = [0 1 1 1 1;1 0 1 1 1;1 1 0 1 1;1 1 1 0 1;1 1 1 1 0;1 1 1 1 0];
             names = ["brake_fl_loss", "brake_fr_loss", "brake_rl_loss", ...
                      "brake_rr_loss", "steering_loss"];
 
             for index = 1:numel(names)
                 actual = fault_scenario_mask(names(index));
-                testCase.verifyEqual(logical(actual), expected(:,index));
+                testCase.verifyEqual(logical(actual), logical(expected(:,index)));
             end
         end
 

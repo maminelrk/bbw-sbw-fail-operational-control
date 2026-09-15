@@ -8,8 +8,9 @@ projectRoot = fileparts(validationDirectory);
 testsDirectory = fullfile(projectRoot,'tests');
 resultsDirectory = fullfile(validationDirectory,'results');
 
-addpath(projectRoot, validationDirectory);
-cleanup = onCleanup(@() rmpath(projectRoot, validationDirectory)); %#ok<NASGU>
+originalPath=path;
+cleanup=onCleanup(@() path(originalPath)); %#ok<NASGU>
+addpath(projectRoot,validationDirectory);
 
 if ~isfolder(resultsDirectory)
     mkdir(resultsDirectory);

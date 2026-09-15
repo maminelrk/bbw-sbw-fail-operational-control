@@ -20,7 +20,7 @@ Après la présentation d'un indicateur validé de défaut d'un seul actionneur 
 3. Toute commande d'un frein sain doit respecter `|dFx/dt| <= 40 kN/s`, et la commande de direction saine doit respecter `|d(delta)/dt| <= 400 deg/s`.
 4. Comme indicateur provisoire de discontinuité ressentie par le conducteur, la trajectoire en défaut doit rester à moins de **0,05 rad/s de la vitesse de lacet nominale pendant les 200 premières millisecondes** après le défaut, pour les demandes appartenant à l'enveloppe opérationnelle après défaut.
 
-La cible de 50 ms est conservée comme objectif du projet. Avec les constantes de temps actuelles de 20 ms pour les actionneurs du premier ordre, 50 ms correspond à environ 92 % d'une réponse indicielle. Le seuil d'acceptation est donc fixé à 90 % plutôt qu'à 95 %. Le critère de vitesse de lacet est un indicateur de simulation et ne doit pas être présenté comme un seuil de perception humaine démontré sans essais véhicule.
+La cible de 50 ms reste un objectif du projet. Un retard du premier ordre non saturé de 20 ms atteint environ 92 % en 50 ms, mais la direction révisée possède une boucle moteur en cascade et des limites de vitesse. Ce calcul ne démontre donc pas la conformité : chaque transitoire doit être mesuré. Le critère de lacet reste un indicateur de simulation, sans preuve de perception humaine.
 
 ## REQ-03 — capacité résiduelle minimale
 
@@ -37,12 +37,12 @@ Avec les paramètres actuels de charge statique, le pire cas prévu est la perte
 
 ### REQ-03b — perte d'un canal de direction
 
-Lorsque le modèle de direction à deux moteurs sera disponible, la perte de l'un des canaux devra laisser au moins :
+La perte de l'un des canaux de direction devra laisser au moins :
 
 - **60 % de la plage nominale d'angle aux roues** ;
 - **60 % de la vitesse nominale de direction**.
 
-Le modèle actuel à un seul angle de direction ne permet pas de vérifier cette sous-exigence.
+Le modèle REF-2026-02 possède une crémaillère commune et deux boucles de vitesse A/B masquées indépendamment. Le banc Gate 2 mesure leur plage et leur vitesse fonctionnelles. La plage complète et la vitesse de 60 % par entraînement restent des hypothèses, sans validation sous charge routière.
 
 ### REQ-03c — perte complète de la direction commandée / DBBS
 
@@ -57,4 +57,10 @@ Avec le jeu de paramètres `REF-2026-01`, l'autorité statique de lacet produite
 
 ## Preuves requises pour Gate 3
 
+Les rapports statiques sont des estimations préliminaires. La capacité brute de freinage de 69,7 % n'impose pas la contrainte de lacet rectiligne ; le dénominateur direction/freinage additionne des maxima qui ne sont pas forcément réalisables simultanément. Ces calculs ne remplacent pas les essais dynamiques. Le QP utilise des priorités fixes ; son diagnostic distinct `output_scale` estime toujours l'autorité de commande disponible.
+
 Chaque essai de défaut simple doit enregistrer la demande, la transition du masque, la commande de l'allocateur, les valeurs `[Fx, Mz]` obtenues, les meilleures valeurs `[Fx, Mz]` réalisables, les vitesses des actionneurs, la vitesse de lacet, l'écart latéral et le résultat réussite/échec de chaque clause applicable.
+
+Note d'implémentation (G3-PREP-01) : l'apparition physique `t_p` est désormais enregistrée séparément du diagnostic livré `t_flag`. Les conventions sont précisées dans [le protocole Gate 3](gate3.fr.md). Le diagnostic de rétablissement à oracle affine ne démontre pas l'enveloppe non linéaire à 15 % ; une entrée immédiate dans la bande ne signifie pas un rétablissement physique instantané. Les autorités maximales résiduelles de freinage/lacet restent non évaluées. Aucun seuil ci-dessus n'est assoupli.
+
+`straight_braking_screening()` donne environ 32,5 % du freinage nominal après perte d'un coin avant, avec braquage nul, moment de lacet exactement nul et transfert longitudinal. Ce calcul volontairement restreint n'est pas le maximum assisté par direction active ; il explique pourquoi la force brute de 69,7 % ne prouve pas à elle seule REQ-03a.

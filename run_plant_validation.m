@@ -3,8 +3,9 @@ function summary = run_plant_validation()
 
 projectRoot = fileparts(mfilename('fullpath'));
 validationDirectory = fullfile(projectRoot,'validation');
-addpath(validationDirectory);
-cleanup = onCleanup(@() rmpath(validationDirectory)); %#ok<NASGU>
+originalPath=path;
+cleanup=onCleanup(@() path(originalPath)); %#ok<NASGU>
+addpath(projectRoot,validationDirectory);
 
 summary = run_plant_open_loop_validation();
 

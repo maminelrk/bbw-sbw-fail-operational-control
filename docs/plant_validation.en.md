@@ -1,5 +1,7 @@
 # Allocator-free open-loop plant validation
 
+Current implementation: REF-2026-02, with 13 states and two steering drives on one rack. The numerical table below is explicitly historical REF-2026-01 evidence and must not be presented as results of the revised model. The current campaign must be executed in MATLAB. See [Gate 2](gate2.en.md).
+
 ## Objective
 
 Validate the signs, force balance, actuator dynamics, tire saturation, load transfer, and small-angle handling response of the vehicle plant before connecting the control allocator.
@@ -23,11 +25,11 @@ Generated evidence is written to `validation/results/plant/`.
 All cases also require:
 
 - finite states and forces;
-- normal load of at least 49.9 N at every wheel;
+- strictly positive raw normal load at every wheel, before clipping;
 - lateral tire force no greater than the calculated combined-slip capacity;
 - steering and brake-force state rates within their configured limits.
 
-## Independent equation-level cross-check
+## Historical REF-2026-01 equation-level cross-check
 
 MATLAB is not installed in the authoring environment. The same plant equations were therefore mirrored independently in Python and integrated with the same 2 ms fourth-order Runge-Kutta step. This cross-check is useful for detecting equation, sign, and threshold errors, but it is not the official MATLAB validation record.
 
@@ -60,5 +62,5 @@ They do not validate a specific physical vehicle. Tire shape coefficients, CG he
 - one axle-lumped lateral tire model at each axle;
 - no wheel rotational dynamics or slip-ratio state;
 - no aerodynamic drag or rolling resistance;
-- one equivalent steering effector rather than two independent steering channels;
+- two functional velocity channels sharing one rack, without torque or road-load dynamics;
 - no parameter identification against measured vehicle data.

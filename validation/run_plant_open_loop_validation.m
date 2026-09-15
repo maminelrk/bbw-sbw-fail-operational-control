@@ -7,8 +7,9 @@ validationDirectory = fileparts(mfilename('fullpath'));
 projectRoot = fileparts(validationDirectory);
 resultsDirectory = fullfile(validationDirectory,'results','plant');
 
-addpath(projectRoot, validationDirectory);
-cleanup = onCleanup(@() rmpath(projectRoot, validationDirectory)); %#ok<NASGU>
+originalPath=path;
+cleanup=onCleanup(@() path(originalPath)); %#ok<NASGU>
+addpath(projectRoot,validationDirectory);
 
 if ~isfolder(resultsDirectory)
     mkdir(resultsDirectory);
@@ -51,7 +52,7 @@ function result = simulate_open_loop_scenario(scenario, p, resultsDirectory)
 dt = p.validation_dt;
 time = (0:dt:scenario.Duration_s)';
 sampleCount = numel(time);
-state = zeros(sampleCount,11);
+state = zeros(sampleCount,13);
 state(1,1) = scenario.InitialSpeed_mps;
 
 deltaCommand = zeros(sampleCount,1);
@@ -67,7 +68,7 @@ for sample = 1:sampleCount
     [deltaCommand(sample), brakeCommand(sample,:)] = ...
         commands_at_time(time(sample), scenario);
     q = vehicle_dynamics_quantities(state(sample,:)', p);
-    normalLoads(sample,:) = q.Fz';
+    normalLoads(sample,:) = q.Fz_raw';
     alpha(sample,:) = [q.alpha_front, q.alpha_rear];
     lateralForce(sample,:) = [q.Fyf, q.Fyr];
     lateralCapacity(sample,:) = ...
@@ -86,7 +87,7 @@ sideslip = atan2(state(:,2), max(state(:,1),p.vx_floor));
 lateralAcceleration = bodyForce(:,2)/p.m;
 
 finitePass = all(isfinite([state, normalLoads, lateralForce, bodyForce]),'all');
-normalLoadPass = min(normalLoads,[],'all') >= 49.9;
+normalLoadPass = min(normalLoads,[],'all') > 0;
 frictionEllipsePass = all(abs(lateralForce) <= lateralCapacity+1e-6,'all');
 actuatorRatePass = all(abs(actualRate(:,1)) <= p.delta_rate+1e-6) && ...
     all(abs(actualRate(:,2:5)) <= p.Fx_rate+1e-3,'all');
@@ -158,28 +159,38 @@ series = table(time,state(:,1),state(:,2),state(:,3),state(:,4), ...
     'FzRL_N','FzRR_N','AlphaFront_rad','AlphaRear_rad','FyFront_N', ...
     'FyRear_N','FyFrontCapacity_N','FyRearCapacity_N','FxBody_N', ...
     'FyBody_N','YawMoment_Nm','Sideslip_rad','LateralAcceleration_mps2'});
+series.MotorA_radps=state(:,12);
+series.MotorB_radps=state(:,13);
 writetable(series,fullfile(scenarioDirectory,'timeseries.csv'));
 save(fullfile(scenarioDirectory,'result.mat'),'series','metrics','scenario','p');
 
+for language=["en","fr"]
+if language=="en"
+    figureName=scenario.Name; timeLabel='Time [s]'; commandLabels={'Command','Actual'};
+    axleLabels={'Front','Rear'};
+else
+    figureName=scenario.NameFR; timeLabel='Temps [s]'; commandLabels={'Consigne','Mesure simulée'};
+    axleLabels={'Avant','Arrière'};
+end
 figure('Visible','off');
 tiledlayout(3,1);
 nexttile; plot(time,state(:,1),'LineWidth',1.2); ylabel('v_x [m/s]'); grid on;
-title(strrep(scenario.Name,'_',' '));
+title(figureName);
 nexttile; plot(time,state(:,3),'LineWidth',1.2); ylabel('r [rad/s]'); grid on;
 nexttile; plot(state(:,4),state(:,5),'LineWidth',1.2); ...
     xlabel('X [m]'); ylabel('Y [m]'); axis equal; grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'vehicle_response.png'));
+exportgraphics(gcf,fullfile(scenarioDirectory,'vehicle_response_'+language+'.png'));
 close(gcf);
 
 figure('Visible','off');
 tiledlayout(3,1);
 nexttile; plot(time,rad2deg([deltaCommand,state(:,7)]),'LineWidth',1.2); ...
-    ylabel('\delta [deg]'); legend('Command','Actual','Location','best'); grid on;
+    ylabel('\delta [deg]'); legend(commandLabels,'Location','best'); grid on;
 nexttile; plot(time,state(:,8:11),'LineWidth',1.1); ylabel('F_x [N]'); ...
     legend('FL','FR','RL','RR','Location','best'); grid on;
 nexttile; plot(time,normalLoads,'LineWidth',1.1); ylabel('F_z [N]'); ...
-    xlabel('Time [s]'); legend('FL','FR','RL','RR','Location','best'); grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'actuators_and_loads.png'));
+    xlabel(timeLabel); legend('FL','FR','RL','RR','Location','best'); grid on;
+exportgraphics(gcf,fullfile(scenarioDirectory,'actuators_and_loads_'+language+'.png'));
 close(gcf);
 
 figure('Visible','off');
@@ -189,25 +200,19 @@ nexttile; plot(time,lateralForce,'LineWidth',1.2); hold on; ...
     plot(time,-lateralCapacity,'--','LineWidth',1.0); ...
     ylabel('F_y [N]'); grid on;
 nexttile; plot(time,rad2deg(alpha),'LineWidth',1.2); ...
-    ylabel('\alpha [deg]'); xlabel('Time [s]'); ...
-    legend('Front','Rear','Location','best'); grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'tire_response.png'));
+    ylabel('\alpha [deg]'); xlabel(timeLabel); ...
+    legend(axleLabels,'Location','best'); grid on;
+exportgraphics(gcf,fullfile(scenarioDirectory,'tire_response_'+language+'.png'));
 close(gcf);
+end
 
 result = struct('metrics',metrics,'series',series);
 
     function nextState = rk4_step(t,currentState,step,activeScenario)
-        k1 = plant_rhs(t,currentState,activeScenario);
-        k2 = plant_rhs(t+step/2,currentState+step*k1/2,activeScenario);
-        k3 = plant_rhs(t+step/2,currentState+step*k2/2,activeScenario);
-        k4 = plant_rhs(t+step,currentState+step*k3,activeScenario);
-        nextState = currentState + step*(k1+2*k2+2*k3+k4)/6;
+        [steering,braking]=commands_at_time(t,activeScenario);
+        nextState=plant_step(currentState,[braking';steering],ones(6,1),step,p);
     end
 
-    function derivative = plant_rhs(t,currentState,activeScenario)
-        [steering,braking] = commands_at_time(t,activeScenario);
-        derivative = vehicle_derivatives_block(currentState,steering,braking');
-    end
 end
 
 function [steering, braking] = commands_at_time(t, scenario)

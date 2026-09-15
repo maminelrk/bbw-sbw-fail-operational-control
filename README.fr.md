@@ -4,15 +4,15 @@
 
 ## Présentation
 
-Ce projet développe un allocateur de commande sensible aux défauts pour une architecture véhicule intégrant le freinage Brake-by-Wire (BbW) et la direction Steer-by-Wire (SbW). Il répartit une force longitudinale et un moment de lacet demandés entre quatre actionneurs de freinage indépendants et un actionneur de direction.
+Ce projet de stage développe et documente une simulation intégrée du freinage Brake-by-Wire (BbW) et de la direction Steer-by-Wire (SbW). Il répartit les demandes de force longitudinale et de moment de lacet entre quatre freins et une crémaillère commune entraînée par deux canaux d'actionneur masqués indépendamment.
 
 Lorsque la demande complète est physiquement irréalisable, l'allocateur fournit la meilleure solution réalisable respectant les limites. Lorsqu'un actionneur tombe en panne, un masque binaire supprime son autorité et l'allocateur redistribue la demande entre les actionneurs sains restants.
 
-Le projet utilise le Brake-Actuated Steering (BAS), ou braquage produit par freinage, comme principe physique de contrôle latéral dégradé. La fonction de secours implémentée est appelée Differential-Braking Backup Steering (DBBS) : un freinage asymétrique génère un moment de lacet correctif lorsque la direction commandée est indisponible.
+Le concept de secours est le Differential-Braking Backup Steering (DBBS) : un freinage asymétrique produit un moment de lacet correctif lorsque la direction commandée est indisponible. Le braquage de crémaillère par rayon de pivot n'est pas modélisé. La validation de ce secours au niveau véhicule reste un travail Gate 3.
 
 ## État du développement
 
-Ce dépôt constitue une référence de développement et de validation Gate 2. Il ne constitue pas un dossier de sécurité achevé.
+Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne de défauts Gate 3. Il ne constitue pas un dossier de sécurité achevé. L'exécution MATLAB et l'acceptation par l'encadrant restent en attente.
 
 Éléments implémentés :
 
@@ -22,20 +22,24 @@ Ce dépôt constitue une référence de développement et de validation Gate 2. 
 - masques nommés pour les défauts d'un seul actionneur ;
 - traçabilité documentée des paramètres du véhicule de référence ;
 - campagne de validation du modèle en boucle ouverte sans allocateur ;
+- deux boucles de vitesse entraînant une crémaillère commune, avec masques A/B ;
+- allocateur connecté au véhicule non linéaire à 13 états dans une boucle échantillonnée ;
+- cinq manœuvres nominales variables, figures françaises/anglaises et manifeste d'exécution ;
 - calcul statique de l'autorité résiduelle ;
 - tests unitaires MATLAB ;
 - scénarios nominaux, de saturation, de défaut de frein et de perte de direction ;
+- 30 cas Gate 3 séparant la défaillance physique du diagnostic retardé ;
+- comparaisons nominal/défaillant, diagnostics de récupération et figures bilingues ;
 - critères numériques pour REQ-02 et REQ-03 ;
 - traçabilité entre exigences et tests.
 
 Éléments restant à réaliser :
 
-- exécution de la campagne de validation dans une installation MATLAB ;
-- intégration du wrapper à trois entrées avec masque de défaut dans `wawaw.slx` ;
-- comparaison véhicule nominal/défaillant pour la continuité du lacet ;
-- modélisation indépendante des deux canaux de l'actionneur de direction ;
-- commande en boucle fermée du lacet et de la trajectoire pour la validation dynamique DBBS ;
-- AMDEC, analyse des défaillances dépendantes et preuves d'architecture pour les objectifs de sécurité.
+- exécution et revue des campagnes MATLAB Gate 2 et Gate 3 ;
+- évaluation de l'enveloppe opérationnelle non linéaire et de l'autorité résiduelle maximale ;
+- clarification du périmètre capteurs/trajectoire et des modes de défaut non couverts ;
+- revue des brouillons locaux AMDEC/arbre de défaillances/DFA et des preuves d'indépendance matérielle ;
+- acceptation des livrables des jalons par l'encadrant.
 
 ## Formulation de l'allocation
 
@@ -54,15 +58,15 @@ u = [Fx_FL; Fx_FR; Fx_RL; Fx_RR; delta]
 L'allocateur minimise l'erreur de suivi normalisée et une faible pénalisation de l'effort des actionneurs :
 
 ```text
-min 0.5 (B u - y_d)' Q (B u - y_d) + 0.5 rho u' R u
+min 0.5 (c + B u - y_d)' Q (c + B u - y_d) + 0.5 rho u' R u
 ```
 
-sous contraintes de limites physiques, de vitesses de commande et du masque de défaut actif. Une demande irréalisable produit donc une solution bornée au mieux réalisable, et non une commande nulle.
+sous contraintes de limites physiques, de vitesses et de six indicateurs de santé `[FL FR RL RR A B]`. Dans la boucle intégrée, `c` et `B` sont recalculés à partir de l'état ; la performance est mesurée sur les sorties non linéaires du véhicule. Voir le [guide Gate 2](docs/gate2.fr.md).
 
 ## Prérequis
 
-- MATLAB
-- Simulink
+- MATLAB R2021a ou plus récent
+- Simulink uniquement pour l'ancien prototype par blocs
 - Optimization Toolbox (`quadprog`)
 - MATLAB Unit Test Framework
 
@@ -70,13 +74,21 @@ La version exacte de MATLAB utilisée devra être enregistrée lors de la premi�
 
 ## Exécution de la validation
 
-Ouvrir MATLAB à la racine du dépôt puis exécuter la campagne complète :
+Ouvrir MATLAB à la racine du dépôt puis exécuter la campagne de preuves Gate 2 :
 
 ```matlab
-results = run_project_validation();
+results = run_gate2_validation();
 ```
 
-Cette commande lance la campagne du modèle sans allocateur, les tests unitaires et les scénarios de l'allocateur. Les preuves CSV, MAT et PNG sont générées dans `validation/results/`. Ce dossier est volontairement exclu de Git, car son contenu peut être régénéré.
+Cette commande lance les tests unitaires, le modèle seul, le banc de direction, cinq manœuvres intégrées et la convergence du pas. Les CSV, MAT, figures françaises/anglaises et le manifeste sont générés dans `validation/results/`. Un échec empêche l'état d'acceptation. `run_project_validation()` ajoute les anciens tests d'allocation à demande constante. Les preuves générées sont exclues de Git.
+
+Après revue de Gate 2, lancer la campagne de défauts préparée :
+
+```matlab
+faultResults = run_gate3_validation();
+```
+
+Elle exécute les tests unitaires, quatre références nominales appariées et 30 cas de défaut avec diagnostic retardé. Son manifeste maintient toujours Gate 3 ouvert : réussir les diagnostics de manœuvre ne démontre ni l'enveloppe complète REQ-02/03 ni un dossier de sécurité. Voir le [guide Gate 3](docs/gate3.fr.md) et le [registre courant des jalons](docs/project_status.fr.md).
 
 Pour valider uniquement le modèle, sans appeler l'allocateur :
 
@@ -99,7 +111,12 @@ fault_scenario_mask.m             Masques nommés de santé et de défaut
 get_params.m                      Paramètres véhicule et allocateur
 control_authority_report.m        Calcul statique de l'autorité résiduelle
 simulink_allocator_wrapper.m      Wrapper Simulink sensible aux défauts
-wawaw.slx                         Modèle de simulation véhicule actuel
+wawaw.slx                         Prototype Simulink archivé à 11 états
+steering_actuator_dynamics.m      Direction à deux canaux et crémaillère commune
+plant_step.m                      Pas RK4 du modèle non linéaire intégré
+run_gate2_validation.m            Point d'entrée des preuves et contrôles Gate 2
+run_gate3_validation.m            Point d'entrée des preuves préliminaires Gate 3
+straight_braking_screening.m      Estimation restreinte à braquage et lacet nuls
 validation/                       Campagne de validation automatisée
 tests/                            Tests unitaires MATLAB
 docs/                             Documentation technique bilingue
@@ -109,11 +126,18 @@ run_plant_validation.m            Point d'entrée de validation sans allocateur
 
 ## Documentation
 
+- [État des jalons et livrables du stage](docs/project_status.fr.md)
+- [Campagne Gate 3 avec diagnostic retardé](docs/gate3.fr.md)
+- [Glossaire et notation communs](docs/glossary.fr.md)
+- [Architecture, manœuvres et preuves Gate 2 courantes](docs/gate2.fr.md)
+
 - [Référence numérique des exigences](docs/requirements_baseline.fr.md)
 - [Paramètres du véhicule et du modèle](docs/parameters.fr.md)
 - [Validation du modèle en boucle ouverte sans allocateur](docs/plant_validation.fr.md)
 - [Choix de la chaîne d'outils MATLAB/Simulink](docs/toolchain_decision.fr.md)
-- Les matrices de traçabilité anglaise et française se trouvent dans `docs/verification/`.
+- Les classeurs de `docs/verification/` sont des instantanés REF-2026-01 ; le guide Gate 2 remplace leurs indications d'état d'implémentation courant.
+
+Les brouillons AMDEC/arbre/DFA et rapports LaTeX bilingues sont conservés localement dans `reports/`, ignoré par Git ; ils ne sont pas distribués avec les sources du projet.
 
 ## Avertissement sur la sécurité et le périmètre
 

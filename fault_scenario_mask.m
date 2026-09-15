@@ -1,7 +1,7 @@
 function mask = fault_scenario_mask(scenario)
 % Named binary effector masks for allocator fault-injection studies.
 %
-% Order: [brake_FL brake_FR brake_RL brake_RR steering]'.
+% Returns [brake_FL brake_FR brake_RL brake_RR steering_A steering_B]'.
 % Actuator, power-path, and communication-path losses that remove the same
 % effector intentionally map to the same allocation-layer mask. Detection
 % and architecture-level causes remain separate entries in the FMEA.
@@ -21,6 +21,10 @@ switch scenario
         mask = [1; 1; 1; 0; 1];
     case {"steering_loss", "sbw_loss"}
         mask = [1; 1; 1; 1; 0];
+    case {"steering_a_loss", "steer_a_loss"}
+        mask = [1; 1; 1; 1; 0; 1];
+    case {"steering_b_loss", "steer_b_loss"}
+        mask = [1; 1; 1; 1; 1; 0];
 
     % Extended circuit-level cases. Keep these out of the mandatory
     % single-corner campaign until the vehicle circuit split is confirmed.
@@ -36,5 +40,5 @@ switch scenario
         error('fault_scenario_mask:UnknownScenario', ...
             'Unknown fault scenario "%s".', scenario);
 end
-
+mask = normalize_actuator_mask(mask);
 end

@@ -6,11 +6,12 @@ function results = run_project_validation()
 projectRoot = fileparts(mfilename('fullpath'));
 validationDirectory = fullfile(projectRoot, 'validation');
 
-addpath(validationDirectory);
-cleanup = onCleanup(@() rmpath(validationDirectory)); %#ok<NASGU>
+originalPath=path;
+cleanup=onCleanup(@() path(originalPath)); %#ok<NASGU>
+addpath(projectRoot,validationDirectory);
 
 results = struct();
-results.plant = run_plant_open_loop_validation();
+results.gate2 = run_gate2_validation();
 results.allocation = run_validation_campaign();
 
 end
