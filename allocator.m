@@ -4,7 +4,7 @@ function [u,exitflag,info] = allocator(demand,delta_act_lin,opts,mask,u_prev,dt,
 % from the nonlinear plant. Omit it for legacy static screening only.
 if nargin < 2 || isempty(delta_act_lin), delta_act_lin=0; end
 if nargin < 3 || isempty(opts)
-    opts=optimoptions('quadprog','Display','off','OptimalityTolerance',1e-9);
+    opts=allocator_options();
 end
 if nargin < 4, mask=[]; end
 if nargin < 5, u_prev=[]; end
@@ -36,22 +36,25 @@ else
     end
     q=vehicle_dynamics_quantities(state,p,channels); loads=q.Fz;
     anchor=[q.Fx_actual;state(7)]; y0=[q.Fx_total;q.Mz_total]; B=zeros(2,5);
-    for j=1:5
-        if ~effectors(j), continue; end
-        h=1; if j==5, h=1e-4; end
-        if j<=4 && anchor(j)>-0.5, h=-h; end
-        trial=state;
-        if j<=4, trial(j+7)=anchor(j)+h; else, trial(7)=anchor(5)+h; end
+    % Brake decisions are contact forces, not actuator states to perturb
+    % through load transfer and clipped combined-slip tire equations. Freeze
+    % the measured loads/lateral forces for this local QP. Differentiating
+    % their saturation boundary can reverse longitudinal brake effectiveness
+    % and lock the controller into braking when the demand is released.
+    c=cos(state(7)); s=sin(state(7));
+    B(:,1:4)=[c c 1 1; p.lf*s-p.tw*c/2 p.lf*s+p.tw*c/2 -p.tw/2 p.tw/2];
+    if effectors(5)
+        h=1e-4; trial=state; trial(7)=anchor(5)+h;
         qt=vehicle_dynamics_quantities(trial,p,channels);
-        if j==5
-            % A centered steering derivative preserves left/right symmetry
-            % at zero steer; a one-sided derivative invents a drag gradient.
-            trial(7)=anchor(5)-h;
-            qm=vehicle_dynamics_quantities(trial,p,channels);
-            B(:,j)=([qt.Fx_total;qt.Mz_total]-[qm.Fx_total;qm.Mz_total])/(2*h);
-        else
-            B(:,j)=([qt.Fx_total;qt.Mz_total]-y0)/h;
-        end
+        % Steering still uses a local centered nonlinear secant. The QP
+        % offset preserves actual tire forces exactly at the anchor.
+        trial(7)=anchor(5)-h;
+        qm=vehicle_dynamics_quantities(trial,p,channels);
+        % Steering is assigned yaw authority only. Crediting its local Fx
+        % derivative lets an infeasible braking request induce steering and
+        % opposing differential braking, amplifying small asymmetries.
+        % Actual longitudinal steering effects remain in the sampled offset.
+        B(2,5)=(qt.Mz_total-qm.Mz_total)/(2*h);
     end
     offset=y0-B*anchor; angleLimit=p.delta_max;
 end
@@ -63,6 +66,12 @@ if ~isempty(state) && ~effectors(5)
     physicalMin(5)=state(7); physicalMax(5)=state(7);
 end
 lower=physicalMin; upper=physicalMax; rateOverride=false;
+% Operational reserve is separate from the physical friction-circle limit.
+% Static authority screening retains full theoretical capacity.
+if ~isempty(state)
+    lower(1:4)=p.allocation_friction_fraction*physicalMin(1:4);
+end
+allocationMin=lower; allocationMax=upper;
 if ~isempty(u_prev)
     rate=[repmat(p.Fx_rate,4,1);min(p.delta_rate,sum(p.steering_channel_rate.*channels(5:6)))];
     lower=max(lower,u_prev-rate*dt); upper=min(upper,u_prev+rate*dt);
@@ -70,7 +79,7 @@ if ~isempty(u_prev)
     rateOverride=any(conflict & effectors==1);
     % Only an actually empty intersection requires physical-bound priority.
     % A moving tire bound inside the rate interval must not re-center it.
-    repair=min(max(u_prev,physicalMin),physicalMax);
+    repair=min(max(u_prev,allocationMin),allocationMax);
     lower(conflict)=repair(conflict); upper(conflict)=repair(conflict);
 end
 if ~isempty(state) && effectors(5)
@@ -100,6 +109,7 @@ info=struct('achieved',achieved,'residual',demand-achieved, ...
     'fault_mask',channels,'effector_mask',effectors,'B',B,'offset',offset, ...
     'lower_bounds',lower,'upper_bounds',upper, ...
     'physical_lower_bounds',physicalMin,'physical_upper_bounds',physicalMax, ...
+    'allocation_lower_bounds',allocationMin,'allocation_upper_bounds',allocationMax, ...
     'output_scale',authorityScale,'objective_scale',p.allocation_output_scale, ...
     'rate_override',rateOverride);
 end

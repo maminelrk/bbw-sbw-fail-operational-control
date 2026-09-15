@@ -46,13 +46,14 @@ Le modèle d'adhérence combinée réduit la capacité latérale selon une ellip
 | `actuator_tau_Fx` | 0,020 | s | Hypothèse de conception calculée | Une réponse du premier ordre atteint 91,8 % en 50 ms |
 | `validation_dt` | 0,002 | s | Dérivée de l'exigence | Période d'allocation et de validation |
 | `allocation_effort_weight` | 1e-6 | - | Réglage numérique supposé | Rend le QP strictement convexe tout en gardant le suivi dominant |
+| `allocation_friction_fraction` | 0,98 | - | Hypothèse de commande provisoire | Les commandes intégrées conservent 2 % de réserve longitudinale, soit 19,9 % de budget latéral du cercle d'adhérence à la limite commandée ; marge non calibrée sur un véhicule |
 | `steering_channel_rate` | 240 par canal | deg/s | Capacité de conception supposée | Chaque entraînement fournit 60 % de la limite crémaillère de 400 deg/s |
 | `steering_motor_tau` | 0,010 | s | Supposée | Retard indépendant de chaque boucle interne de vitesse |
 | `yaw_tracking_tau` | 0,25 | s | Réglage supposé | Servo nominal de consigne de lacet |
 | `allocation_output_scale` | [5000; 1000] | [N; N m] | Priorités supposées | Normalisation fixe de l'objectif, distincte des diagnostics d'autorité |
 | `steering_trust_angle` | 0,5 | deg | Réglage numérique supposé | Intervalle local de linéarisation non linéaire |
 
-L'allocateur intégré utilise les charges courantes `mu*Fz` ; les appels d'analyse statique conservent les charges statiques. Chaque entraînement est supposé couvrir toute la plage de la crémaillère commune. Ces hypothèses fonctionnelles ne représentent ni inertie de crémaillère, ni couple moteur, ni capacité sous charge routière. L'argument des 20 ms ne vaut que pour un retard unique non saturé ; il ne prouve pas l'objectif de 50 ms de la direction en cascade. Voir [Gate 2](gate2.fr.md) pour les interfaces, manœuvres et preuves.
+Les bornes physiques utilisent les charges courantes `mu*Fz`. La configuration de commande `ALLOC-2026-03` limite en plus les commandes intégrées à `0.98*mu*Fz` ; l'analyse d'autorité statique conserve la capacité théorique complète et les charges statiques. La réserve évite la frontière non lisse de budget latéral nul, mais ne garantit pas la capacité latérale transitoire : retard des actionneurs et variations des charges nécessitent toujours des contrôles indépendants de la plante. Sensibilité et fonctionnement dégradé restent à étudier. Chaque entraînement est supposé couvrir toute la plage de la crémaillère commune. Ces hypothèses fonctionnelles ne représentent ni inertie de crémaillère, ni couple moteur, ni capacité sous charge routière. L'argument des 20 ms ne vaut que pour un retard unique non saturé ; il ne prouve pas l'objectif de 50 ms de la direction en cascade. Voir [Gate 2](gate2.fr.md) pour les interfaces, manœuvres et preuves.
 
 ## Sources
 

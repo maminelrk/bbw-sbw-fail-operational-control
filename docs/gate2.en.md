@@ -1,6 +1,6 @@
 # Gate 2 implementation and evidence
 
-Current model: `REF-2026-02`. Status: implemented, MATLAB execution pending.
+Current model: `REF-2026-02`; controller: `ALLOC-2026-03`. The corrected MATLAB run passed every Gate 2 check at 23:33:46 UTC on 15 September 2026. Status: `READY_FOR_SUPERVISOR_REVIEW`. The original failed run remains preserved.
 The internship gate closes after the saved MATLAB results and figures have been reviewed. The source PDFs and the new LaTeX closure reports are kept in the ignored `reports/` directory.
 
 ## Execute
@@ -40,11 +40,27 @@ Mz_d = Iz (dr_ref/dt + (r_ref-r)/0.25)
 
 The QP uses a local affine map `y = c + B*u`, evaluated about the current nonlinear plant state. The offset retains passive front/rear tire forces and existing steering effects. A centered steering derivative preserves straight-line symmetry. Fixed output scales are 5000 N and 1000 N·m; actuator variables are dimensionless. The steering trust region is ±0.5° about actual angle when compatible with the rate bounds.
 
+Brake columns now use direct contact-force geometry with measured loads and lateral forces held fixed for the local QP. For actual steering angle `delta`, the longitudinal row is `[cos(delta), cos(delta), 1, 1]`; the yaw row is `[lf*sin(delta)-tw*cos(delta)/2, lf*sin(delta)+tw*cos(delta)/2, -tw/2, tw/2]`. Failed-channel columns are zero. This is a local control-effectiveness approximation, not the full derivative of the coupled load-transfer/combined-slip model. The offset is recomputed every sample so the affine map agrees exactly with actual generalized forces at the anchor. Steering retains a centered nonlinear yaw secant; its local longitudinal column is zero, as detailed below. The independent nonlinear plant is unchanged.
+
+The original brake finite differences perturbed actuator states through clipping, load transfer and a square-root lateral-capacity boundary. The first MATLAB run exposed negative longitudinal release gains and very large cross-coupled yaw gains near saturation. Direct force geometry avoids treating these nonsmooth algebraic effects as brake effectiveness. `TestAllocatorSaturation` checks the geometry, anchor consistency, fault masking and full saturation/release with mirrored small initial asymmetries. No maneuver acceptance thresholds were relaxed.
+
 At each 2 ms sample, commands are held during an RK4 plant step. Reported actual force/moment comes from the nonlinear tire model, **not** the QP prediction. The logs keep both. Brake-force bounds follow current wheel loads; a genuine empty intersection with a healthy command-rate bound is flagged and causes Gate 2 rejection. Moving bounds inside the available rate interval do not reset the previous command.
 
 The plant retains raw wheel loads so wheel lift fails a check. Lateral load transfer satisfies `(Fz_right-Fz_left)*track/2 = m*ay_est*hcg`. Tire force is zero when the remaining friction budget is zero. Per-wheel longitudinal/lateral force pairs stay inside their circles. Quasi-static load transfer still uses estimated `ax` and `ay=vx*r`, rather than a coupled suspension solution.
 
 ## Maneuver catalog
+
+### Corrected controller configuration
+
+`ALLOC-2026-03` assigns steering yaw authority only in the local QP (`B(1,5)=0`). The sampled affine offset still contains the actual longitudinal effects of steering; the independent plant is unchanged. This prevents the longitudinal objective from deliberately using steering and opposing differential braking to chase an infeasible brake demand.
+
+Integrated command bounds retain a provisional 2% longitudinal grip reserve (`0.98*mu*Fz`), separate from physical bounds (`mu*Fz`). At the command limit this leaves a theoretical 19.9% lateral friction-circle budget. Actuator lag and moving loads mean this is not a transient guarantee. Static authority screening still uses full theoretical capacity. Sensitivity and faulted-operation review of this assumption remain open; the original ≥95% braking-capacity acceptance criterion is unchanged.
+
+`allocator_options` retains `interior-point-convex`, with optimality tolerance `1e-12` and constraint tolerance `1e-9`. A controlled MATLAB solver-only comparison at tolerances `1e-9`, `1e-10`, `1e-12`, `1e-14` gave peak yaw approximately `2.3923e-4`, `1.1887e-5`, `4.3859e-7`, `3.6051e-10` rad/s respectively, all without solver failures. Thus the old numerical tolerance was insufficient for this closed-loop regression. An active-set trial was rejected after iteration-limit failures. Algorithm and tolerance semantics follow the [MathWorks quadprog reference](https://www.mathworks.com/help/optim/ug/quadprog.html).
+
+`run_allocator_solver_diagnostic()` reproduces the solver-only comparison and preserves each result under `validation/results/solver_diagnostic_v6/`; it refuses to overwrite an existing diagnostic folder. The optional fourth argument of `run_integrated_maneuver` supplies explicit solver options and the result saves those options. No maneuver thresholds are changed by this diagnostic.
+
+### Nominal cases
 
 All maneuvers begin at 60 km/h with nominal health, zero lateral/yaw states and zero actuator states. Ramps use `3s²-2s³` on `s∈[0,1]`. This catalog supersedes the Gate 2 coverage in the earlier traceability workbooks, which remain REF-2026-01 snapshots.
 
@@ -74,9 +90,29 @@ Every case must also pass force/angle/rate limits, both motor contribution limit
 
 REQ-01 is covered by the integrated bounds/rates/friction diagnostics. REQ-03b has a functional bench but no loaded hardware validation. REQ-02, dynamic REQ-03a/c and REQ-04 remain Gate 3 work. A raw 69.7% remaining brake capacity and a 37.6% static brake-yaw screening ratio do not prove straight-line performance or simultaneously attainable steer-plus-brake authority.
 
-## Checks performed in the authoring environment
+## First MATLAB execution and correction status
 
-MATLAB is unavailable. The MATLAB files were parsed with MISS_HIT. A separate equation-level implementation with SciPy bounded least squares passed all five maneuvers with the same tuning, thresholds and sample period. This checks the equations and intended QP behavior, not MATLAB execution or `quadprog` compatibility.
+On 15 September 2026 at 19:04:40 UTC, MATLAB Online R2026a Update 5 executed commit `a775806` with Optimization Toolbox. All 31 original unit tests, three plant-only scenarios, four steering bench cases, four normal tracking maneuvers and timestep convergence passed. G2-SAT failed: peak absolute yaw was 0.079208 rad/s, release-window force reached 9172.17 N, and speed fell below the 0.5 m/s model floor. Solver success and physical-bound checks did not establish successful closed-loop behavior. The failed run is preserved separately in MATLAB Drive and is not overwritten by a claim of acceptance. The subsequent corrected execution below supersedes this failed run for current numerical status; Gate 3 has not been executed.
+
+## Corrected MATLAB execution
+
+The corrected campaign started on **15 September 2026 at 23:33:46 UTC** and completed in **196.2076 s** on MATLAB Online R2026a Update 5. All **36 unit tests, 3 plant-only cases, 4 steering cases, 5 maneuvers and timestep convergence passed**. Status: `READY_FOR_SUPERVISOR_REVIEW`.
+
+| Case | Force RMSE [N] | Yaw RMSE [rad/s] | Result |
+|---|---:|---:|---|
+| G2-BRK | 44.6455 | 3.90575e-9 | Pass |
+| G2-STR | 20.6210 | 0.00213073 | Pass |
+| G2-CMB | 28.5375 | 0.00178501 | Pass |
+| G2-YAW | 6.27437 | 0.00172186 | Pass |
+| G2-SAT | 1541.32 (infeasible request) | 5.03305e-8 | Capacity/recovery pass |
+
+G2-SAT delivered **98.0% μmg**, peak yaw **4.38590e-7 rad/s**, maximum release-window force **0.00457908 N**, and minimum/final speed **2.75553 m/s**. All physical/operating checks passed without rate overrides. Timestep differences were **0.000128328 rad/s** in yaw and **0.000587633 m/s** in speed, below the unchanged 0.001 rad/s and 0.03 m/s limits.
+
+The tested source is base commit `a775806` plus a seven-file uncommitted correction identified by `saturation_fix_source_manifest.json`; every SHA-256 was verified in MATLAB before execution. The run manifest records the working-tree delta. The corrected archive in MATLAB Drive is `gate2_corrected_20260915_233346.zip`, separate from the failed baseline. A verified local download is not yet recorded. Reports and generated evidence remain excluded from GitHub. The inspected response plot exposed dark-theme axes/text styling; light-theme re-export remains a report-formatting task. Supervisor acceptance, reserve sensitivity and Gate 3 remain open.
+
+## Historical independent checks (not MATLAB results)
+
+Before MATLAB access, the files were parsed with MISS_HIT. A separate equation-level implementation with SciPy bounded least squares passed all five maneuvers with the same tuning, thresholds and sample period. These historical values did not predict the MATLAB saturation failure and must not be used as MATLAB acceptance evidence.
 
 | Maneuver | Force RMSE [N] | Yaw RMSE [rad/s] |
 |---|---:|---:|

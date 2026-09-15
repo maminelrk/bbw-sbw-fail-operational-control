@@ -1,15 +1,24 @@
-function result = run_integrated_maneuver(scenario,outputRoot,dt)
+function result = run_integrated_maneuver(scenario,outputRoot,dt,opts)
 % Sampled allocation -> independent actuator channels -> nonlinear vehicle.
 % Actual outputs ALWAYS come from vehicle_dynamics_quantities, not B*u.
 p=get_params(); if nargin<3, dt=p.validation_dt; end
 time=(0:dt:scenario.Duration)'; count=numel(time);
 x=zeros(count,13); x(1,1)=scenario.InitialSpeed;
+% Optional explicit initial condition for numerical-robustness regressions.
+% Its longitudinal speed must agree with the scenario, and it is saved with it.
+if isfield(scenario,'InitialState')
+    initial=scenario.InitialState(:);
+    assert(numel(initial)==13 && all(isfinite(initial)) && ...
+        abs(initial(1)-scenario.InitialSpeed)<1e-12, ...
+        'run_integrated_maneuver:InitialState','Expected 13 finite states with the scenario initial speed.');
+    x(1,:)=initial';
+end
 command=zeros(count,5); demand=zeros(count,2); actual=zeros(count,2);
 prediction=zeros(count,2); reference=zeros(count,3); forces=zeros(count,4);
 loads=zeros(count,4); lateral=zeros(count,4); solver=zeros(count,1);
 bounds=true(count,1); override=false(count,1); rackRate=zeros(count,1);
 motorContribution=zeros(count,2); lower=zeros(count,5); upper=zeros(count,5);
-opts=optimoptions('quadprog','Display','off','OptimalityTolerance',1e-9);
+if nargin<4 || isempty(opts), opts=allocator_options(); end
 previous=zeros(5,1); physicalHistory=ones(count,6); knownHistory=ones(count,6);
 isFault=isfield(scenario,'FaultScenario') && scenario.FaultScenario~="nominal";
 oracle=NaN(count,2); oracleScale=NaN(count,2); oracleFlag=NaN(count,1);
@@ -88,7 +97,7 @@ end
 series.OracleFx_N=oracle(:,1); series.OracleMz_Nm=oracle(:,2);
 series.OracleScaleFx_N=oracleScale(:,1); series.OracleScaleMz_Nm=oracleScale(:,2);
 series.OracleExitFlag=oracleFlag;
-result=struct('scenario',scenario,'series',series,'metrics',metrics,'p',p,'dt',dt);
+result=struct('scenario',scenario,'series',series,'metrics',metrics,'p',p,'dt',dt,'solver_options',opts);
 if nargin>=2 && ~isempty(outputRoot)
     folder=fullfile(outputRoot,scenario.ID); if ~isfolder(folder), mkdir(folder); end
     writetable(series,fullfile(folder,'timeseries.csv'));

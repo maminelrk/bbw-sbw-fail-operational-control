@@ -60,7 +60,8 @@ classdef TestGate2Integration < matlab.unittest.TestCase
         end
         function shrinkingForceBoundsPreserveRateIntersection(testCase)
             p=get_params(); x=zeros(13,1); x(1)=p.reference_speed;
-            previous=[-p.mu*static_corner_loads(p)'-10;0];
+            % The integrated controller now retains an explicit grip reserve.
+            previous=[-p.allocation_friction_fraction*p.mu*static_corner_loads(p)'-10;0];
             [u,flag,info]=allocator([-1e6;0],0,[],ones(6,1),previous,p.validation_dt,x);
             testCase.verifyGreaterThan(flag,0);
             testCase.verifyFalse(info.rate_override);

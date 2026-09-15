@@ -1,11 +1,11 @@
 # Internship deliverables and gate register
 
-Updated 11 September 2026. Status is based on available evidence, not the original calendar dates. MATLAB is unavailable; source code and independent Python checks are not labelled as MATLAB results. No supervisor acceptance is recorded.
+Updated 16 September 2026. Status is based on available evidence, not the original calendar dates. MATLAB Online is available. The corrected Gate 2 run passed every numerical check on 15 September 2026 at 23:33:46 UTC; the earlier saturation failure is preserved separately. Independent Python checks are not labelled as MATLAB results. No supervisor acceptance is recorded.
 
 | Gate / deliverable | Work available | Gate status / remaining acceptance |
 |---|---|---|
 | G1 / D1 | Original architecture report plus bilingual LaTeX closure addendum; numerical baseline; fault semantics and D4 dependencies clarified | Decisions documented; supervisor review and sensor/path scope decisions pending |
-| G2 / D2 | Nonlinear 13-state plant, nominal QP integration, plant/steering benches, five maneuvers, bilingual evidence runner | Implemented; MATLAB execution and results review pending |
+| G2 / D2 | Nonlinear 13-state plant, nominal QP integration, plant/steering benches, five maneuvers, bilingual evidence runner; first MATLAB run preserved | 36 unit tests, 3 plant cases, 4 steering cases, 5 maneuvers and convergence passed; supervisor review and report-figure formatting pending |
 | G3 / D3 | 30-case delayed-fault campaign, four matched nominal references, comparison metrics and bilingual figures; independent numerical cross-check | Preliminary work; MATLAB, operational-envelope/authority assessment and uncovered fault modes remain open |
 | G3 / D4 | FMEA register, qualitative fault-tree logic and eight-entry dependency register | Draft complete for review; independence and hardware mappings not demonstrated |
 | G4 / D5 | Bilingual report material, evidence plan and reproducibility instructions | Final results, discussion and defense slides pending |
@@ -17,7 +17,7 @@ Completed **work packages**, not formally closed gates: fault timing infrastruct
 
 | Requirement | Implementation / test evidence | Remaining limit |
 |---|---|---|
-| REQ-01 | Allocator bounds; nonlinear tire/rate/load checks; TestGate2Integration and TestGate3Preparation; G2/G3 runners | MATLAB pending; no real torque or road-load validation |
+| REQ-01 | Allocator bounds; nonlinear tire/rate/load checks; TestGate2Integration, TestGate3Preparation and TestAllocatorSaturation; G2/G3 runners | Corrected MATLAB G2 bounds and saturation checks passed; G3 and real torque/road-load validation remain pending |
 | REQ-02 mask ≤10 ms | `fault_event_masks`; physical and known histories; G3 mask timing | Injected diagnosis only; actual detector/scheduler absent |
 | REQ-02 response ≤50 ms + 100 ms dwell | `recovery_band_metric`; actual nonlinear output versus frozen-state QP oracle | 15% nonlinear envelope and oracle interpretation pending; diagnostic is not compliance |
 | REQ-02 continuity | Matched yaw difference over 200 ms from physical onset | Provisional threshold; no driver-perception validation |
@@ -43,9 +43,9 @@ The old traceability workbooks are historical snapshots. This register and the G
 
 Use French and English sources for every chapter. Every figure caption must identify the execution engine, parameter/protocol revision, initial conditions and whether the result is preliminary. Do not use an independent Python plot with a MATLAB caption.
 
-## When MATLAB is available
+## MATLAB continuation
 
-1. Run `run_gate2_validation()` in the repository root with Optimization Toolbox. Save all outputs, including failed cases. Review the unit tests, plant checks, steering bench, nominal maneuvers and convergence comparison.
+1. Review the corrected Gate 2 evidence from 15 September 2026, 23:33:46 UTC. Preserve it separately from the failed baseline. Re-export report figures with a consistent light theme: MATLAB's dark theme affected axes/text styling. Numerical checks passed; supervisor acceptance remains pending.
 2. Run `run_gate3_validation()`. Compare MATLAB results against the preliminary checks; inspect differences rather than assuming the solvers are equivalent.
 3. Resolve the remaining nonlinear envelope/authority tests, sensor/path semantics and safety-analysis review. MATLAB availability alone does not close these engineering questions.
 4. Replace or accompany preliminary figures with verified MATLAB evidence, then submit D2–D4 for review and assemble the final report and defense.

@@ -12,7 +12,7 @@ Le concept de secours est le Differential-Braking Backup Steering (DBBS) : un fr
 
 ## État du développement
 
-Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne de défauts Gate 3. Il ne constitue pas un dossier de sécurité achevé. L'exécution MATLAB et l'acceptation par l'encadrant restent en attente.
+Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne de défauts Gate 3. Il ne constitue pas un dossier de sécurité achevé. L'exécution MATLAB Online corrigée de Gate 2 a réussi les 36 tests unitaires, trois cas du modèle seul, quatre cas de direction, cinq manœuvres et la convergence temporelle le 15 septembre 2026 à 23:33:46 UTC. État : `READY_FOR_SUPERVISOR_REVIEW`, sans clôture formelle du jalon. La première exécution de saturation en échec est conservée. Voir le [guide Gate 2](docs/gate2.fr.md).
 
 Éléments implémentés :
 
@@ -35,7 +35,7 @@ Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne d
 
 Éléments restant à réaliser :
 
-- exécution et revue des campagnes MATLAB Gate 2 et Gate 3 ;
+- revue encadrant de Gate 2, mise en forme des figures de rapport et exécution de Gate 3 avec l'allocateur corrigé ;
 - évaluation de l'enveloppe opérationnelle non linéaire et de l'autorité résiduelle maximale ;
 - clarification du périmètre capteurs/trajectoire et des modes de défaut non couverts ;
 - revue des brouillons locaux AMDEC/arbre de défaillances/DFA et des preuves d'indépendance matérielle ;
@@ -61,7 +61,7 @@ L'allocateur minimise l'erreur de suivi normalisée et une faible pénalisation 
 min 0.5 (c + B u - y_d)' Q (c + B u - y_d) + 0.5 rho u' R u
 ```
 
-sous contraintes de limites physiques, de vitesses et de six indicateurs de santé `[FL FR RL RR A B]`. Dans la boucle intégrée, `c` et `B` sont recalculés à partir de l'état ; la performance est mesurée sur les sorties non linéaires du véhicule. Voir le [guide Gate 2](docs/gate2.fr.md).
+sous contraintes de limites physiques, d'une réserve longitudinale documentée de 2 % en boucle intégrée, de vitesses et de six indicateurs de santé `[FL FR RL RR A B]`. Dans la boucle intégrée, `c` et `B` sont recalculés à partir de l'état ; la performance est mesurée sur les sorties non linéaires du véhicule. Voir le [guide Gate 2](docs/gate2.fr.md).
 
 ## Prérequis
 
@@ -70,7 +70,7 @@ sous contraintes de limites physiques, de vitesses et de six indicateurs de sant
 - Optimization Toolbox (`quadprog`)
 - MATLAB Unit Test Framework
 
-La version exacte de MATLAB utilisée devra être enregistrée lors de la première exécution de référence.
+Exécution de référence : MATLAB Online R2026a Update 5 avec Optimization Toolbox ; version détaillée, identité des sources et configuration sont enregistrées avec les preuves.
 
 ## Exécution de la validation
 

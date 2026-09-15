@@ -6,4 +6,4 @@ MATLAB project for fault-aware control allocation across four independent brake 
 
 Projet MATLAB d'allocation de commande tolérante aux défaillances pour quatre actionneurs de freinage indépendants et une crémaillère commune entraînée par deux canaux d'actionneur masqués indépendamment. Le dépôt contient uniquement l'implémentation, le code de validation et la documentation technique propre au projet. Le CDC, les rapports, le workflow de stage, leurs contenus extraits et les preuves de simulation générées sont volontairement exclus.
 
-Development status / État du développement: **Gate 2 implementation and Gate 3 preparation; MATLAB execution and gate acceptance pending / Implémentation Gate 2 et préparation Gate 3 ; exécution MATLAB et acceptation des jalons en attente**.
+Development status / État du développement: **Corrected MATLAB Gate 2 checks passed; supervisor review pending. Gate 3 prepared, not executed / Contrôles MATLAB Gate 2 corrigés réussis ; revue encadrant en attente. Gate 3 préparé, non exécuté**.

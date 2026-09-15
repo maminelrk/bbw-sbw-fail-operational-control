@@ -12,7 +12,7 @@ The backup concept is Differential-Braking Backup Steering (DBBS): asymmetric br
 
 ## Development status
 
-This repository contains the Gate 2 implementation and Gate 3 fault-campaign preparation, not a completed safety case. MATLAB execution and supervisor acceptance remain pending.
+This repository contains the Gate 2 implementation and Gate 3 fault-campaign preparation, not a completed safety case. The corrected MATLAB Online Gate 2 run passed all 36 unit tests, three plant-only cases, four steering cases, five maneuvers and timestep convergence on 15 September 2026 at 23:33:46 UTC. Status: `READY_FOR_SUPERVISOR_REVIEW`, not formal gate acceptance. The original failed saturation run is preserved. See the [Gate 2 guide](docs/gate2.en.md).
 
 Implemented:
 
@@ -35,7 +35,7 @@ Implemented:
 
 Still pending:
 
-- execution and review of the Gate 2 and Gate 3 MATLAB campaigns;
+- supervisor review of Gate 2, report-figure formatting, and execution of the Gate 3 campaign with the corrected allocator;
 - nonlinear operational-envelope and maximum residual-authority assessment;
 - resolution of sensor/path semantics and uncovered fault modes;
 - review of the local FMEA/FTA/DFA drafts and hardware-independence evidence;
@@ -61,7 +61,7 @@ The allocator minimizes normalized tracking error and a small actuator-effort pe
 min 0.5 (c + B u - y_d)' Q (c + B u - y_d) + 0.5 rho u' R u
 ```
 
-subject to physical bounds, command-rate bounds, and six health flags `[FL FR RL RR A B]`. In integrated runs, `c` and `B` are recomputed from current vehicle state; actual performance is measured from nonlinear vehicle outputs. See the [Gate 2 guide](docs/gate2.en.md).
+subject to physical bounds, a documented 2% longitudinal grip reserve in integrated runs, command-rate bounds, and six health flags `[FL FR RL RR A B]`. In integrated runs, `c` and `B` are recomputed from current vehicle state; actual performance is measured from nonlinear vehicle outputs. See the [Gate 2 guide](docs/gate2.en.md).
 
 ## Requirements
 
@@ -70,7 +70,7 @@ subject to physical bounds, command-rate bounds, and six health flags `[FL FR RL
 - Optimization Toolbox (`quadprog`)
 - MATLAB Unit Test Framework
 
-The exact MATLAB release used for the reference results must be recorded when the campaign is first executed.
+Reference execution: MATLAB Online R2026a Update 5 with Optimization Toolbox; detailed version, source identity and configuration are recorded with the evidence.
 
 ## Running the validation
 

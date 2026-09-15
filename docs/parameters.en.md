@@ -46,13 +46,14 @@ The combined-slip model reduces lateral capacity according to a friction ellipse
 | `actuator_tau_Fx` | 0.020 | s | Calculated design assumption | A first-order response reaches 91.8% in 50 ms |
 | `validation_dt` | 0.002 | s | Requirement-derived | Allocator and validation period |
 | `allocation_effort_weight` | 1e-6 | - | Assumed numerical tuning | Makes the QP strictly convex while keeping tracking dominant |
+| `allocation_friction_fraction` | 0.98 | - | Provisional controller assumption | Integrated commands retain 2% longitudinal grip reserve, corresponding to 19.9% lateral friction-circle budget at the commanded limit; not a calibrated vehicle margin |
 | `steering_channel_rate` | 240 per channel | deg/s | Assumed design capacity | Each drive supplies 60% of the 400 deg/s rack limit |
 | `steering_motor_tau` | 0.010 | s | Assumed | Independent inner velocity-loop lag for each drive |
 | `yaw_tracking_tau` | 0.25 | s | Assumed tuning | Nominal yaw-reference servo |
 | `allocation_output_scale` | [5000; 1000] | [N; N m] | Assumed priorities | Fixed objective normalization, separate from authority diagnostics |
 | `steering_trust_angle` | 0.5 | deg | Assumed numerical tuning | Local nonlinear-map trust interval |
 
-Brake-force bounds in the integrated allocator use current `mu*Fz`; static screening calls retain static corner loads. Each steering drive is assumed to cover the full common-rack angle range. These are functional assumptions, without rack inertia, motor torque or road-load capacity. The 20 ms time-constant argument applies only to a single unsaturated lag; it does not prove the cascaded steering's 50 ms settling target. See [Gate 2](gate2.en.md) for interfaces, maneuvers and evidence.
+Physical brake-force bounds use current `mu*Fz`. Controller configuration `ALLOC-2026-03` additionally limits integrated commands to `0.98*mu*Fz`; static authority screening retains full theoretical capacity and static corner loads. The reserve avoids the nonsmooth zero-lateral-budget boundary but is not a guarantee of transient lateral capacity: actuator lag and changing loads still require independent plant checks. Sensitivity and faulted-operation assessment remain necessary. Each steering drive is assumed to cover the full common-rack angle range. These are functional assumptions, without rack inertia, motor torque or road-load capacity. The 20 ms time-constant argument applies only to a single unsaturated lag; it does not prove the cascaded steering's 50 ms settling target. See [Gate 2](gate2.en.md) for interfaces, maneuvers and evidence.
 
 ## Sources
 
