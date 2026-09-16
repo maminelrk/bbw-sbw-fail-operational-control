@@ -12,10 +12,6 @@
 \newcommand{\bi}[2]{\iffrench #2\else #1\fi}
 \newcommand{\lang}{\iffrench fr\else en\fi}
 \newcommand{\file}[1]{\texttt{\small\detokenize{#1}}}
-% Placeholder marker for results that require the pending simulation runs of
-% sections 6.10 and 6.11. Redefine as \newcommand{\tbd}{--} before submission
-% once every cell has been filled, or delete those two sections.
-\newcommand{\tbd}{\textcolor{red}{\textbf{[a remplir]}}}
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \BeforeBeginEnvironment{tabularx}{\par\noindent}
 \AfterEndEnvironment{tabularx}{\par}
@@ -522,41 +518,6 @@ e_y(t)=\Big\Vert\big(y(t)-y_{best}(t)\big)\oslash y_{scale}(t)\Big\Vert_\infty ,
 
 \bi{For the DBBS cases the peak gap does not occur at the fault at all, but during the yaw pulse itself, reaching 0.0192 for the centred rack and 0.0138 for the held cornering rack. This is consistent with the held-rack model: the fault removes no force at the instant it occurs, and the allocator only has to work when lateral demand arrives. Every value in the table stays inside the 10\% normalized band of REQ-02, but the comparison target remains the affine oracle, so this supports rather than establishes the recovery clause.}{Pour les cas DBBS, l'écart maximal ne survient pas du tout à l'instant du défaut, mais pendant l'impulsion de lacet elle-même, atteignant 0,0192 pour la crémaillère centrée et 0,0138 pour la crémaillère maintenue en virage. Cela est cohérent avec le modèle de crémaillère maintenue : le défaut ne supprime aucune force à l'instant où il survient, et l'allocateur n'est sollicité qu'à l'arrivée de la demande latérale. Toutes les valeurs du tableau restent dans la bande normalisée de 10\% de REQ-02, mais la cible de comparaison demeure l'oracle affine ; ce résultat étaye la clause de récupération sans l'établir.}
 
-\sec{Reference comparison against unconstrained allocation}{Comparaison de référence avec une allocation non contrainte}\label{sec:baseline}
-\bi{Chapter~2 selects constrained quadratic allocation on the basis of published properties. To measure rather than assert the benefit, we define a clipped pseudo-inverse comparator on the identical plant, references, fault schedule and evidence pipeline. The comparator solves $u=B^{\dagger}(y_d-c)$ with the same affine map, then clips each component to the same physical bounds and applies the same rate limits, with no reserve policy, no trust region and no redistribution of the clipping residual. It is therefore the natural minimal alternative, and the only difference in the loop is the allocation block.}{Le chapitre~2 retient l'allocation quadratique contrainte sur la base de propriétés publiées. Pour mesurer plutôt qu'affirmer ce bénéfice, nous définissons un comparateur pseudo-inverse écrêté sur la même plante, les mêmes références, le même calendrier de défaut et la même chaîne de preuves. Le comparateur résout $u=B^{\dagger}(y_d-c)$ avec la même application affine, puis écrête chaque composante aux mêmes bornes physiques et applique les mêmes limites de variation, sans politique de réserve, sans région de confiance et sans redistribution du résidu d'écrêtage. Il s'agit donc de l'alternative minimale naturelle, et la seule différence dans la boucle est le bloc d'allocation.}
-
-\begin{table}[H]\centering\caption{\bi{Constrained QP versus clipped pseudo-inverse on the identical scenarios.}{QP contraint et pseudo-inverse écrêté sur les mêmes scénarios.}}
-\begin{tabularx}{\textwidth}{@{}Yrrrr@{}}\toprule
-\bi{Scenario}{Scénario} & \bi{QP}{QP} & \bi{Pseudo-inv.}{Pseudo-inv.} & \bi{Metric}{Grandeur} & \bi{Unit}{Unité}\\\midrule
-DBBS-T1-D10 & 0.2945 & \tbd & $|e_{lat}|_{max}$ & m\\
-DBBS-T3-D10 & 0.2617 & \tbd & $|e_{lat}|_{max}$ & m\\
-DBBS-NEG-T1-D10 & 0.2945 & \tbd & $|e_{lat}|_{max}$ & m\\
-DBBS-NEG-T3-D10 & 0.2617 & \tbd & $|e_{lat}|_{max}$ & m\\
-\bi{Front-left authority}{Autorité avant gauche} & 0.6111 & \tbd & $a/(\mu g)$ & --\\
-\bi{Front-left authority}{Autorité avant gauche} & 0.0605 & \tbd & $|\beta|_{max}$ & rad\\
-\bi{Front-right authority}{Autorité avant droit} & 0.6111 & \tbd & $a/(\mu g)$ & --\\
-\bi{Front-right authority}{Autorité avant droit} & 0.0605 & \tbd & $|\beta|_{max}$ & rad\\
-G2-SAT & 0.98 & \tbd & \bi{saturated ratio}{ratio saturé} & --\\\bottomrule
-\end{tabularx}\end{table}
-
-\bi{The comparison is run on the eight DBBS cases and the four authority cases, and both controllers are scored with the unchanged measurement conventions of section~6.4. Two outcomes are informative and neither is assumed in advance. If the comparator tracks the pulse comparably, the constrained formulation is justified by its bound handling and its explicit reserve policy rather than by tracking accuracy, and the report should say so. If the comparator degrades on the front-loss cases, the degradation identifies exactly which part of the QP formulation, clipping residual redistribution or reserve scheduling, produced the measured margin.}{La comparaison porte sur les huit cas DBBS et les quatre cas d'autorité, et les deux commandes sont évaluées avec les conventions de mesure inchangées de la section~6.4. Deux issues sont instructives et aucune n'est supposée d'avance. Si le comparateur suit l'impulsion de manière comparable, la formulation contrainte se justifie par la gestion des bornes et la politique explicite de réserve plutôt que par la précision de suivi, et le rapport doit le dire. Si le comparateur se dégrade sur les cas de perte avant, la dégradation identifie précisément la part de la formulation QP, redistribution du résidu d'écrêtage ou ordonnancement de la réserve, qui a produit la marge mesurée.}
-
-\sec{Friction-estimate mismatch}{Erreur d'estimation de l'adhérence}\label{sec:mu}
-\bi{The allocator builds its bounds from $-\mu F_{z}$ and therefore assumes exact knowledge of both the friction coefficient and the corner loads. Every percentage in this chapter is conditioned on $\mu=0.90$ being simultaneously the true road value and the controller's belief. The most realistic non-actuator fault in a physical vehicle is not an effector loss but a controller that believes the road is better than it is.}{L'allocateur construit ses bornes à partir de $-\mu F_{z}$ et suppose donc une connaissance exacte du coefficient d'adhérence et des charges aux roues. Tous les pourcentages de ce chapitre sont conditionnés au fait que $\mu=0{,}90$ soit simultanément la valeur réelle de la route et la croyance de la commande. Le défaut non lié aux actionneurs le plus réaliste sur un véhicule physique n'est pas une perte d'effecteur, mais une commande qui croit la route meilleure qu'elle ne l'est.}
-
-\begin{table}[H]\centering\caption{\bi{Optimistic friction estimate: plant at 0.60, allocator believing 0.90.}{Estimation optimiste de l'adhérence : plante à 0,60, allocateur croyant 0,90.}}
-\begin{tabularx}{\textwidth}{@{}Yrrr@{}}\toprule
-\bi{Case}{Cas} & $|e_{lat}|_{max}$, m & $|\beta|_{max}$, rad & $a_{max}/g$\\\midrule
-DBBS-T1-D10, $\mu_{plant}=\mu_{ctrl}=0.90$ & 0.2945 & \tbd & 0.2771\\
-DBBS-T1-D10, $\mu_{plant}=\mu_{ctrl}=0.60$ & \tbd & \tbd & \tbd\\
-DBBS-T1-D10, $\mu_{plant}=0.60$, $\mu_{ctrl}=0.90$ & \tbd & \tbd & \tbd\\
-\bi{Front-left authority}{Autorité avant gauche}, $\mu_{plant}=\mu_{ctrl}=0.90$ & -- & 0.0605 & 0.6111$\,\mu g$\\
-\bi{Front-left authority}{Autorité avant gauche}, $\mu_{plant}=\mu_{ctrl}=0.60$ & -- & \tbd & \tbd\\
-\bi{Front-left authority}{Autorité avant gauche}, $\mu_{plant}=0.60$, $\mu_{ctrl}=0.90$ & -- & \tbd & \tbd\\\bottomrule
-\end{tabularx}\end{table}
-
-\bi{The matched rows separate the effect of a lower road from the effect of a wrong belief, which the mismatched rows then isolate. The sideslip domain check $|\beta|\le0.15$ rad and the plant-level friction-circle check remain active in all six runs, so a mismatch that drives the vehicle out of the validity domain is reported as a domain exit rather than as a performance figure. This study converts the friction assumption from a stated limitation into a bounded one, and it is the first robustness evidence that a vehicle-specific claim would require.}{Les lignes appariées séparent l'effet d'une route moins adhérente de l'effet d'une croyance erronée, que les lignes non appariées isolent ensuite. Le contrôle de domaine $|\beta|\le0{,}15$ rad et le contrôle du cercle d'adhérence au niveau plante restent actifs dans les six exécutions ; un désaccord qui sort le véhicule du domaine de validité est donc rapporté comme une sortie de domaine et non comme une performance. Cette étude transforme l'hypothèse d'adhérence d'une limitation énoncée en une limitation bornée, et constitue la première preuve de robustesse qu'exigerait une revendication propre à un véhicule.}
-
 \sec{Sampled envelope assessment}{Évaluation échantillonnée de l'enveloppe}
 \bi{The earlier envelope assessment tested 300 target points at 60 frozen states. It obtained 240 feasible witnesses and 236 qualifying 50 ms endpoint constructions. Reuse with the corrected controller was checked rather than assumed: 44 single-channel sampled states have matching inputs, allowing 220 witnesses and 216 endpoint results to transfer. The 16 DBBS states changed with the controller and their earlier probe results are not automatically reused.}{L'étude antérieure a évalué 300 cibles sur 60 états figés, obtenant 240 témoins faisables et 236 constructions de point final admissibles à 50 ms. Le réemploi avec la commande corrigée a été vérifié : 44 états à canal unique présentent des entrées identiques, permettant de transférer 220 témoins et 216 résultats de point final. Les 16 états DBBS ont changé avec la commande et leurs résultats antérieurs ne sont pas automatiquement réutilisés.}
 
@@ -610,7 +571,6 @@ SG-05 & \bi{Detect and remove unintended corner brake force}{Détecter et suppri
 \bi{Contribution}{Contribution} & \bi{Value}{Valeur} & \bi{Basis and status}{Base et état}\\\midrule
 \bi{Fault detection $t_d$}{Détection $t_d$} & 0 / 10 / 50 ms & \bi{Imposed sensitivity cases; no sensor-based detector is implemented}{Cas de sensibilité imposés ; aucun détecteur fondé sur capteurs n'est implémenté}\\
 \bi{Mask application}{Application du masque} & $\le 2$ ms & \bi{One allocation period; sampled on the control grid}{Une période d'allocation ; échantillonné sur la grille de commande}\\
-\bi{Allocation solve}{Résolution de l'allocation} & \tbd & \bi{Measured solve time per sample against the 2 ms budget}{Temps de résolution mesuré par échantillon face au budget de 2 ms}\\
 \bi{Brake command slew, full corner range}{Variation de commande frein, pleine plage roue} & $\approx106$ ms \bi{front}{avant} & \bi{4246.6 N front corner capacity at 40 kN/s; 2770.1 N rear gives $\approx69$ ms}{Capacité de 4246,6 N à l'avant à 40 kN/s ; 2770,1 N à l'arrière donne $\approx69$ ms}\\
 \bi{Brake force lag}{Retard de force de frein} & 20 ms $(1\tau)$ & \bi{First-order model; 91.8\% of an unsaturated step in 50 ms}{Modèle du premier ordre ; 91,8\% d'un échelon non saturé en 50 ms}\\
 \bi{Rack slew, full range}{Variation crémaillère, pleine plage} & $\approx175$ / 292 ms & \bi{$\pm35^{\circ}$ at 400$^{\circ}$/s healthy pair, 240$^{\circ}$/s single drive}{$\pm35^{\circ}$ à 400$^{\circ}$/s paire saine, 240$^{\circ}$/s entraînement unique}\\
@@ -806,8 +766,6 @@ REQ-03c & \bi{RMSE$(r)\le0.03$ rad/s, $|e_{lat}|\le0.50$ m, $a\le0.35$ g on the 
 REQ-04 & \bi{Architecture rationale, FMEA, FTA and dependent-failure analysis}{Argumentaire d'architecture, AMDEC, arbre de défaillance et analyse des dépendances} & \bi{F01--F18 register and D01--D08 dependencies, Appendix~\ref{app:fmea}; candidate HARA and FTTI budget, sections~\ref{sec:hara} and~\ref{sec:ftti}}{Registre F01--F18 et dépendances D01--D08, annexe~\ref{app:fmea} ; HARA candidate et budget FTTI, sections~\ref{sec:hara} et~\ref{sec:ftti}} & \bi{Qualitative rationale only}{Argumentaire qualitatif seulement}\\
 SG-04 & \bi{Prevent unintended or opposing rack torque}{Empêcher un couple de crémaillère intempestif ou antagoniste} & \bi{No mitigation; F18 requires an independent monitor}{Aucune mesure ; F18 exige une surveillance indépendante} & \bi{Not addressed}{Non traité}\\
 SG-05 & \bi{Detect and remove unintended corner brake force}{Détecter et supprimer une force de freinage intempestive} & \bi{No mitigation; F17 requires independent force monitoring}{Aucune mesure ; F17 exige une surveillance de force indépendante} & \bi{Not addressed}{Non traité}\\
-\bi{Robustness}{Robustesse} & \bi{Parameter and friction-estimate robustness}{Robustesse aux paramètres et à l'estimation d'adhérence} & \bi{Mismatch study defined in section~\ref{sec:mu}}{Étude de désaccord définie en section~\ref{sec:mu}} & \bi{Out of scope}{Hors périmètre}\\
-\bi{Comparison}{Comparaison} & \bi{Benefit of constrained allocation over a simpler policy}{Bénéfice de l'allocation contrainte face à une politique plus simple} & \bi{Comparator protocol defined in section~\ref{sec:baseline}}{Protocole de comparaison défini en section~\ref{sec:baseline}} & \bi{Out of scope}{Hors périmètre}\\
 \bi{Extensions}{Extensions} & \bi{Dual faults, standardized maneuvers, hardware in the loop}{Défauts doubles, man\oe{}uvres normalisées, matériel dans la boucle} & \bi{Structured as perspectives in Chapter~8}{Structurés en perspectives au chapitre~8} & \bi{Out of scope}{Hors périmètre}\\
 \end{longtable}
 \endgroup
