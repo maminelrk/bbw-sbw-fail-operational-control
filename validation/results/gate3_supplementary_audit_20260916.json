@@ -1,0 +1,14 @@
+{
+  "EvidenceConsistencyVerified": true,
+  "Gate3Closed": false,
+  "UnitTestsPassed": 41,
+  "ConvergenceCases": 4,
+  "BrakingTrimCases": 5,
+  "YawAuthorityCases": 6,
+  "DynamicBrakingCases": 5,
+  "EnvelopeProbes": 300,
+  "FrozenStateWitnesses": 240,
+  "EndpointScreensPassed": 236,
+  "ScopeEN": "Saved MATLAB metrics/witnesses and short rollout equations independently recomputed; no global envelope or vehicle validation claim.",
+  "ScopeFR": "Métriques/témoins MATLAB et équations des courtes trajectoires recalculés indépendamment ; aucune preuve globale d’enveloppe ou de validité véhicule."
+}

@@ -1,0 +1,35 @@
+{
+  "base_git_commit": "a775806a5b877f8aad7e70e7baa1cc81a3e4e0ab",
+  "configuration": "ALLOC-2026-03",
+  "source_state": "Uncommitted correction applied on top of base commit; these seven file hashes identify the tested source delta.",
+  "files": [
+    {
+      "path": "allocator.m",
+      "sha256": "b93ca082e45978b60eb00f961d2224444a10367e794bda1aad1c3a8d2c5afe72"
+    },
+    {
+      "path": "allocator_options.m",
+      "sha256": "0a178cefd84b17a2d72425e8755735943e1258abb57c6e99f622bcbb13c79de2"
+    },
+    {
+      "path": "get_params.m",
+      "sha256": "d92e8bfcb718905b8bf4f1727d4a8c00ba97c9da1859af02775ce8c332a5e5d4"
+    },
+    {
+      "path": "validation/run_integrated_maneuver.m",
+      "sha256": "ee133f3b0cabc835a33d1ea931930dfc575da1e8f1c34d0e1168e0a67d0cab72"
+    },
+    {
+      "path": "tests/TestAllocatorSaturation.m",
+      "sha256": "000b38a3b6d8c4e5d1f859393c3d3d6747331e8ebfa91e2612ffda3fa8b7c6cc"
+    },
+    {
+      "path": "tests/TestGate2Integration.m",
+      "sha256": "0464d150bdfed0fcd660fe90e1778b1da49d24557b776ad8e75f5814033c116f"
+    },
+    {
+      "path": "validation/run_allocator_solver_diagnostic.m",
+      "sha256": "a6d5a84b40f1f8a71d3008d990f2ca5b246909acc27eb5445ac8585a547ccffe"
+    }
+  ]
+}

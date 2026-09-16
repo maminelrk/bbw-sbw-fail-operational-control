@@ -1,0 +1,2 @@
+ScenarioID,ForceRMSE_N,YawRMSE_radps,PeakSideslip_rad,MinimumWheelLoad_N,FinalSpeed_mps,SaturatedBrakeRatio,FinitePass,LoadPass,FrictionPass,RatePass,BoundsPass,SolverPass,OperatingPass,RateOverrideCount,BehaviorPass,OverallPass
+G3-FR-D00,41.309830187847,0.00194847184593041,0.00655802250035723,2605.18410450568,13.1448624899562,NaN,1,1,1,1,1,1,1,0,1,1

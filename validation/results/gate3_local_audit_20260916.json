@@ -1,0 +1,164 @@
+{
+  "EvidenceConsistencyVerified": true,
+  "ScopeEN": "File completeness and independent CSV recomputation of mask, recovery, yaw, equal-distance path, continuity, deceleration and numerical/physical checks; not independent validation of the vehicle model.",
+  "ScopeFR": "Complétude et recalcul indépendant des CSV : masque, récupération, lacet, trajectoire à distance égale, continuité, décélération et contrôles numériques/physiques ; sans validation indépendante du modèle véhicule.",
+  "Gate3Closed": false,
+  "GitCommit": "93db2a5c9e8cc522e93985af2bde151cfdfebf4d",
+  "UnitTestsPassed": 37,
+  "FaultCases": 30,
+  "NumericalFailureCount": 0,
+  "DBBSManeuverFailureCount": 4,
+  "SummarySHA256": "326c4da6dac5633679b4b55b711700781a69d25ae79e0cb6436f9a8de63f589c",
+  "Cases": [
+    {
+      "ScenarioID": "G3-FL-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-FR-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RL-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RR-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SA-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SB-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T1-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T3-D00",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": true
+    },
+    {
+      "ScenarioID": "G3-FL-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-FR-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RL-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RR-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SA-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SB-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T1-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T3-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": true
+    },
+    {
+      "ScenarioID": "G3-FL-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-FR-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RL-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-RR-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SA-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-SB-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T1-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-T3-D50",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": true
+    },
+    {
+      "ScenarioID": "G3-BRK-FL",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-BRK-FR",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-BRK-RL",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-BRK-RR",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-NEG-T1-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": false
+    },
+    {
+      "ScenarioID": "G3-DBBS-NEG-T3-D10",
+      "NumericalChecksPass": true,
+      "DBBSManeuverPass": true
+    }
+  ]
+}

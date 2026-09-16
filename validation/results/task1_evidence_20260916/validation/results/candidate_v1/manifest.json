@@ -1,0 +1,51 @@
+{
+  "Protocol": "TASK1-CTRL-01",
+  "StartedUTC": "16-Sep-2026 03:56:54",
+  "Status": "COMPLETED",
+  "MATLABVersion": "26.1.0.3346908 (R2026a) Update 5",
+  "Parameters": {
+    "parameter_set_id": "REF-2026-02",
+    "m": 1590,
+    "Iz": 2059.2,
+    "L": 2.66,
+    "wf": 0.60526315789473684,
+    "lf": 1.05,
+    "lr": 1.61,
+    "tw": 1.53,
+    "hcg": 0.637,
+    "mu": 0.9,
+    "g": 9.80665,
+    "Cf": 66000,
+    "Cr": 66000,
+    "Cshape": 1.9,
+    "Eshape": 0.97,
+    "delta_max": 0.6108652381980153,
+    "delta_rate": 6.9813170079773181,
+    "Fx_rate": 40000,
+    "allocation_effort_weight": 1E-6,
+    "allocation_friction_fraction": 0.98,
+    "allocation_config_id": "ALLOC-2026-04",
+    "actuator_tau_delta": 0.02,
+    "actuator_tau_Fx": 0.02,
+    "vx_floor": 0.5,
+    "validation_dt": 0.002,
+    "reference_speed": 16.666666666666668,
+    "steering_channel_rate": [
+      4.1887902047863905,
+      4.1887902047863905
+    ],
+    "steering_motor_tau": 0.01,
+    "yaw_tracking_tau": 0.25,
+    "allocation_output_scale": [
+      5000,
+      1000
+    ],
+    "steering_trust_angle": 0.0087266462599716477,
+    "fault_rear_friction_fraction": 0.92,
+    "dbbs_yaw_tracking_tau": 0.15
+  },
+  "Gate3Closed": false,
+  "Task1Passed": false,
+  "CompletedUTC": "16-Sep-2026 04:21:48",
+  "Pending": "Task 2: independent REQ-02/envelope, comparative baseline, robustness; no certification claim."
+}

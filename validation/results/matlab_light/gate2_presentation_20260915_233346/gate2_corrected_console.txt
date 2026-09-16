@@ -1,0 +1,31 @@
+Running TestAllocatorSaturation
+.....
+Done TestAllocatorSaturation
+__________
+
+Running TestControlAllocator
+.......
+Done TestControlAllocator
+__________
+
+Running TestGate2Integration
+.......... .
+Done TestGate2Integration
+__________
+
+Running TestGate3Preparation
+.......
+Done TestGate3Preparation
+__________
+
+Running TestVehiclePlant
+......
+Done TestVehiclePlant
+__________
+
+Open-loop plant validation complete: 3 scenarios.
+Results: /MATLAB Drive/bbw-sbw-fail-operational-control/validation/results/plant
+Gate 2: READY_FOR_SUPERVISOR_REVIEW
+Evidence: /MATLAB Drive/bbw-sbw-fail-operational-control/validation/results/gate2
+  196.2076
+

@@ -1,0 +1,32 @@
+[1mdiff --git a/tests/TestGate3Preparation.m b/tests/TestGate3Preparation.m[m
+[1mindex a7c05b4..edac7e3 100644[m
+[1m--- a/tests/TestGate3Preparation.m[m
+[1m+++ b/tests/TestGate3Preparation.m[m
+[36m@@ -7,6 +7,15 @@[m [mclassdef TestGate3Preparation < matlab.unittest.TestCase[m
+         end[m
+     end[m
+     methods (Test)[m
+[32m+[m[32m        function matchedGridsAllowRoundoffButRejectSampleShifts(testCase)[m
+[32m+[m[32m            faultTime=(0:.002:6)'; referenceTime=(0:.002:7)';[m
+[32m+[m[32m            testCase.verifyTrue(time_grids_match(faultTime,referenceTime(1:numel(faultTime))));[m
+[32m+[m[32m            testCase.verifyFalse(time_grids_match(faultTime,faultTime+.002));[m
+[32m+[m[32m            testCase.verifyFalse(time_grids_match(faultTime,faultTime+1e-8));[m
+[32m+[m[32m            testCase.verifyFalse(time_grids_match(faultTime,faultTime(1:end-1)));[m
+[32m+[m[32m            invalid=faultTime; invalid(end)=NaN;[m
+[32m+[m[32m            testCase.verifyFalse(time_grids_match(faultTime,invalid));[m
+[32m+[m[32m        end[m
+         function physicalFailurePrecedesDiagnosis(testCase)[m
+             s=struct('FaultScenario',"brake_fl_loss",'FaultTime',.003,'DetectionDelay',.010);[m
+             [physical,known]=fault_event_masks(.002,s);[m
+[1mdiff --git a/validation/evaluate_fault_result.m b/validation/evaluate_fault_result.m[m
+[1mindex 1c97e20..819abe1 100644[m
+[1m--- a/validation/evaluate_fault_result.m[m
+[1m+++ b/validation/evaluate_fault_result.m[m
+[36m@@ -1,6 +1,6 @@[m
+ function [metrics,comparison] = evaluate_fault_result(result,nominal)[m
+ s=result.series; n=nominal.series(1:height(s),:); p=result.p; scenario=result.scenario;[m
+[31m-assert(isequal(s.Time_s,n.Time_s),'Nominal and faulted time grids must match.');[m
+[32m+[m[32massert(time_grids_match(s.Time_s,n.Time_s),'Nominal and faulted time grids must match.');[m
+ physical=s{:,startsWith(s.Properties.VariableNames,'Physical_')};[m
+ known=s{:,startsWith(s.Properties.VariableNames,'Known_')};[m
+ onset=find(any(physical==0,2),1); flag=find(any(known==0,2),1);[m

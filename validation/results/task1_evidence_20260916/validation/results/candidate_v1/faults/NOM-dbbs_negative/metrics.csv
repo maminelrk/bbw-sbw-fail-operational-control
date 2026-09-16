@@ -1,0 +1,2 @@
+ScenarioID,ForceRMSE_N,YawRMSE_radps,PeakSideslip_rad,MinimumWheelLoad_N,FinalSpeed_mps,SaturatedBrakeRatio,FinitePass,LoadPass,FrictionPass,RatePass,BoundsPass,SolverPass,OperatingPass,RateOverrideCount,BehaviorPass,OverallPass
+NOM-dbbs_negative,73.7753270922317,0.00313740194664602,0.00994294890301674,2428.73972829,16.4552984424925,NaN,1,1,1,1,1,1,1,0,1,1

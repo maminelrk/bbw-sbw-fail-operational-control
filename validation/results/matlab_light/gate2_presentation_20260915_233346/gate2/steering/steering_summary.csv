@@ -1,0 +1,5 @@
+Fault,AngleRangeRatio,PeakRateRatio,ChannelBoundsPass,OverallPass
+nominal,1,0.99999992454592,1,1
+steering_a_loss,1,0.599999999999585,1,1
+steering_b_loss,1,0.599999999999585,1,1
+steering_loss,0,0,1,1

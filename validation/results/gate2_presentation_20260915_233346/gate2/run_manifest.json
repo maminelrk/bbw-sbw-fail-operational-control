@@ -1,0 +1,125 @@
+{
+  "Status": "READY_FOR_SUPERVISOR_REVIEW",
+  "MATLABVersion": "26.1.0.3346908 (R2026a) Update 5",
+  "Release": "2026a",
+  "Products": [
+    {
+      "Name": "6G Exploration Library for 5G Toolbox",
+      "Version": "26.1.7",
+      "Release": "(R2026a)",
+      "Date": "14-Jul-2026"
+    },
+    {
+      "Name": "Control System Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Curve Fitting Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Deep Learning Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Image Processing Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "MATLAB",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "19-Nov-2025"
+    },
+    {
+      "Name": "Optimization Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Signal Processing Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Simulink",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Statistics and Machine Learning Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "12-Jan-2026"
+    },
+    {
+      "Name": "Symbolic Math Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    },
+    {
+      "Name": "Text Analytics Toolbox",
+      "Version": "26.1",
+      "Release": "(R2026a)",
+      "Date": "20-Nov-2025"
+    }
+  ],
+  "StartedUTC": "15-Sep-2026 23:33:46",
+  "ParameterSet": "REF-2026-02",
+  "Parameters": {
+    "parameter_set_id": "REF-2026-02",
+    "m": 1590,
+    "Iz": 2059.2,
+    "L": 2.66,
+    "wf": 0.60526315789473684,
+    "lf": 1.05,
+    "lr": 1.61,
+    "tw": 1.53,
+    "hcg": 0.637,
+    "mu": 0.9,
+    "g": 9.80665,
+    "Cf": 66000,
+    "Cr": 66000,
+    "Cshape": 1.9,
+    "Eshape": 0.97,
+    "delta_max": 0.6108652381980153,
+    "delta_rate": 6.9813170079773181,
+    "Fx_rate": 40000,
+    "allocation_effort_weight": 1E-6,
+    "allocation_friction_fraction": 0.98,
+    "allocation_config_id": "ALLOC-2026-03",
+    "actuator_tau_delta": 0.02,
+    "actuator_tau_Fx": 0.02,
+    "vx_floor": 0.5,
+    "validation_dt": 0.002,
+    "reference_speed": 16.666666666666668,
+    "steering_channel_rate": [
+      4.1887902047863905,
+      4.1887902047863905
+    ],
+    "steering_motor_tau": 0.01,
+    "yaw_tracking_tau": 0.25,
+    "allocation_output_scale": [
+      5000,
+      1000
+    ],
+    "steering_trust_angle": 0.0087266462599716477
+  },
+  "GitCommit": "a775806a5b877f8aad7e70e7baa1cc81a3e4e0ab",
+  "GitReadSucceeded": true,
+  "GitWorkingTreeStatus": " M allocator.m\n M get_params.m\n M tests/TestGate2Integration.m\n M validation/run_integrated_maneuver.m\n?? allocator_options.m\n?? tests/TestAllocatorSaturation.m\n?? validation/run_allocator_solver_diagnostic.m\n",
+  "AllChecksPassed": true,
+  "ScenarioCount": 5
+}

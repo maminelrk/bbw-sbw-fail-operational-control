@@ -1,0 +1,4 @@
+ScenarioID,Name,FinitePass,NormalLoadPass,FrictionEllipsePass,ActuatorRatePass,BehaviorPass,InitialSpeed_mps,FinalSpeed_mps,PeakAbsYawRate_radps,FinalYawRate_radps,PeakAbsSideslip_rad,LinearYawReference_radps,LinearYawRelativeError,OverallPass
+PLANT-BRK-01,Symmetric straight-line braking,1,1,1,1,1,16.6666666666667,3.55000419287197,0,0,0,NaN,NaN,1
+PLANT-STR-01,Positive one-degree step steer,1,1,1,1,1,16.6666666666667,16.6079847298214,0.0748561108980792,0.0711707322084405,0.0045127815363445,0.0714919422718904,0.00449295477563523,1
+PLANT-CMB-01,Combined braking and step steer,1,1,1,1,1,16.6666666666667,7.88575156972309,0.0706177092420016,0.0454352687044104,0.00566487096798236,NaN,NaN,1

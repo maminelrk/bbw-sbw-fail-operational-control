@@ -1,0 +1,186 @@
+Running TestAllocatorSaturation
+.....
+Done TestAllocatorSaturation
+__________
+
+Running TestControlAllocator
+.......
+Done TestControlAllocator
+__________
+
+Running TestGate2Integration
+.......... .
+Done TestGate2Integration
+__________
+
+Running TestGate3Assessment
+....
+Done TestGate3Assessment
+__________
+
+Running TestGate3Preparation
+........
+Done TestGate3Preparation
+__________
+
+Running TestVehiclePlant
+......
+Done TestVehiclePlant
+__________
+
+Straight-braking nonlinear trim 1/5: nominal
+      <strong>Fault</strong>      <strong>FeasibleDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast60PercentWitness</strong>    <strong>ResidualYaw_Nm</strong>    <strong>ResidualLateralForce_N</strong>    <strong>Sideslip_rad</strong>    <strong>Steering_rad</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_________</strong>    <strong>_________________________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>______________________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "nominal"             8.8242                         0.9998                         true               -2.7455e-12           -2.6148e-12           7.5851e-31       0.044105           1.677e-16            1               false       
+
+Straight-braking nonlinear trim 2/5: brake_fl_loss
+         <strong>Fault</strong>         <strong>FeasibleDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast60PercentWitness</strong>    <strong>ResidualYaw_Nm</strong>    <strong>ResidualLateralForce_N</strong>    <strong>Sideslip_rad</strong>    <strong>Steering_rad</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>_________________________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>______________________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "brake_fl_loss"             5.6275                         0.6376                         true                4.5475e-13           -1.5916e-12              0.15          0.18817           1.0208e-16            2               false       
+
+Straight-braking nonlinear trim 3/5: brake_fr_loss
+         <strong>Fault</strong>         <strong>FeasibleDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast60PercentWitness</strong>    <strong>ResidualYaw_Nm</strong>    <strong>ResidualLateralForce_N</strong>    <strong>Sideslip_rad</strong>    <strong>Steering_rad</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>_________________________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>______________________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "brake_fr_loss"             5.6275                         0.6376                         true                    0                -1.1369e-12             -0.15          -0.18817          2.2204e-16            2               false       
+
+Straight-braking nonlinear trim 4/5: brake_rl_loss
+         <strong>Fault</strong>         <strong>FeasibleDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast60PercentWitness</strong>    <strong>ResidualYaw_Nm</strong>    <strong>ResidualLateralForce_N</strong>    <strong>Sideslip_rad</strong>    <strong>Steering_rad</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>_________________________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>______________________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "brake_rl_loss"             7.9306                         0.89856                        true               -3.4106e-12           -3.4106e-12           0.0063228        0.033592          2.1873e-16            2               false       
+
+Straight-braking nonlinear trim 5/5: brake_rr_loss
+         <strong>Fault</strong>         <strong>FeasibleDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast60PercentWitness</strong>    <strong>ResidualYaw_Nm</strong>    <strong>ResidualLateralForce_N</strong>    <strong>Sideslip_rad</strong>    <strong>Steering_rad</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>_________________________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>______________________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "brake_rr_loss"             7.9306                         0.89856                        true                2.2737e-12             2.16e-12            -0.0063228      -0.033592          1.3853e-16            2               false       
+
+Yaw authority nominal sign -1
+    <strong>Condition</strong>    <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "nominal"     -1         11343                    0.45345                        true                 0.43118            1.2962e-16            2               false       
+
+Yaw authority nominal sign +1
+    <strong>Condition</strong>    <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "nominal"     1          11343                    0.45345                        true                 0.43118            3.2405e-16            2               false       
+
+Yaw authority DBBS_centered sign -1
+       <strong>Condition</strong>       <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "DBBS_centered"     -1         5362.4                   0.21437                        true                 0.44955             6.481e-17            1               false       
+
+Yaw authority DBBS_centered sign +1
+       <strong>Condition</strong>       <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>_______________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "DBBS_centered"     1          5362.4                   0.21437                        true                 0.44955            8.1012e-17            1               false       
+
+Yaw authority DBBS_centered_035g sign -1
+         <strong>Condition</strong>          <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>____________________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "DBBS_centered_035g"     -1         4174.9                   0.1669                         true                   0.35             2.1575e-16            1               false       
+
+Yaw authority DBBS_centered_035g sign +1
+         <strong>Condition</strong>          <strong>Sign</strong>    <strong>FeasibleYaw_Nm</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>AtLeast15PercentWitness</strong>    <strong>Deceleration_g</strong>    <strong>ConstraintViolation</strong>    <strong>ExitFlag</strong>    <strong>GlobalMaximumProven</strong>
+    <strong>____________________</strong>    <strong>____</strong>    <strong>______________</strong>    <strong>_____________________________</strong>    <strong>_______________________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>________</strong>    <strong>___________________</strong>
+
+    "DBBS_centered_035g"     1          4174.9                   0.1669                         true                   0.35             1.1102e-16            1               false       
+
+Dynamic braking allocation 1/5: nominal
+      <strong>Fault</strong>      <strong>MeanDeceleration_mps2</strong>    <strong>MinimumHoldDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>PeakHoldYawMoment_Nm</strong>    <strong>YawMomentLimit_Nm</strong>    <strong>PeakHoldYawRate_radps</strong>    <strong>NumericalChecksPass</strong>    <strong>Demonstrated60PercentAndYawBound</strong>    <strong>MaximumCapabilityProven</strong>
+    <strong>_________</strong>    <strong>_____________________</strong>    <strong>____________________________</strong>    <strong>_____________________________</strong>    <strong>____________________</strong>    <strong>_________________</strong>    <strong>_____________________</strong>    <strong>___________________</strong>    <strong>________________________________</strong>    <strong>_______________________</strong>
+
+    "nominal"           8.6495                       8.6495                           0.98                      6.1745e-05              567.14               1.5001e-08                 true                         true                            false         
+
+Dynamic braking allocation 2/5: brake_fl_loss
+         <strong>Fault</strong>         <strong>MeanDeceleration_mps2</strong>    <strong>MinimumHoldDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>PeakHoldYawMoment_Nm</strong>    <strong>YawMomentLimit_Nm</strong>    <strong>PeakHoldYawRate_radps</strong>    <strong>NumericalChecksPass</strong>    <strong>Demonstrated60PercentAndYawBound</strong>    <strong>MaximumCapabilityProven</strong>
+    <strong>_______________</strong>    <strong>_____________________</strong>    <strong>____________________________</strong>    <strong>_____________________________</strong>    <strong>____________________</strong>    <strong>_________________</strong>    <strong>_____________________</strong>    <strong>___________________</strong>    <strong>________________________________</strong>    <strong>_______________________</strong>
+
+    "brake_fl_loss"           5.6716                       5.6203                          0.63679                      41.188                567.14                0.020789                  false                        false                           false         
+
+Dynamic braking allocation 3/5: brake_fr_loss
+         <strong>Fault</strong>         <strong>MeanDeceleration_mps2</strong>    <strong>MinimumHoldDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>PeakHoldYawMoment_Nm</strong>    <strong>YawMomentLimit_Nm</strong>    <strong>PeakHoldYawRate_radps</strong>    <strong>NumericalChecksPass</strong>    <strong>Demonstrated60PercentAndYawBound</strong>    <strong>MaximumCapabilityProven</strong>
+    <strong>_______________</strong>    <strong>_____________________</strong>    <strong>____________________________</strong>    <strong>_____________________________</strong>    <strong>____________________</strong>    <strong>_________________</strong>    <strong>_____________________</strong>    <strong>___________________</strong>    <strong>________________________________</strong>    <strong>_______________________</strong>
+
+    "brake_fr_loss"           5.6716                       5.6203                          0.63679                      41.188                567.14                0.020789                  false                        false                           false         
+
+Dynamic braking allocation 4/5: brake_rl_loss
+         <strong>Fault</strong>         <strong>MeanDeceleration_mps2</strong>    <strong>MinimumHoldDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>PeakHoldYawMoment_Nm</strong>    <strong>YawMomentLimit_Nm</strong>    <strong>PeakHoldYawRate_radps</strong>    <strong>NumericalChecksPass</strong>    <strong>Demonstrated60PercentAndYawBound</strong>    <strong>MaximumCapabilityProven</strong>
+    <strong>_______________</strong>    <strong>_____________________</strong>    <strong>____________________________</strong>    <strong>_____________________________</strong>    <strong>____________________</strong>    <strong>_________________</strong>    <strong>_____________________</strong>    <strong>___________________</strong>    <strong>________________________________</strong>    <strong>_______________________</strong>
+
+    "brake_rl_loss"           7.7665                       7.7662                          0.87992                      2.6627                567.14               0.00038254                 true                         true                            false         
+
+Dynamic braking allocation 5/5: brake_rr_loss
+         <strong>Fault</strong>         <strong>MeanDeceleration_mps2</strong>    <strong>MinimumHoldDeceleration_mps2</strong>    <strong>RatioLowerBoundToNominalUpper</strong>    <strong>PeakHoldYawMoment_Nm</strong>    <strong>YawMomentLimit_Nm</strong>    <strong>PeakHoldYawRate_radps</strong>    <strong>NumericalChecksPass</strong>    <strong>Demonstrated60PercentAndYawBound</strong>    <strong>MaximumCapabilityProven</strong>
+    <strong>_______________</strong>    <strong>_____________________</strong>    <strong>____________________________</strong>    <strong>_____________________________</strong>    <strong>____________________</strong>    <strong>_________________</strong>    <strong>_____________________</strong>    <strong>___________________</strong>    <strong>________________________________</strong>    <strong>_______________________</strong>
+
+    "brake_rr_loss"           7.7665                       7.7662                          0.87992                      2.6629                567.14               0.00038258                 true                         true                            false         
+
+Envelope G3-FL-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-FL-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-FR-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-FR-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-RL-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-RL-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-RR-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-RR-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-SA-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-SA-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-SB-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-SB-D00 sample 2: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D00 sample 1: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D00 sample 2: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D00 sample 1: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D00 sample 2: 0/5 frozen witnesses
+Envelope G3-FL-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-FL-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-FR-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-FR-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-RL-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-RL-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-RR-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-RR-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-SA-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-SA-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-SB-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-SB-D10 sample 2: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D10 sample 2: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D10 sample 1: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D10 sample 2: 0/5 frozen witnesses
+Envelope G3-FL-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-FL-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-FR-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-FR-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-RL-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-RL-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-RR-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-RR-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-SA-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-SA-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-SB-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-SB-D50 sample 2: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D50 sample 1: 5/5 frozen witnesses
+Envelope G3-DBBS-T1-D50 sample 2: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D50 sample 1: 0/5 frozen witnesses
+Envelope G3-DBBS-T3-D50 sample 2: 0/5 frozen witnesses
+Envelope G3-BRK-FL sample 1: 5/5 frozen witnesses
+Envelope G3-BRK-FL sample 2: 5/5 frozen witnesses
+Envelope G3-BRK-FR sample 1: 5/5 frozen witnesses
+Envelope G3-BRK-FR sample 2: 5/5 frozen witnesses
+Envelope G3-BRK-RL sample 1: 5/5 frozen witnesses
+Envelope G3-BRK-RL sample 2: 5/5 frozen witnesses
+Envelope G3-BRK-RR sample 1: 5/5 frozen witnesses
+Envelope G3-BRK-RR sample 2: 5/5 frozen witnesses
+Envelope G3-DBBS-NEG-T1-D10 sample 1: 5/5 frozen witnesses
+Envelope G3-DBBS-NEG-T1-D10 sample 2: 0/5 frozen witnesses
+Envelope G3-DBBS-NEG-T3-D10 sample 1: 0/5 frozen witnesses
+Envelope G3-DBBS-NEG-T3-D10 sample 2: 0/5 frozen witnesses

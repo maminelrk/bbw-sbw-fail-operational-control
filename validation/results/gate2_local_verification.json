@@ -1,0 +1,389 @@
+{
+  "archive_sha256": "e05138d6bcceb0934bca8907311706ddd22bcca5a6ce3cc7dad9362f7582d1cd",
+  "archive_and_extraction_verified_files": 88,
+  "tested_source_hashes_verified": 7,
+  "original_started_utc": "15-Sep-2026 23:33:46",
+  "status": "READY_FOR_SUPERVISOR_REVIEW",
+  "passed_counts": {
+    "units": 36,
+    "plant": 3,
+    "steering": 4,
+    "maneuvers": 5,
+    "convergence": 1
+  },
+  "saturation_recomputed_from_csv": {
+    "peak_yaw_radps": 4.3858969558697e-07,
+    "release_force_N": 0.00457908130922889,
+    "minimum_speed_mps": 2.75553250350505
+  },
+  "archive_files": [
+    {
+      "path": "validation/results/gate2_corrected_console.txt",
+      "sha256": "86f4c94b86b47a785ce4c2464cb0d9ea98ad3cc3fe3cedc2cb8a19db0e95e1ab"
+    },
+    {
+      "path": "validation/results/gate2_corrected_extra.mat",
+      "sha256": "c1ce84747603ec4e4e1f79cae2d3249472598915d85f30ed6d862439ba9ed58d"
+    },
+    {
+      "path": "validation/results/saturation_fix_source_manifest.json",
+      "sha256": "61abb3d493e7a0aedf10bbf754a77a90eac1e42e676841e8d1724529f92fcc80"
+    },
+    {
+      "path": "validation/results/saturation_fix_v7.zip",
+      "sha256": "43ebf5bac7db77e999fc530680599ece220c503c853534d35696e6bf2805bbff"
+    },
+    {
+      "path": "validation/results/gate2/gate2_results.mat",
+      "sha256": "f75a7e0924dc3e1d445bca882733e891b3cd252dfea77324b4512e5a93a4fd48"
+    },
+    {
+      "path": "validation/results/gate2/maneuver_summary.csv",
+      "sha256": "31096feefed382bd012f53f4cb476986f5b0bc27f8d2ab10ec234ec138f17028"
+    },
+    {
+      "path": "validation/results/gate2/run_manifest.json",
+      "sha256": "29cc6383fe22af6c2f4b630fb3e21bfcac865913c38cabcfa34bbdf0b7003539"
+    },
+    {
+      "path": "validation/results/gate2/step_convergence.csv",
+      "sha256": "111b2f02733d41a354e20237e502a4eeca5692f69cff07b2bbb8b6dc2d1d3ba2"
+    },
+    {
+      "path": "validation/results/gate2/unit_tests.csv",
+      "sha256": "f7737db10103dd614bff885ef5f4d8271e5b9ee4f8e9a545b3205af619566adb"
+    },
+    {
+      "path": "validation/results/plant/plant_validation.mat",
+      "sha256": "5da9507f6882dee2e0c844761ce40e6b512be9c2b174c7faeb5a6e319b9f403c"
+    },
+    {
+      "path": "validation/results/plant/plant_validation_summary.csv",
+      "sha256": "dbbf1de8ea5e42743ef3b480fcb3f0fa4433f79bc6a2f8eedc0a85878e11ba38"
+    },
+    {
+      "path": "validation/results/solver_diagnostic_v6/case_1.mat",
+      "sha256": "1bed3b0af19cdd98ff57e130e17a6215a5101789369f75d94b176b170e532025"
+    },
+    {
+      "path": "validation/results/solver_diagnostic_v6/case_2.mat",
+      "sha256": "4c335bdf17bba1d3174551df83044411381b882bb30fbf147ff9f967f34eb8b6"
+    },
+    {
+      "path": "validation/results/solver_diagnostic_v6/case_3.mat",
+      "sha256": "c3504ba0d96fcc1a8fe9e7ea6155ccd65f0a0980873e074a2d4dad4d4c4be5a7"
+    },
+    {
+      "path": "validation/results/solver_diagnostic_v6/case_4.mat",
+      "sha256": "35d6a80a0b17fd1187d9b187cbc22ba9c1f6decc8c8afaae4892fbc98da76536"
+    },
+    {
+      "path": "validation/results/solver_diagnostic_v6/summary.csv",
+      "sha256": "825c97eac4cc45c8a88858b027d8d6062fdf24c5415b80b55f2b2736ea4a27e8"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/actuators_en.png",
+      "sha256": "733f2841e6a5c3a3f9a22e380a1d69604b0862b8f547c42b0c0c46ade734c3c3"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/actuators_fr.png",
+      "sha256": "4959b1130ec2e9feb4b80345bc689c75f69e96f6746c23ea7ece58898ddbf956"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/metrics.csv",
+      "sha256": "048cfbee7be7bfe61d1786a46ce133e16c8c3ede30970493c41224bf7211ddc4"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/response_en.png",
+      "sha256": "b4eebbdfe73799682070f0b54dbaed42a96936ae0347406b918db020a137034b"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/response_fr.png",
+      "sha256": "a149df971df69e4304ec1f0d5d7d37dbb915d274aea3a05d40a899bef5f18aed"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/result.mat",
+      "sha256": "d5e946fbc6898ae1827a124b665a2f76b833e5d17b19d47bc0341d445816f919"
+    },
+    {
+      "path": "validation/results/gate2/G2-BRK/timeseries.csv",
+      "sha256": "1bac7faa5af7a6f0ad96722f391d2f1c94d3b534e9990c966a444cc9a1356e2a"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/actuators_en.png",
+      "sha256": "c1a36f4dc57bcd496e33ab00501e24283606c4c2f01674651e0aaa80f7390adf"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/actuators_fr.png",
+      "sha256": "def2f44a1b81673bf1077b927234024dd282b130efd2e780122ff3ce0722468b"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/metrics.csv",
+      "sha256": "3bbb2a4f4f7f80ac2d6f4055257658099061b2c024f613ca87cb7631cd74c6a6"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/response_en.png",
+      "sha256": "facf424eab5e0a9858517a14ef8528b722989ffe6ee347f1de058020e3cd57bd"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/response_fr.png",
+      "sha256": "d02a6804b842cd38e3cc0e70457090b5b54b8e561be4bd3f9b36cabb1c3e8d61"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/result.mat",
+      "sha256": "e98ae76f8f14b64f50fa7a89e82e68322cfa6885e02935bd45d6dbd738157146"
+    },
+    {
+      "path": "validation/results/gate2/G2-CMB/timeseries.csv",
+      "sha256": "9f4060ec00532f7f90d125033a6db52826793fe06a60f013e3e224f9c1e66208"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/actuators_en.png",
+      "sha256": "05e3d803577941c47a4494b84409f4f36ce34bd252944191c9d6abf2bdbba074"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/actuators_fr.png",
+      "sha256": "0fa890a008694dce419817433a127013fe38af39e89e7abf92bc6449bbbdc206"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/metrics.csv",
+      "sha256": "2e146af44eab46a9f9d164d02ba4282d7e5571a81cd97b5c504f80de7b2a7326"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/response_en.png",
+      "sha256": "39d7f8ae4ad3879e6422b835e9c60f45015900d6b4295707055c9d74bf26c0b3"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/response_fr.png",
+      "sha256": "5769b70d0bf6dbcaf031c1f399016398c2d0476b115f125c99251b71f3325ec6"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/result.mat",
+      "sha256": "81f1b7050c8ffb50347bf89ec5001b9898bf5dc93c94a5388252937af0ea59d2"
+    },
+    {
+      "path": "validation/results/gate2/G2-SAT/timeseries.csv",
+      "sha256": "42b491213ed97784e3fac68f9fcc1b1909f5d2b0f086e0f692d31bcea367bfd7"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/actuators_en.png",
+      "sha256": "f6ef92d087f2649240ef90fa22789bffd06da23e40a349268fa76b6c350d6932"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/actuators_fr.png",
+      "sha256": "a1e1e86030fbf0beee393742be5f7a8879110e02c23f52d21d7aa5b651d608b8"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/metrics.csv",
+      "sha256": "3dbf05ddbc139d55c394d29bf19de6dbc26d0180dd403273d23183dc6ca8bfce"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/response_en.png",
+      "sha256": "e871e9c1f77f3a497238515d196a51d890c87c9408e74b3d58be5e9a3227bc6e"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/response_fr.png",
+      "sha256": "f2eeef6e62a815605230d63b4f1f693ffe71abc0217ff0e8f9814373e9c95360"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/result.mat",
+      "sha256": "bf05e9b7cd1677160903cbef82be48e40e78a26d86887811dc52deea270a0c0e"
+    },
+    {
+      "path": "validation/results/gate2/G2-STR/timeseries.csv",
+      "sha256": "a3b7490d757b738889777bb3db0b3a3df2d679ec6423f877135c8e9df8c8bc38"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/actuators_en.png",
+      "sha256": "2fb34146660a241a9e9f0ab2f89ae0add49866b646d573594c4482c79c9712d9"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/actuators_fr.png",
+      "sha256": "b60e0ea321a4ff3289f58c95696f04abb125eb2fa4b69a95ca97c9ee08e4a449"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/metrics.csv",
+      "sha256": "87b3c61fa1a7f0c35e1b8e1e29b57a679eb70ee6a0066ca7bbf9d9eeff87cfff"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/response_en.png",
+      "sha256": "b82ad13322287cea7c4973a12768e44b948771a12a02983016f96263c2b31bd0"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/response_fr.png",
+      "sha256": "f0c97e5e892688b3ae4858098cb43f8df56766b20b77688c84186c36069cf28f"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/result.mat",
+      "sha256": "9813ff6b3d5eb99fbb59ab40836b179a254fadce015ef1f418b3513628df053a"
+    },
+    {
+      "path": "validation/results/gate2/G2-YAW/timeseries.csv",
+      "sha256": "a899562522390c5d518cdec48574f6dd44a1a150c9e2efdd5f3398b91d0c90c3"
+    },
+    {
+      "path": "validation/results/gate2/steering/nominal.csv",
+      "sha256": "0943bd639149a5217b05ef4e705866385fcbfffe94b667ff516cc84b9f3317a6"
+    },
+    {
+      "path": "validation/results/gate2/steering/nominal_en.png",
+      "sha256": "828dfb7048465e53ade4d47a2a1f2ad933c7c611f2fc3faf46245d9d99702725"
+    },
+    {
+      "path": "validation/results/gate2/steering/nominal_fr.png",
+      "sha256": "217357f33bfec38f78dc61dc309db4168c1ff1b06798500c66a847b3554bacb5"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_a_loss.csv",
+      "sha256": "f534acbeddcb096f5d11590fe1d949ac8a0c12dd325f2e0a3f80c1eae6a89467"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_a_loss_en.png",
+      "sha256": "44d653d0f6bc107c256295973f52d9d0ed7e922c75295e22edaf25e51e00cd1a"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_a_loss_fr.png",
+      "sha256": "08c05ac27f8d96bca29cdb09ce06c89b10940bcd6ac8daf4d230c7dcd5c183ae"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_b_loss.csv",
+      "sha256": "2dfc9672b8d18ff3d6e67bf96fae82d26a3784e36ebd71b8478ff7f5d8dfc3f7"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_b_loss_en.png",
+      "sha256": "03c0e700c62c34d7c01af61bd61fc4746ccf3d2a99d165e397eaac4e22db4fbb"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_b_loss_fr.png",
+      "sha256": "c0f574d5308366d453f4647b59b249dbefc8e84f945a38e084f92332e5e09b14"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_loss.csv",
+      "sha256": "6c47594f18b8bc828d4ae130e40690b68c65c021baafbb9d5e62f8a5424f9141"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_loss_en.png",
+      "sha256": "5c11122392e54a1767382e360507db784e4f8d5797cd705e93e09fe62d4fcd1d"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_loss_fr.png",
+      "sha256": "adbd88f6cb872c9020e54172cea153df01dc928036befa453fce612fb071605a"
+    },
+    {
+      "path": "validation/results/gate2/steering/steering_summary.csv",
+      "sha256": "b78488e81b8db78113ae8574ab23fa6bde015fa913522e5d4f7c91992971ecca"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/actuators_and_loads_en.png",
+      "sha256": "f834cf25d2a834ac57e27848a8a4aaafb7550e729ef727f7b298ffc1a8b706d1"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/actuators_and_loads_fr.png",
+      "sha256": "1cecf1a0d913a2cf6a9c1b326219f9756be5ccbf6f7cf6db7d9322993569e597"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/result.mat",
+      "sha256": "d4ba4ef8f77a542ab5f720acc12e8ebe29f94bf36d042db545a5f63c5552b381"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/timeseries.csv",
+      "sha256": "8ae7ebe31cd31710ac841a9682095ead622d9948ce86c92ced1503ccad7f08ad"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/tire_response_en.png",
+      "sha256": "4b6900f1be883a7c92190172b0169abc15fea9ec4dd2045316f4586e786c00b9"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/tire_response_fr.png",
+      "sha256": "d7f0eac0eab3eb676dcdef59773b5d13d2179e6e468e64fe9c5aa87f70385cd8"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/vehicle_response_en.png",
+      "sha256": "a7456dab9c89a665836458700582902a5ea67f7b23ee51ef7f68dcf293422a09"
+    },
+    {
+      "path": "validation/results/plant/PLANT-BRK-01/vehicle_response_fr.png",
+      "sha256": "1c271df1699412e41b17f0f5c6fb39e18a7c603adae37f0c346749287c2d5580"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/actuators_and_loads_en.png",
+      "sha256": "991a33af4ab2ad2487286496735a6d66a547c2d3f3495a90c6b6644a405a7dd7"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/actuators_and_loads_fr.png",
+      "sha256": "80bd896e9dca6a4806c4b1bc97b0b594ec8d9302eb2cda5e3c92c8a3352b18af"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/result.mat",
+      "sha256": "98310ae6a90ac940deb2a7231cec6ff58bd1b599001469a265a88a22f5115404"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/timeseries.csv",
+      "sha256": "329ef68baa9f32988ffc8cd156e3322881315ec480f2a64faebfd3d495a036eb"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/tire_response_en.png",
+      "sha256": "ecdd2c4e7b5f74d4bb7bdeebab1df3773260a7923ca3d0621f26ac501b9a8291"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/tire_response_fr.png",
+      "sha256": "900f098844abdc92637ed798fb4e06b6d951e659d630b4df19ac8610651698ef"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/vehicle_response_en.png",
+      "sha256": "f5695736687bda34cd2d7e583eec9c991213ca1728df632eee0dc9b42247faac"
+    },
+    {
+      "path": "validation/results/plant/PLANT-CMB-01/vehicle_response_fr.png",
+      "sha256": "0a4d06e3b42ffde15d5818517b9951bbc2d44e474847534a2d089bc4946c2724"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/actuators_and_loads_en.png",
+      "sha256": "631d79c3df2e58323f5f2eb4a7eeb2c64e94f7e4f4f99ef69803a5b28b95f5b1"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/actuators_and_loads_fr.png",
+      "sha256": "776e590426c09f83cdb7ddfc7104127cc19f8282c6d622300aa98c0fc9dbb698"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/result.mat",
+      "sha256": "b225b9bf7b4a3d3c127cfd2322cab7e97e75b75e47123f241c3f45653ed991d0"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/timeseries.csv",
+      "sha256": "549bcfed8b5a882ec35e423d1084fefc60c0720638343a2b804d7be01e0dfd38"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/tire_response_en.png",
+      "sha256": "9f3633cfa2a5ac4cc25722107a59d573340190b117c3a09746fa4b1606b8d06f"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/tire_response_fr.png",
+      "sha256": "e6112bb5b0c8db6fcd027319497b97e32fb2bb665e16f162a14dc3a70183f3dd"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/vehicle_response_en.png",
+      "sha256": "5d7c406e07a5f57d15b7cb717aad0deb8ea658d97fe0045d00aa177c4f2fabfb"
+    },
+    {
+      "path": "validation/results/plant/PLANT-STR-01/vehicle_response_fr.png",
+      "sha256": "9170404efee3fea130433160f28e9a5ecb315ccdaace818a52565b48c4ae4c6f"
+    }
+  ],
+  "presentation_archive_sha256": "9008976471569732e13b2788e1c814685f2cdbb38e00928b8849c447062a5701",
+  "presentation_archive_verified_files": 94,
+  "presentation": {
+    "raw_hashes_verified": 42,
+    "figure_count": 46,
+    "archived_rendering_sources_verified": 5,
+    "rendering_sources_matching_current": 4,
+    "note": "Native archived export retains pale layout titles. A later title-only helper correction is not part of this archive."
+  },
+  "report_figure_package": {
+    "plotting_engine": "Matplotlib 3.11.1",
+    "simulation_engine": "26.1.0.3346908 (R2026a) Update 5",
+    "raw_hashes_verified": 42,
+    "figure_count": 46,
+    "rendering_sources_verified": 1
+  }
+}

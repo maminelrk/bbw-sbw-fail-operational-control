@@ -1,0 +1,70 @@
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.98          0.63679       0.24161       41.188          0         true         true    
+
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.96          0.62505       0.15693       29.78           0         true         true    
+
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.94           0.6173       0.097689      17.358          0         true         true    
+
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.92          0.61115       0.060513      10.023          0         true         true    
+
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.9           0.60548       0.042949      6.8185          0         true         true    
+
+    <strong>RearFraction</strong>    <strong>BrakingRatio</strong>    <strong>PeakBeta</strong>    <strong>PeakHoldMz</strong>    <strong>Overrides</strong>    <strong>RatePass</strong>    <strong>SolverPass</strong>
+    <strong>____________</strong>    <strong>____________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>__________</strong>
+
+        0.88          0.60005       0.035631      5.7393          0         true         true    
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T1-D10"          false           0.25     0.50863     0.017639    0.25773        true          false  
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T3-D10"          false           0.25     0.28741     0.012175    0.21928        true          true   
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>    <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T1-D10"          false           0.15     0.34078     0.01146    0.27707        true          true   
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>     <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T3-D10"          false           0.15     0.28492     0.0083219    0.23361        true          true   
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T1-D10"          true            0.25      2.2536     0.035561    0.20358        true          false  
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T3-D10"          true            0.25     0.26396     0.011853    0.2193         true          true   
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>    <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T1-D10"          true            0.15      1.7294     0.031715    0.21396        true          false  
+
+           <strong>ID</strong>           <strong>SpeedCompensation</strong>    <strong>YawTau</strong>    <strong>PeakPath</strong>     <strong>YawRMSE</strong>     <strong>Decel_g</strong>    <strong>NumericalPass</strong>    <strong>DBBSPass</strong>
+    <strong>________________</strong>    <strong>_________________</strong>    <strong>______</strong>    <strong>________</strong>    <strong>_________</strong>    <strong>_______</strong>    <strong>_____________</strong>    <strong>________</strong>
+
+    "G3-DBBS-T3-D10"          true            0.15      0.2595     0.0078889    0.23363        true          true   
+

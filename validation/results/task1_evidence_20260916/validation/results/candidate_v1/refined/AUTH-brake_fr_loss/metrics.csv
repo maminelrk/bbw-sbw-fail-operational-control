@@ -1,0 +1,2 @@
+ScenarioID,ForceRMSE_N,YawRMSE_radps,PeakSideslip_rad,MinimumWheelLoad_N,FinalSpeed_mps,SaturatedBrakeRatio,FinitePass,LoadPass,FrictionPass,RatePass,BoundsPass,SolverPass,OperatingPass,RateOverrideCount,BehaviorPass,OverallPass
+AUTH-brake_fr_loss,4353.59270853303,0.00359365134982764,0.0604841628100754,2052.56158575559,7.07421123857715,NaN,1,1,1,1,1,1,1,0,0,0

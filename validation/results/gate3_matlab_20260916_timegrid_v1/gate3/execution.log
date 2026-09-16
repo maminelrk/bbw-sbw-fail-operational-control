@@ -1,0 +1,58 @@
+Running TestAllocatorSaturation
+.....
+Done TestAllocatorSaturation
+__________
+
+Running TestControlAllocator
+.......
+Done TestControlAllocator
+__________
+
+Running TestGate2Integration
+.......... .
+Done TestGate2Integration
+__________
+
+Running TestGate3Preparation
+........
+Done TestGate3Preparation
+__________
+
+Running TestVehiclePlant
+......
+Done TestVehiclePlant
+__________
+
+Gate 3 diagnostics 1/30: G3-FL-D00
+Gate 3 diagnostics 2/30: G3-FR-D00
+Gate 3 diagnostics 3/30: G3-RL-D00
+Gate 3 diagnostics 4/30: G3-RR-D00
+Gate 3 diagnostics 5/30: G3-SA-D00
+Gate 3 diagnostics 6/30: G3-SB-D00
+Gate 3 diagnostics 7/30: G3-DBBS-T1-D00
+Gate 3 diagnostics 8/30: G3-DBBS-T3-D00
+Gate 3 diagnostics 9/30: G3-FL-D10
+Gate 3 diagnostics 10/30: G3-FR-D10
+Gate 3 diagnostics 11/30: G3-RL-D10
+Gate 3 diagnostics 12/30: G3-RR-D10
+Gate 3 diagnostics 13/30: G3-SA-D10
+Gate 3 diagnostics 14/30: G3-SB-D10
+Gate 3 diagnostics 15/30: G3-DBBS-T1-D10
+Gate 3 diagnostics 16/30: G3-DBBS-T3-D10
+Gate 3 diagnostics 17/30: G3-FL-D50
+Gate 3 diagnostics 18/30: G3-FR-D50
+Gate 3 diagnostics 19/30: G3-RL-D50
+Gate 3 diagnostics 20/30: G3-RR-D50
+Gate 3 diagnostics 21/30: G3-SA-D50
+Gate 3 diagnostics 22/30: G3-SB-D50
+Gate 3 diagnostics 23/30: G3-DBBS-T1-D50
+Gate 3 diagnostics 24/30: G3-DBBS-T3-D50
+Gate 3 diagnostics 25/30: G3-BRK-FL
+Gate 3 diagnostics 26/30: G3-BRK-FR
+Gate 3 diagnostics 27/30: G3-BRK-RL
+Gate 3 diagnostics 28/30: G3-BRK-RR
+Gate 3 diagnostics 29/30: G3-DBBS-NEG-T1-D10
+Gate 3 diagnostics 30/30: G3-DBBS-NEG-T3-D10
+Gate 3 remains open. Review fault_summary.csv and all failed diagnostics.
+   1.7107e+03
+

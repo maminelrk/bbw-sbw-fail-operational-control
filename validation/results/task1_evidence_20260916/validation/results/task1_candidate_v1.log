@@ -1,0 +1,92 @@
+Running TestAllocatorSaturation
+.....
+Done TestAllocatorSaturation
+__________
+
+Running TestControlAllocator
+.......
+Done TestControlAllocator
+__________
+
+Running TestGate2Integration
+.......... .
+Done TestGate2Integration
+__________
+
+Running TestGate3Assessment
+....
+Done TestGate3Assessment
+__________
+
+Running TestGate3Preparation
+........
+Done TestGate3Preparation
+__________
+
+Running TestTask1Control
+....
+Done TestTask1Control
+__________
+
+Running TestVehiclePlant
+......
+Done TestVehiclePlant
+__________
+
+Task 1 nominal regression 1/5
+Task 1 nominal regression 2/5
+Task 1 nominal regression 3/5
+Task 1 nominal regression 4/5
+Task 1 nominal regression 5/5
+Task 1 fault regression 1/30: G3-FL-D00
+Task 1 fault regression 2/30: G3-FR-D00
+Task 1 fault regression 3/30: G3-RL-D00
+Task 1 fault regression 4/30: G3-RR-D00
+Task 1 fault regression 5/30: G3-SA-D00
+Task 1 fault regression 6/30: G3-SB-D00
+Task 1 fault regression 7/30: G3-DBBS-T1-D00
+Task 1 fault regression 8/30: G3-DBBS-T3-D00
+Task 1 fault regression 9/30: G3-FL-D10
+Task 1 fault regression 10/30: G3-FR-D10
+Task 1 fault regression 11/30: G3-RL-D10
+Task 1 fault regression 12/30: G3-RR-D10
+Task 1 fault regression 13/30: G3-SA-D10
+Task 1 fault regression 14/30: G3-SB-D10
+Task 1 fault regression 15/30: G3-DBBS-T1-D10
+Task 1 fault regression 16/30: G3-DBBS-T3-D10
+Task 1 fault regression 17/30: G3-FL-D50
+Task 1 fault regression 18/30: G3-FR-D50
+Task 1 fault regression 19/30: G3-RL-D50
+Task 1 fault regression 20/30: G3-RR-D50
+Task 1 fault regression 21/30: G3-SA-D50
+Task 1 fault regression 22/30: G3-SB-D50
+Task 1 fault regression 23/30: G3-DBBS-T1-D50
+Task 1 fault regression 24/30: G3-DBBS-T3-D50
+Task 1 fault regression 25/30: G3-BRK-FL
+Task 1 fault regression 26/30: G3-BRK-FR
+Task 1 fault regression 27/30: G3-BRK-RL
+Task 1 fault regression 28/30: G3-BRK-RR
+Task 1 fault regression 29/30: G3-DBBS-NEG-T1-D10
+Task 1 fault regression 30/30: G3-DBBS-NEG-T3-D10
+Task 1 dynamic braking 1/5
+Task 1 dynamic braking 2/5
+Task 1 dynamic braking 3/5
+Task 1 dynamic braking 4/5
+Task 1 dynamic braking 5/5
+Task 1 loaded fault transition 1/6
+Task 1 loaded fault transition 2/6
+Task 1 loaded fault transition 3/6
+Task 1 loaded fault transition 4/6
+Task 1 loaded fault transition 5/6
+Task 1 loaded fault transition 6/6
+         Protocol: 'TASK1-CTRL-01'
+       StartedUTC: '16-Sep-2026 03:56:54'
+           Status: 'COMPLETED'
+    MATLABVersion: '26.1.0.3346908 (R2026a) Update 5'
+       Parameters: [1×1 struct]
+      Gate3Closed: 0
+      Task1Passed: 0
+     CompletedUTC: '16-Sep-2026 04:21:48'
+          Pending: 'Task 2: independent REQ-02/envelope, comparative baseline, robustness; no certification claim.'
+
+TASK1_VALIDATION_COMPLETE

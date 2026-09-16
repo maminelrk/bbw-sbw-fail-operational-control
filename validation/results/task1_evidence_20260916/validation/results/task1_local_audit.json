@@ -1,0 +1,681 @@
+{
+  "EvidenceConsistencyVerified": true,
+  "Task1Passed": false,
+  "Gate3Closed": false,
+  "UnitTests": 45,
+  "TimeseriesAudited": 54,
+  "DBBS": [
+    {
+      "ID": "G3-DBBS-T1-D00",
+      "Path_m": 0.2945262478487071,
+      "YawRMSE": 0.0114599590223014,
+      "Decel_g": 0.27706717346821086,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-T3-D00",
+      "Path_m": 0.26167190488136793,
+      "YawRMSE": 0.008296683842520209,
+      "Decel_g": 0.2328094303076095,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-T1-D10",
+      "Path_m": 0.29452624810374106,
+      "YawRMSE": 0.011459959024319335,
+      "Decel_g": 0.2770671734763086,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-T3-D10",
+      "Path_m": 0.2616719048786248,
+      "YawRMSE": 0.008296683842521888,
+      "Decel_g": 0.2328094303076095,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-T1-D50",
+      "Path_m": 0.2945262493055237,
+      "YawRMSE": 0.011459959022319399,
+      "Decel_g": 0.27706717343116505,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-T3-D50",
+      "Path_m": 0.2616311488553413,
+      "YawRMSE": 0.008296704862602311,
+      "Decel_g": 0.23280943647558333,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-NEG-T1-D10",
+      "Path_m": 0.2945184215153351,
+      "YawRMSE": 0.011460312786270688,
+      "Decel_g": 0.2770797443992237,
+      "Pass": true
+    },
+    {
+      "ID": "G3-DBBS-NEG-T3-D10",
+      "Path_m": 0.2616719049262317,
+      "YawRMSE": 0.008296683843502944,
+      "Decel_g": 0.2328094303308159,
+      "Pass": true
+    }
+  ],
+  "Braking": [
+    {
+      "ID": "AUTH-nominal",
+      "BrakingRatio": "0.979999999994416",
+      "PeakBeta_rad": "2.75293931468357e-07",
+      "PeakHoldMz_Nm": "6.17446520479187e-05",
+      "YawLimit_Nm": "567.13707210391",
+      "Overrides": "0",
+      "NumericalPass": "1",
+      "Pass": "1"
+    },
+    {
+      "ID": "AUTH-brake_fl_loss",
+      "BrakingRatio": "0.611147085090313",
+      "PeakBeta_rad": "0.0605129591916891",
+      "PeakHoldMz_Nm": "10.0229078719617",
+      "YawLimit_Nm": "567.13707210391",
+      "Overrides": "0",
+      "NumericalPass": "1",
+      "Pass": "1"
+    },
+    {
+      "ID": "AUTH-brake_fr_loss",
+      "BrakingRatio": "0.611147084914609",
+      "PeakBeta_rad": "0.0605129536260968",
+      "PeakHoldMz_Nm": "10.0229054729934",
+      "YawLimit_Nm": "567.13707210391",
+      "Overrides": "0",
+      "NumericalPass": "1",
+      "Pass": "1"
+    },
+    {
+      "ID": "AUTH-brake_rl_loss",
+      "BrakingRatio": "0.879923287870891",
+      "PeakBeta_rad": "0.00722503106271514",
+      "PeakHoldMz_Nm": "2.66273961755996",
+      "YawLimit_Nm": "567.13707210391",
+      "Overrides": "0",
+      "NumericalPass": "1",
+      "Pass": "1"
+    },
+    {
+      "ID": "AUTH-brake_rr_loss",
+      "BrakingRatio": "0.879923289412461",
+      "PeakBeta_rad": "0.00722461496376142",
+      "PeakHoldMz_Nm": "2.6629234820341",
+      "YawLimit_Nm": "567.13707210391",
+      "Overrides": "0",
+      "NumericalPass": "1",
+      "Pass": "1"
+    }
+  ],
+  "SourceSHA256": {
+    "allocator.m": "5b84b598184bb83488d23d9dce1a1ee1301932162c480073a0c75de753dfa74e",
+    "get_params.m": "e3048feab5499fad239262f10ad5d65980dce86b2c322de59785b1a3c4c7e45e",
+    "motion_demand.m": "69f0403556789245fde4c7eda38c375e21d390f617a77bd5349dc402cd5bf5b8",
+    "run_task1_validation.m": "0a05791ce45d8258094152178e64f2a549f52a221719e90ff759784a464c67cd",
+    "validation/run_integrated_maneuver.m": "17ceeb4266fedc0aba1e94e73048d25695eb9cb810d7406157290d625e321c14",
+    "tests/TestTask1Control.m": "8ab1a1834da6ffbda1f5f631f6c0b8837aaa9f5c57b1d3d5eaa74cd868de43c0"
+  },
+  "PhysicalChecks": {
+    "authority/AUTH-brake_fl_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "authority/AUTH-brake_fr_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "authority/AUTH-brake_rl_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "authority/AUTH-brake_rr_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "authority/AUTH-nominal": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-BRK-FL": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-BRK-FR": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-BRK-RL": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-BRK-RR": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-NEG-T1-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-NEG-T3-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T1-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T1-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T1-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T3-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T3-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-DBBS-T3-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FL-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FL-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FL-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FR-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FR-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-FR-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RL-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RL-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RL-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RR-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RR-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-RR-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SA-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SA-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SA-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SB-D00": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SB-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/G3-SB-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/NOM-brake": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/NOM-combined": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/NOM-dbbs_negative": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "faults/NOM-dbbs_positive": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "nominal/G2-BRK": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "nominal/G2-CMB": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "nominal/G2-SAT": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "nominal/G2-STR": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "nominal/G2-YAW": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "refined/AUTH-brake_fl_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "refined/AUTH-brake_fr_loss": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "refined/G3-DBBS-NEG-T1-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "refined/G3-DBBS-T1-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": true,
+      "operating": true,
+      "solver": true,
+      "no_override": true
+    },
+    "transitions/TRANS-brake_fl_loss-D0": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    },
+    "transitions/TRANS-brake_fl_loss-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": false,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    },
+    "transitions/TRANS-brake_fl_loss-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": false,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    },
+    "transitions/TRANS-brake_fr_loss-D0": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": true,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    },
+    "transitions/TRANS-brake_fr_loss-D10": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": false,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    },
+    "transitions/TRANS-brake_fr_loss-D50": {
+      "finite": true,
+      "load": true,
+      "friction": true,
+      "command_bounds": false,
+      "rate": false,
+      "operating": true,
+      "solver": true,
+      "no_override": false
+    }
+  },
+  "CSVEndpointNotes": [
+    {
+      "ID": "AUTH-brake_rl_loss",
+      "CSVInclusive": 0.8799231306016447,
+      "MATLAB": 0.8799232878708905
+    },
+    {
+      "ID": "AUTH-brake_rr_loss",
+      "CSVInclusive": 0.8799231321294182,
+      "MATLAB": 0.8799232894124618
+    }
+  ],
+  "ScopeEN": "Independent CSV recomputation and exact source matching; not independent vehicle-model validation.",
+  "ScopeFR": "Recalcul indépendant des CSV et comparaison exacte des sources ; sans validation indépendante du modèle véhicule."
+}

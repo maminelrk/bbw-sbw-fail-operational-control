@@ -1,0 +1,189 @@
+{
+  "Kind": "PRESENTATION_ONLY_CSV_REPLOT",
+  "SimulationRerun": false,
+  "SimulationEngine": "26.1.0.3346908 (R2026a) Update 5",
+  "PlottingEngine": "Matplotlib 3.11.1",
+  "CreatedUTC": "2026-09-16T00:19:36.969091+00:00",
+  "OriginalRunStartedUTC": "15-Sep-2026 23:33:46",
+  "OriginalRunStatus": "READY_FOR_SUPERVISOR_REVIEW",
+  "RawFilesUnchanged": true,
+  "RawFiles": [
+    {
+      "Path": "gate2/G2-BRK/metrics.csv",
+      "SHA256": "048cfbee7be7bfe61d1786a46ce133e16c8c3ede30970493c41224bf7211ddc4"
+    },
+    {
+      "Path": "gate2/G2-BRK/result.mat",
+      "SHA256": "d5e946fbc6898ae1827a124b665a2f76b833e5d17b19d47bc0341d445816f919"
+    },
+    {
+      "Path": "gate2/G2-BRK/timeseries.csv",
+      "SHA256": "1bac7faa5af7a6f0ad96722f391d2f1c94d3b534e9990c966a444cc9a1356e2a"
+    },
+    {
+      "Path": "gate2/G2-CMB/metrics.csv",
+      "SHA256": "3bbb2a4f4f7f80ac2d6f4055257658099061b2c024f613ca87cb7631cd74c6a6"
+    },
+    {
+      "Path": "gate2/G2-CMB/result.mat",
+      "SHA256": "e98ae76f8f14b64f50fa7a89e82e68322cfa6885e02935bd45d6dbd738157146"
+    },
+    {
+      "Path": "gate2/G2-CMB/timeseries.csv",
+      "SHA256": "9f4060ec00532f7f90d125033a6db52826793fe06a60f013e3e224f9c1e66208"
+    },
+    {
+      "Path": "gate2/G2-SAT/metrics.csv",
+      "SHA256": "2e146af44eab46a9f9d164d02ba4282d7e5571a81cd97b5c504f80de7b2a7326"
+    },
+    {
+      "Path": "gate2/G2-SAT/result.mat",
+      "SHA256": "81f1b7050c8ffb50347bf89ec5001b9898bf5dc93c94a5388252937af0ea59d2"
+    },
+    {
+      "Path": "gate2/G2-SAT/timeseries.csv",
+      "SHA256": "42b491213ed97784e3fac68f9fcc1b1909f5d2b0f086e0f692d31bcea367bfd7"
+    },
+    {
+      "Path": "gate2/G2-STR/metrics.csv",
+      "SHA256": "3dbf05ddbc139d55c394d29bf19de6dbc26d0180dd403273d23183dc6ca8bfce"
+    },
+    {
+      "Path": "gate2/G2-STR/result.mat",
+      "SHA256": "bf05e9b7cd1677160903cbef82be48e40e78a26d86887811dc52deea270a0c0e"
+    },
+    {
+      "Path": "gate2/G2-STR/timeseries.csv",
+      "SHA256": "a3b7490d757b738889777bb3db0b3a3df2d679ec6423f877135c8e9df8c8bc38"
+    },
+    {
+      "Path": "gate2/G2-YAW/metrics.csv",
+      "SHA256": "87b3c61fa1a7f0c35e1b8e1e29b57a679eb70ee6a0066ca7bbf9d9eeff87cfff"
+    },
+    {
+      "Path": "gate2/G2-YAW/result.mat",
+      "SHA256": "9813ff6b3d5eb99fbb59ab40836b179a254fadce015ef1f418b3513628df053a"
+    },
+    {
+      "Path": "gate2/G2-YAW/timeseries.csv",
+      "SHA256": "a899562522390c5d518cdec48574f6dd44a1a150c9e2efdd5f3398b91d0c90c3"
+    },
+    {
+      "Path": "gate2/gate2_results.mat",
+      "SHA256": "f75a7e0924dc3e1d445bca882733e891b3cd252dfea77324b4512e5a93a4fd48"
+    },
+    {
+      "Path": "gate2/maneuver_summary.csv",
+      "SHA256": "31096feefed382bd012f53f4cb476986f5b0bc27f8d2ab10ec234ec138f17028"
+    },
+    {
+      "Path": "gate2/run_manifest.json",
+      "SHA256": "29cc6383fe22af6c2f4b630fb3e21bfcac865913c38cabcfa34bbdf0b7003539"
+    },
+    {
+      "Path": "gate2/steering/nominal.csv",
+      "SHA256": "0943bd639149a5217b05ef4e705866385fcbfffe94b667ff516cc84b9f3317a6"
+    },
+    {
+      "Path": "gate2/steering/steering_a_loss.csv",
+      "SHA256": "f534acbeddcb096f5d11590fe1d949ac8a0c12dd325f2e0a3f80c1eae6a89467"
+    },
+    {
+      "Path": "gate2/steering/steering_b_loss.csv",
+      "SHA256": "2dfc9672b8d18ff3d6e67bf96fae82d26a3784e36ebd71b8478ff7f5d8dfc3f7"
+    },
+    {
+      "Path": "gate2/steering/steering_loss.csv",
+      "SHA256": "6c47594f18b8bc828d4ae130e40690b68c65c021baafbb9d5e62f8a5424f9141"
+    },
+    {
+      "Path": "gate2/steering/steering_summary.csv",
+      "SHA256": "b78488e81b8db78113ae8574ab23fa6bde015fa913522e5d4f7c91992971ecca"
+    },
+    {
+      "Path": "gate2/step_convergence.csv",
+      "SHA256": "111b2f02733d41a354e20237e502a4eeca5692f69cff07b2bbb8b6dc2d1d3ba2"
+    },
+    {
+      "Path": "gate2/unit_tests.csv",
+      "SHA256": "f7737db10103dd614bff885ef5f4d8271e5b9ee4f8e9a545b3205af619566adb"
+    },
+    {
+      "Path": "gate2_corrected_console.txt",
+      "SHA256": "86f4c94b86b47a785ce4c2464cb0d9ea98ad3cc3fe3cedc2cb8a19db0e95e1ab"
+    },
+    {
+      "Path": "gate2_corrected_extra.mat",
+      "SHA256": "c1ce84747603ec4e4e1f79cae2d3249472598915d85f30ed6d862439ba9ed58d"
+    },
+    {
+      "Path": "plant/PLANT-BRK-01/result.mat",
+      "SHA256": "d4ba4ef8f77a542ab5f720acc12e8ebe29f94bf36d042db545a5f63c5552b381"
+    },
+    {
+      "Path": "plant/PLANT-BRK-01/timeseries.csv",
+      "SHA256": "8ae7ebe31cd31710ac841a9682095ead622d9948ce86c92ced1503ccad7f08ad"
+    },
+    {
+      "Path": "plant/PLANT-CMB-01/result.mat",
+      "SHA256": "98310ae6a90ac940deb2a7231cec6ff58bd1b599001469a265a88a22f5115404"
+    },
+    {
+      "Path": "plant/PLANT-CMB-01/timeseries.csv",
+      "SHA256": "329ef68baa9f32988ffc8cd156e3322881315ec480f2a64faebfd3d495a036eb"
+    },
+    {
+      "Path": "plant/PLANT-STR-01/result.mat",
+      "SHA256": "b225b9bf7b4a3d3c127cfd2322cab7e97e75b75e47123f241c3f45653ed991d0"
+    },
+    {
+      "Path": "plant/PLANT-STR-01/timeseries.csv",
+      "SHA256": "549bcfed8b5a882ec35e423d1084fefc60c0720638343a2b804d7be01e0dfd38"
+    },
+    {
+      "Path": "plant/plant_validation.mat",
+      "SHA256": "5da9507f6882dee2e0c844761ce40e6b512be9c2b174c7faeb5a6e319b9f403c"
+    },
+    {
+      "Path": "plant/plant_validation_summary.csv",
+      "SHA256": "dbbf1de8ea5e42743ef3b480fcb3f0fa4433f79bc6a2f8eedc0a85878e11ba38"
+    },
+    {
+      "Path": "saturation_fix_source_manifest.json",
+      "SHA256": "61abb3d493e7a0aedf10bbf754a77a90eac1e42e676841e8d1724529f92fcc80"
+    },
+    {
+      "Path": "saturation_fix_v7.zip",
+      "SHA256": "43ebf5bac7db77e999fc530680599ece220c503c853534d35696e6bf2805bbff"
+    },
+    {
+      "Path": "solver_diagnostic_v6/case_1.mat",
+      "SHA256": "1bed3b0af19cdd98ff57e130e17a6215a5101789369f75d94b176b170e532025"
+    },
+    {
+      "Path": "solver_diagnostic_v6/case_2.mat",
+      "SHA256": "4c335bdf17bba1d3174551df83044411381b882bb30fbf147ff9f967f34eb8b6"
+    },
+    {
+      "Path": "solver_diagnostic_v6/case_3.mat",
+      "SHA256": "c3504ba0d96fcc1a8fe9e7ea6155ccd65f0a0980873e074a2d4dad4d4c4be5a7"
+    },
+    {
+      "Path": "solver_diagnostic_v6/case_4.mat",
+      "SHA256": "35d6a80a0b17fd1187d9b187cbc22ba9c1f6decc8c8afaae4892fbc98da76536"
+    },
+    {
+      "Path": "solver_diagnostic_v6/summary.csv",
+      "SHA256": "825c97eac4cc45c8a88858b027d8d6062fdf24c5415b80b55f2b2736ea4a27e8"
+    }
+  ],
+  "FigureCount": 46,
+  "RenderingSources": [
+    {
+      "File": "render_gate2_csv.py",
+      "SHA256": "66744130ee75762587ee6969f1e5b69afe9b3feca7493e283daa34e55a2abd5d"
+    }
+  ],
+  "NoteEN": "Only CSV plotting and radian-to-degree display conversion. No model integration, optimization, resampling or acceptance changes.",
+  "NoteFR": "Trac\u00e9 des CSV et conversion radians-degr\u00e9s pour affichage uniquement. Aucune int\u00e9gration du mod\u00e8le, optimisation, interpolation ni modification des crit\u00e8res."
+}

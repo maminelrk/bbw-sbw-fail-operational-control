@@ -1,0 +1,8 @@
+{
+  "Verified": true,
+  "Cases": 5,
+  "Gate3Closed": false,
+  "WorstRetainedBrakingLowerBound": 0.612635800214764,
+  "TransferEN": "Exact CSV read through MATLAB browser console; SHA-256 matches cloud file and helper source. Full MAT/log remain in MATLAB Drive.",
+  "TransferFR": "CSV exact lu via la console MATLAB du navigateur ; SHA-256 identiques au fichier cloud et au code. MAT/journal complets conservés dans MATLAB Drive."
+}
