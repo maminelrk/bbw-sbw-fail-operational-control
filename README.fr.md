@@ -2,6 +2,8 @@
 
 [English](README.en.md) | [Index des langues](README.md)
 
+**Rapports finaux disponibles :** [PDF et téléchargement LaTeX complet](docs/final-report/README.fr.md). Publiés avec l'autorisation des auteurs ; cette publication remplace les mentions antérieures de confidentialité ci-dessous uniquement pour les rapports finaux et leurs sources LaTeX. Les rapports historiques, les sources testées figées et les résultats bruts restent privés.
+
 ## Présentation
 
 Ce projet de stage développe et documente une simulation intégrée du freinage Brake-by-Wire (BbW) et de la direction Steer-by-Wire (SbW). Il répartit les demandes de force longitudinale et de moment de lacet entre quatre freins et une crémaillère commune entraînée par deux canaux d'actionneur masqués indépendamment.

@@ -2,6 +2,8 @@
 
 [Français](README.fr.md) | [Language index](README.md)
 
+**Final reports now available:** [PDFs and complete LaTeX download](docs/final-report/README.en.md). Published with the authors' authorization; this supersedes the earlier privacy statements below for the final reports and their LaTeX sources only. Historical reports, the tested-source snapshot and raw evidence remain private.
+
 ## Overview
 
 This internship project develops and documents an integrated Brake-by-Wire (BbW) and Steer-by-Wire (SbW) simulation. It distributes longitudinal force and yaw-moment requests across four wheel brakes and a shared steering rack driven by two independently masked actuator channels.
