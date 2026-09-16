@@ -32,6 +32,8 @@ La perte complète est un cas de secours au niveau de l'effecteur, **pas automat
 
 Les références nominales comportent une seconde supplémentaire de roue libre après les 6 s du défaut. Les véhicules dégradés légèrement plus rapides disposent ainsi d'une référence complète à distance égale, sans extrapolation ; les comparaisons temporelles restent limitées aux 6 s communes.
 
+La vérification des grilles temporelles ne tolère que l'arrondi flottant (`64*eps` à l'échelle du vecteur temps). MATLAB peut représenter légèrement différemment les échantillons communs lorsque les enregistrements complets se terminent à 6 s et 7 s. Ce contrôle rejette les échantillons décalés, les longueurs différentes et les grilles non finies/non monotones ; il ne rééchantillonne pas les signaux et n'assouplit aucun seuil comportemental. Un test de régression couvre les grilles de durées différentes et rejette les décalages de 2 ms et de 10 ns.
+
 Précisément, l'écart est exprimé dans le repère d'orientation du véhicule nominal : `e_lat = -(X_f-X_n)*sin(psi_n) + (Y_f-Y_n)*cos(psi_n)` à distance parcourue appariée. En présence de dérive, ce n'est pas exactement la distance géométrique minimale à la trajectoire.
 
 1. **Chronologie des masques :** enregistrer apparition, diagnostic livré et application du masque. L'objectif de 10 ms commence au diagnostic livré. Le temps physique jusqu'à la réponse inclut séparément la détection. Le simulateur applique le drapeau disponible dans le même échantillon de commande ; cela ne valide pas l'ordonnancement d'un calculateur réel.

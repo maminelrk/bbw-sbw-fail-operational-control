@@ -8,11 +8,13 @@ This internship project develops and documents an integrated Brake-by-Wire (BbW)
 
 When the complete demand is physically infeasible, the allocator returns the closest bounded best-effort solution. When an effector fails, a binary fault mask removes its authority and the allocator redistributes the request among the remaining healthy effectors.
 
-The backup concept is Differential-Braking Backup Steering (DBBS): asymmetric braking generates corrective yaw moment when commanded steering is unavailable. It does not model scrub-radius-induced rack steering. Its vehicle-level fault performance remains Gate 3 work.
+The backup concept is Differential-Braking Backup Steering (DBBS): asymmetric braking generates corrective yaw moment when commanded steering is unavailable. It does not model scrub-radius-induced rack steering. The corrected controller meets the selected pulse criteria in all eight assessed DBBS cases; wider operating conditions are future development.
 
 ## Development status
 
-This repository contains the Gate 2 implementation and Gate 3 fault-campaign preparation, not a completed safety case. The corrected MATLAB Online Gate 2 run passed all 36 unit tests, three plant-only cases, four steering cases, five maneuvers and timestep convergence on 15 September 2026 at 23:33:46 UTC. Status: `READY_FOR_SUPERVISOR_REVIEW`, not formal gate acceptance. The original failed saturation run is preserved. See the [Gate 2 guide](docs/gate2.en.md).
+**Academic deliverable complete under revised scope SC-2026-01.** The author confirms the guarantor allows adapting CDC requirements to the internship deliverable. The [final scope record](docs/final_scope.en.md) defines completed work and future perspectives. The final English/French LaTeX reports and tested-source snapshot are private; no new MATLAB simulation or defense material was produced during final assembly.
+
+The retained evidence includes the Gate 2 campaign, 45 unit tests, five nominal maneuvers, 30 original fault-case diagnostics and four refined checks for `ALLOC-2026-04`. The archive and 54 time histories were audited locally. Saturated-fault transition handling, continuous nonlinear envelope/recovery guarantees and hardware validation are outside final academic acceptance and remain documented future perspectives. Historical measurements and campaign flags are unchanged: scoped academic completion is distinct from universal requirements compliance or production certification. See [current status](docs/project_status.en.md) and the detailed [Task 2 audit](docs/task2_assessment.en.md).
 
 Implemented:
 
@@ -33,13 +35,13 @@ Implemented:
 - numerical baselines for REQ-02 and REQ-03;
 - requirement-to-test traceability.
 
-Still pending:
+Remaining decisions and limitations:
 
-- supervisor review of the completed Gate 2 evidence package and execution of the Gate 3 campaign with the corrected allocator;
-- nonlinear operational-envelope and maximum residual-authority assessment;
-- resolution of sensor/path semantics and uncovered fault modes;
-- review of the local FMEA/FTA/DFA drafts and hardware-independence evidence;
-- supervisor acceptance of the gate deliverables.
+- resolution of saturated-braking transition feasibility and independent recovery assessment;
+- historical reporting retained for traceability; the current private reports use the audited corrected evidence;
+- continuous nonlinear-envelope proof and global maxima are not claimed;
+- sensor/path semantics, uncovered faults and physical independence remain limitations;
+- student review of the final private deliverables and defense preparation.
 
 ## Control-allocation formulation
 
@@ -61,20 +63,20 @@ The allocator minimizes normalized tracking error and a small actuator-effort pe
 min 0.5 (c + B u - y_d)' Q (c + B u - y_d) + 0.5 rho u' R u
 ```
 
-subject to physical bounds, a documented 2% longitudinal grip reserve in integrated runs, command-rate bounds, and six health flags `[FL FR RL RR A B]`. In integrated runs, `c` and `B` are recomputed from current vehicle state; actual performance is measured from nonlinear vehicle outputs. See the [Gate 2 guide](docs/gate2.en.md).
+subject to physical bounds, a 2% nominal longitudinal grip reserve (increased to 8% at the rear after diagnosed single-front-brake loss with both rear brakes healthy), command-rate bounds, and six health flags `[FL FR RL RR A B]`. In integrated runs, `c` and `B` are recomputed from current vehicle state; actual performance is measured from nonlinear vehicle outputs. See the [Gate 2 guide](docs/gate2.en.md) and [corrected controller](docs/task1_control.en.md).
 
 ## Requirements
 
-- MATLAB R2021a or newer
+- Reference execution: MATLAB R2026a Update 5; older releases are not verified for the complete supplementary workflow
 - Simulink only for the legacy block-model prototype
-- Optimization Toolbox (`quadprog`)
+- Optimization Toolbox (`quadprog`, and `fmincon` for supplementary assessment)
 - MATLAB Unit Test Framework
 
 Reference execution: MATLAB Online R2026a Update 5 with Optimization Toolbox; detailed version, source identity and configuration are recorded with the evidence.
 
 ## Running the validation
 
-Open MATLAB in the repository root and run the Gate 2 evidence campaign:
+Use a fresh project copy to preserve audited evidence: the runners write fixed results folders. Open MATLAB in that copy's root and run the Gate 2 campaign. See [safe reproduction](docs/handover.en.md).
 
 ```matlab
 results = run_gate2_validation();
@@ -82,7 +84,7 @@ results = run_gate2_validation();
 
 The command runs unit tests, plant-only cases, the steering bench, five integrated maneuvers and step convergence. CSV, MAT, French/English PNG figures and a run manifest are written to `validation/results/`. Failures prevent acceptance status. `run_project_validation()` additionally runs the older constant-demand allocator regressions. Generated evidence is excluded from Git.
 
-After reviewing Gate 2, run the prepared fault campaign:
+To reproduce the already executed fault campaign in a new evidence directory:
 
 ```matlab
 faultResults = run_gate3_validation();

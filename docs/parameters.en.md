@@ -50,10 +50,14 @@ The combined-slip model reduces lateral capacity according to a friction ellipse
 | `steering_channel_rate` | 240 per channel | deg/s | Assumed design capacity | Each drive supplies 60% of the 400 deg/s rack limit |
 | `steering_motor_tau` | 0.010 | s | Assumed | Independent inner velocity-loop lag for each drive |
 | `yaw_tracking_tau` | 0.25 | s | Assumed tuning | Nominal yaw-reference servo |
+| `dbbs_yaw_tracking_tau` | 0.15 | s | Simulation design tuning | Yaw servo after diagnosed loss of both steering drives; Task 1 regression required |
+| `fault_rear_friction_fraction` | 0.92 | - | Simulation design tuning | Rear longitudinal utilization after one front-brake loss with both rear brakes available; physical friction unchanged |
 | `allocation_output_scale` | [5000; 1000] | [N; N m] | Assumed priorities | Fixed objective normalization, separate from authority diagnostics |
 | `steering_trust_angle` | 0.5 | deg | Assumed numerical tuning | Local nonlinear-map trust interval |
 
 Physical brake-force bounds use current `mu*Fz`. Controller configuration `ALLOC-2026-03` additionally limits integrated commands to `0.98*mu*Fz`; static authority screening retains full theoretical capacity and static corner loads. The reserve avoids the nonsmooth zero-lateral-budget boundary but is not a guarantee of transient lateral capacity: actuator lag and changing loads still require independent plant checks. Sensitivity and faulted-operation assessment remain necessary. Each steering drive is assumed to cover the full common-rack angle range. These are functional assumptions, without rack inertia, motor torque or road-load capacity. The 20 ms time-constant argument applies only to a single unsaturated lag; it does not prove the cascaded steering's 50 ms settling target. See [Gate 2](gate2.en.md) for interfaces, maneuvers and evidence.
+
+Controller revision `ALLOC-2026-04` retains the above physical parameters and supersedes the `ALLOC-2026-03` faulted tuning: the rear reserve and DBBS yaw gain are fault-scheduled as described in [Task 1](task1_control.en.md). The 92% rear utilization corresponds to a theoretical 39.2% lateral friction-circle budget, not a guarantee of actual transient capacity. Nominal tuning is unchanged.
 
 ## Sources
 

@@ -1,6 +1,8 @@
 # Numerical baseline for REQ-02 and REQ-03
 
-Status: proposed engineering baseline for Gate 2/3 validation. These values must be reviewed with the project supervisor before they are treated as approved safety requirements. They are simulation acceptance criteria, not evidence of ISO 26262 compliance.
+Final academic acceptance is now defined by [SC-2026-01](final_scope.en.md), as authorized by the project author. The numerical criteria below remain unchanged technical benchmarks; satisfying every original criterion is not the definition of the revised academic deliverable.
+
+Status: engineering baseline used for Gate 2/3 simulation validation. The project author confirms guarantor approval of the previously submitted issues; no signature, approval date or new waiver is inferred. These are simulation acceptance criteria, not evidence of ISO 26262 compliance. Current measured outcomes and remaining nonconformances are in the [Task 2 matrix](task2_assessment.en.md#6-current-requirement-to-evidence-matrix). All numerical thresholds below are unchanged.
 
 ## Scope and definitions
 
@@ -61,6 +63,6 @@ The static authority ratios are screening estimates. The 69.7% raw brake capacit
 
 Each single-fault test shall record the demand, mask transition, allocator command, achieved `[Fx, Mz]`, best-achievable `[Fx, Mz]`, actuator rates, yaw rate, lateral deviation, and pass/fail result for every applicable clause.
 
-Implementation note (G3-PREP-01): physical onset `t_p` is now logged separately from delivered diagnosis `t_flag`. The full timing and measurement conventions are in [the Gate 3 protocol](gate3.en.md). Its affine-oracle recovery diagnostic does not establish the 15% nonlinear envelope; a zero band-entry delay does not imply instantaneous physical recovery. Maximum residual braking/yaw authority remains unassessed. No threshold above is relaxed by this clarification.
+Implementation note (G3-PREP-01): physical onset `t_p` is logged separately from delivered diagnosis `t_flag`. The full timing and measurement conventions are in [the Gate 3 protocol](gate3.en.md). Its affine-oracle recovery diagnostic does not establish the 15% nonlinear envelope; a zero band-entry delay does not imply instantaneous physical recovery. The [supplementary assessment](gate3_assessment.en.md) now provides conservative nonlinear authority witnesses and sampled-envelope checks, not global maxima or full compliance. See the [current gate register](project_status.en.md) for measured outcomes. No threshold above is relaxed.
 
 `straight_braking_screening()` gives approximately 32.5% of nominal braking after a front-corner loss when steering is held at zero and yaw moment is exactly zero, including longitudinal load transfer. This deliberately restricted calculation is not the active-steering-assisted maximum; it explains why the 69.7% raw-force figure alone cannot prove REQ-03a.

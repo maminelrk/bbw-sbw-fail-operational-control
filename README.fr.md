@@ -8,11 +8,13 @@ Ce projet de stage développe et documente une simulation intégrée du freinage
 
 Lorsque la demande complète est physiquement irréalisable, l'allocateur fournit la meilleure solution réalisable respectant les limites. Lorsqu'un actionneur tombe en panne, un masque binaire supprime son autorité et l'allocateur redistribue la demande entre les actionneurs sains restants.
 
-Le concept de secours est le Differential-Braking Backup Steering (DBBS) : un freinage asymétrique produit un moment de lacet correctif lorsque la direction commandée est indisponible. Le braquage de crémaillère par rayon de pivot n'est pas modélisé. La validation de ce secours au niveau véhicule reste un travail Gate 3.
+Le concept de secours est le Differential-Braking Backup Steering (DBBS) : un freinage asymétrique produit un moment de lacet correctif lorsque la direction commandée est indisponible. Le braquage de crémaillère par rayon de pivot n'est pas modélisé. La commande corrigée respecte les critères de l'impulsion retenue dans les huit cas DBBS étudiés ; les conditions élargies relèvent des perspectives.
 
 ## État du développement
 
-Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne de défauts Gate 3. Il ne constitue pas un dossier de sécurité achevé. L'exécution MATLAB Online corrigée de Gate 2 a réussi les 36 tests unitaires, trois cas du modèle seul, quatre cas de direction, cinq manœuvres et la convergence temporelle le 15 septembre 2026 à 23:33:46 UTC. État : `READY_FOR_SUPERVISOR_REVIEW`, sans clôture formelle du jalon. La première exécution de saturation en échec est conservée. Voir le [guide Gate 2](docs/gate2.fr.md).
+**Livrable académique achevé dans le périmètre révisé SC-2026-01.** L'auteur confirme que le garant autorise l'adaptation du CDC au livrable de stage. La [note de périmètre final](docs/final_scope.fr.md) définit les acquis et perspectives. Les rapports finaux LaTeX français/anglais et les sources testées figées restent privés ; aucune nouvelle simulation MATLAB ni aucun support de soutenance n'a été produit pendant cette finalisation.
+
+Les preuves conservées comprennent la campagne Gate 2, 45 tests unitaires, cinq manœuvres nominales, les diagnostics de 30 cas initiaux de défaut et quatre raffinements pour `ALLOC-2026-04`. L'archive et 54 séries temporelles ont été auditées localement. La gestion des transitions saturées, les garanties continues d'enveloppe/récupération non linéaire et la validation matérielle sont hors acceptation académique finale et restent des perspectives documentées. Les mesures et indicateurs historiques sont inchangés : l'achèvement académique délimité se distingue d'une conformité universelle ou d'une certification de série. Voir l'[état actuel](docs/project_status.fr.md) et l'[audit détaillé tâche 2](docs/task2_assessment.fr.md).
 
 Éléments implémentés :
 
@@ -33,13 +35,13 @@ Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne d
 - critères numériques pour REQ-02 et REQ-03 ;
 - traçabilité entre exigences et tests.
 
-Éléments restant à réaliser :
+Décisions et limites restantes :
 
-- revue encadrant du dossier de preuves Gate 2 achevé et exécution de Gate 3 avec l'allocateur corrigé ;
-- évaluation de l'enveloppe opérationnelle non linéaire et de l'autorité résiduelle maximale ;
-- clarification du périmètre capteurs/trajectoire et des modes de défaut non couverts ;
-- revue des brouillons locaux AMDEC/arbre de défaillances/DFA et des preuves d'indépendance matérielle ;
-- acceptation des livrables des jalons par l'encadrant.
+- résolution de la faisabilité transitoire en freinage saturé et évaluation indépendante de récupération ;
+- documents historiques conservés pour traçabilité ; rapports privés actuels fondés sur les preuves corrigées et auditées ;
+- aucune preuve d'enveloppe continue ni de maxima globaux revendiquée ;
+- limites de sémantique capteurs/chemins, modes non couverts et indépendance physique ;
+- relecture des livrables privés par les étudiants et préparation de soutenance.
 
 ## Formulation de l'allocation
 
@@ -61,20 +63,20 @@ L'allocateur minimise l'erreur de suivi normalisée et une faible pénalisation 
 min 0.5 (c + B u - y_d)' Q (c + B u - y_d) + 0.5 rho u' R u
 ```
 
-sous contraintes de limites physiques, d'une réserve longitudinale documentée de 2 % en boucle intégrée, de vitesses et de six indicateurs de santé `[FL FR RL RR A B]`. Dans la boucle intégrée, `c` et `B` sont recalculés à partir de l'état ; la performance est mesurée sur les sorties non linéaires du véhicule. Voir le [guide Gate 2](docs/gate2.fr.md).
+sous contraintes de limites physiques, d'une réserve longitudinale nominale de 2 % (portée à 8 % à l'arrière après diagnostic de perte d'un seul frein avant avec les deux freins arrière sains), de vitesses et de six indicateurs de santé `[FL FR RL RR A B]`. Dans la boucle intégrée, `c` et `B` sont recalculés à partir de l'état ; la performance est mesurée sur les sorties non linéaires du véhicule. Voir le [guide Gate 2](docs/gate2.fr.md) et la [commande corrigée](docs/task1_control.fr.md).
 
 ## Prérequis
 
-- MATLAB R2021a ou plus récent
+- Référence exécutée : MATLAB R2026a Update 5 ; anciennes versions non vérifiées pour le workflow complémentaire complet
 - Simulink uniquement pour l'ancien prototype par blocs
-- Optimization Toolbox (`quadprog`)
+- Optimization Toolbox (`quadprog`, et `fmincon` pour l'étude complémentaire)
 - MATLAB Unit Test Framework
 
 Exécution de référence : MATLAB Online R2026a Update 5 avec Optimization Toolbox ; version détaillée, identité des sources et configuration sont enregistrées avec les preuves.
 
 ## Exécution de la validation
 
-Ouvrir MATLAB à la racine du dépôt puis exécuter la campagne de preuves Gate 2 :
+Utiliser une nouvelle copie du projet pour préserver les preuves auditées : les lanceurs écrivent dans des dossiers fixes. Ouvrir MATLAB à la racine de cette copie puis lancer Gate 2. Voir la [reproduction sans écrasement](docs/handover.fr.md).
 
 ```matlab
 results = run_gate2_validation();
@@ -82,7 +84,7 @@ results = run_gate2_validation();
 
 Cette commande lance les tests unitaires, le modèle seul, le banc de direction, cinq manœuvres intégrées et la convergence du pas. Les CSV, MAT, figures françaises/anglaises et le manifeste sont générés dans `validation/results/`. Un échec empêche l'état d'acceptation. `run_project_validation()` ajoute les anciens tests d'allocation à demande constante. Les preuves générées sont exclues de Git.
 
-Après revue de Gate 2, lancer la campagne de défauts préparée :
+Pour reproduire la campagne de défauts déjà exécutée dans la nouvelle copie :
 
 ```matlab
 faultResults = run_gate3_validation();

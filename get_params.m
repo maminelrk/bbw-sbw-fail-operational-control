@@ -50,7 +50,7 @@ allocation_effort_weight = 1e-6;
 % Keeping 2% of longitudinal capacity unused avoids the singular zero-
 % lateral-budget boundary and leaves sqrt(1-0.98^2)=19.9% lateral budget.
 allocation_friction_fraction = 0.98;
-allocation_config_id = 'ALLOC-2026-03';
+allocation_config_id = 'ALLOC-2026-04';
 
 actuator_tau_delta = 0.02;
 actuator_tau_Fx = 0.02;
@@ -65,6 +65,9 @@ steering_motor_tau = 0.01;     % s, assumed inner velocity-loop time constant
 yaw_tracking_tau = 0.25;      % s, nominal yaw-reference feedback tuning
 allocation_output_scale = [5000; 1000]; % N / Nm, fixed tracking priorities
 steering_trust_angle = deg2rad(0.5);    % local linearization trust region
+% Fault-scheduled controller tuning. Physical tire/actuator limits unchanged.
+fault_rear_friction_fraction = 0.92; % rear lateral support after one front loss
+dbbs_yaw_tracking_tau = 0.15;        % s, faster yaw correction with held rack
 
 p = struct('parameter_set_id',parameter_set_id, ...
     'm',m,'Iz',Iz,'L',L,'wf',wf,'lf',lf,'lr',lr, ...
@@ -81,5 +84,7 @@ p = struct('parameter_set_id',parameter_set_id, ...
     'steering_motor_tau',steering_motor_tau, ...
     'yaw_tracking_tau',yaw_tracking_tau, ...
     'allocation_output_scale',allocation_output_scale, ...
-    'steering_trust_angle',steering_trust_angle);
+    'steering_trust_angle',steering_trust_angle, ...
+    'fault_rear_friction_fraction',fault_rear_friction_fraction, ...
+    'dbbs_yaw_tracking_tau',dbbs_yaw_tracking_tau);
 end

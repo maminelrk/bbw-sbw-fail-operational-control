@@ -7,6 +7,15 @@ classdef TestGate3Preparation < matlab.unittest.TestCase
         end
     end
     methods (Test)
+        function matchedGridsAllowRoundoffButRejectSampleShifts(testCase)
+            faultTime=(0:.002:6)'; referenceTime=(0:.002:7)';
+            testCase.verifyTrue(time_grids_match(faultTime,referenceTime(1:numel(faultTime))));
+            testCase.verifyFalse(time_grids_match(faultTime,faultTime+.002));
+            testCase.verifyFalse(time_grids_match(faultTime,faultTime+1e-8));
+            testCase.verifyFalse(time_grids_match(faultTime,faultTime(1:end-1)));
+            invalid=faultTime; invalid(end)=NaN;
+            testCase.verifyFalse(time_grids_match(faultTime,invalid));
+        end
         function physicalFailurePrecedesDiagnosis(testCase)
             s=struct('FaultScenario',"brake_fl_loss",'FaultTime',.003,'DetectionDelay',.010);
             [physical,known]=fault_event_masks(.002,s);

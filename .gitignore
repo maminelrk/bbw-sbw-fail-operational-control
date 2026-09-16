@@ -14,10 +14,16 @@ sccprj/
 # Generated validation evidence
 /validation/results/
 
+# Local Python audit bytecode / Cache des audits Python locaux
+__pycache__/
+*.pyc
+
 # Local analysis and artifact-authoring files
 /tmp/
 /tools/
 /outputs/
+/output/pdf/
+/.chart-data-*/
 /matlab.mat
 
 # Source and assessment documents are intentionally excluded

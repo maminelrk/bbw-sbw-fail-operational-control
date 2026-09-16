@@ -50,10 +50,14 @@ Le modèle d'adhérence combinée réduit la capacité latérale selon une ellip
 | `steering_channel_rate` | 240 par canal | deg/s | Capacité de conception supposée | Chaque entraînement fournit 60 % de la limite crémaillère de 400 deg/s |
 | `steering_motor_tau` | 0,010 | s | Supposée | Retard indépendant de chaque boucle interne de vitesse |
 | `yaw_tracking_tau` | 0,25 | s | Réglage supposé | Servo nominal de consigne de lacet |
+| `dbbs_yaw_tracking_tau` | 0,15 | s | Réglage de conception en simulation | Servo de lacet après diagnostic de perte des deux entraînements ; non-régression tâche 1 requise |
+| `fault_rear_friction_fraction` | 0,92 | - | Réglage de conception en simulation | Utilisation longitudinale arrière après perte d'un frein avant avec les deux freins arrière disponibles ; adhérence physique inchangée |
 | `allocation_output_scale` | [5000; 1000] | [N; N m] | Priorités supposées | Normalisation fixe de l'objectif, distincte des diagnostics d'autorité |
 | `steering_trust_angle` | 0,5 | deg | Réglage numérique supposé | Intervalle local de linéarisation non linéaire |
 
 Les bornes physiques utilisent les charges courantes `mu*Fz`. La configuration de commande `ALLOC-2026-03` limite en plus les commandes intégrées à `0.98*mu*Fz` ; l'analyse d'autorité statique conserve la capacité théorique complète et les charges statiques. La réserve évite la frontière non lisse de budget latéral nul, mais ne garantit pas la capacité latérale transitoire : retard des actionneurs et variations des charges nécessitent toujours des contrôles indépendants de la plante. Sensibilité et fonctionnement dégradé restent à étudier. Chaque entraînement est supposé couvrir toute la plage de la crémaillère commune. Ces hypothèses fonctionnelles ne représentent ni inertie de crémaillère, ni couple moteur, ni capacité sous charge routière. L'argument des 20 ms ne vaut que pour un retard unique non saturé ; il ne prouve pas l'objectif de 50 ms de la direction en cascade. Voir [Gate 2](gate2.fr.md) pour les interfaces, manœuvres et preuves.
+
+La révision de commande `ALLOC-2026-04` conserve les paramètres physiques ci-dessus et remplace le réglage dégradé `ALLOC-2026-03` : réserve arrière et gain DBBS sont adaptés au défaut selon la [tâche 1](task1_control.fr.md). L'utilisation arrière de 92 % correspond à un budget latéral théorique de 39,2 % du cercle d'adhérence, sans garantir la capacité transitoire réelle. Le réglage nominal est inchangé.
 
 ## Sources
 

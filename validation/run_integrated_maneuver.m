@@ -1,7 +1,10 @@
-function result = run_integrated_maneuver(scenario,outputRoot,dt,opts)
+function result = run_integrated_maneuver(scenario,outputRoot,dt,opts,integrationSubsteps,p)
 % Sampled allocation -> independent actuator channels -> nonlinear vehicle.
 % Actual outputs ALWAYS come from vehicle_dynamics_quantities, not B*u.
-p=get_params(); if nargin<3, dt=p.validation_dt; end
+if nargin<6 || isempty(p), p=get_params(); end
+if nargin<3 || isempty(dt), dt=p.validation_dt; end
+if nargin<5, integrationSubsteps=1; end
+validateattributes(integrationSubsteps,{'numeric'},{'scalar','integer','positive','finite'});
 time=(0:dt:scenario.Duration)'; count=numel(time);
 x=zeros(count,13); x(1,1)=scenario.InitialSpeed;
 % Optional explicit initial condition for numerical-robustness regressions.
@@ -18,6 +21,7 @@ prediction=zeros(count,2); reference=zeros(count,3); forces=zeros(count,4);
 loads=zeros(count,4); lateral=zeros(count,4); solver=zeros(count,1);
 bounds=true(count,1); override=false(count,1); rackRate=zeros(count,1);
 motorContribution=zeros(count,2); lower=zeros(count,5); upper=zeros(count,5);
+yawTau=zeros(count,1);
 if nargin<4 || isempty(opts), opts=allocator_options(); end
 previous=zeros(5,1); physicalHistory=ones(count,6); knownHistory=ones(count,6);
 isFault=isfield(scenario,'FaultScenario') && scenario.FaultScenario~="nominal";
@@ -29,13 +33,13 @@ for k=1:count
     reference(k,:)=[ref.ax ref.yaw ref.yaw_dot];
     % Fx demand gives requested body longitudinal acceleration; Mz combines
     % analytical yaw acceleration feedforward with yaw-rate feedback.
-    demand(k,:)=[p.m*(ref.ax-state(2)*state(3)), ...
-        p.Iz*(ref.yaw_dot+(ref.yaw-state(3))/p.yaw_tracking_tau)];
-    [u,flag,info]=allocator(demand(k,:)',state(7),opts,known,previous,dt,state);
+    [requested,yawTau(k)]=motion_demand(ref,state,known,p);
+    demand(k,:)=requested';
+    [u,flag,info]=allocator(demand(k,:)',state(7),opts,known,previous,dt,state,p);
     if isFault
         % Oracle uses the true fault on the SAME frozen state and previous
         % command. Its affine prediction is a diagnostic, never plant truth.
-        [~,oracleFlag(k),best]=allocator(demand(k,:)',state(7),opts,mask,previous,dt,state);
+        [~,oracleFlag(k),best]=allocator(demand(k,:)',state(7),opts,mask,previous,dt,state,p);
         oracle(k,:)=best.achieved'; oracleScale(k,:)=best.output_scale';
     end
     q=vehicle_dynamics_quantities(state,p,mask);
@@ -46,7 +50,12 @@ for k=1:count
     lower(k,:)=info.physical_lower_bounds'; upper(k,:)=info.physical_upper_bounds';
     bounds(k)=all(u>=lower(k,:)'-1e-6 & u<=upper(k,:)'+1e-6);
     override(k)=info.rate_override; solver(k)=flag; previous=u;
-    if k<count, x(k+1,:)=plant_step(state,u,mask,dt,p,known)'; end
+    if k<count
+        for substep=1:integrationSubsteps
+            state=plant_step(state,u,mask,dt/integrationSubsteps,p,known);
+        end
+        x(k+1,:)=state';
+    end
 end
 rates=[zeros(1,5);diff(command)/dt];
 beta=atan2(x(:,2),x(:,1));
@@ -97,7 +106,9 @@ end
 series.OracleFx_N=oracle(:,1); series.OracleMz_Nm=oracle(:,2);
 series.OracleScaleFx_N=oracleScale(:,1); series.OracleScaleMz_Nm=oracleScale(:,2);
 series.OracleExitFlag=oracleFlag;
+series.YawFeedbackTau_s=yawTau;
 result=struct('scenario',scenario,'series',series,'metrics',metrics,'p',p,'dt',dt,'solver_options',opts);
+result.integration_substeps=integrationSubsteps;
 if nargin>=2 && ~isempty(outputRoot)
     folder=fullfile(outputRoot,scenario.ID); if ~isfolder(folder), mkdir(folder); end
     writetable(series,fullfile(folder,'timeseries.csv'));

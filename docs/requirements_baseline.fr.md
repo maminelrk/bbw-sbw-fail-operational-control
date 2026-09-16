@@ -1,6 +1,8 @@
 # Référence numérique pour REQ-02 et REQ-03
 
-Statut : référence d'ingénierie proposée pour la validation Gate 2/3. Ces valeurs doivent être validées avec l'encadrant du projet avant d'être considérées comme des exigences de sécurité approuvées. Il s'agit de critères d'acceptation en simulation et non de preuves de conformité à l'ISO 26262.
+L'acceptation académique finale est désormais définie par [SC-2026-01](final_scope.fr.md), selon l'autorisation de l'auteur. Les critères ci-dessous restent des références techniques inchangées ; satisfaire tous les critères initiaux ne définit pas le livrable académique révisé.
+
+Statut : référence d'ingénierie utilisée pour la validation Gate 2/3 en simulation. L'auteur confirme l'approbation du garant sur les questions précédemment soumises ; aucune signature, date d'approbation ni nouvelle dispense n'est déduite. Il s'agit de critères d'acceptation en simulation, non de preuves de conformité ISO 26262. Résultats actuels et non-conformités restantes figurent dans la [matrice tâche 2](task2_assessment.fr.md#6-matrice-actuelle-exigencespreuves). Tous les seuils numériques ci-dessous sont inchangés.
 
 ## Périmètre et définitions
 
@@ -61,6 +63,6 @@ Les rapports statiques sont des estimations préliminaires. La capacité brute d
 
 Chaque essai de défaut simple doit enregistrer la demande, la transition du masque, la commande de l'allocateur, les valeurs `[Fx, Mz]` obtenues, les meilleures valeurs `[Fx, Mz]` réalisables, les vitesses des actionneurs, la vitesse de lacet, l'écart latéral et le résultat réussite/échec de chaque clause applicable.
 
-Note d'implémentation (G3-PREP-01) : l'apparition physique `t_p` est désormais enregistrée séparément du diagnostic livré `t_flag`. Les conventions sont précisées dans [le protocole Gate 3](gate3.fr.md). Le diagnostic de rétablissement à oracle affine ne démontre pas l'enveloppe non linéaire à 15 % ; une entrée immédiate dans la bande ne signifie pas un rétablissement physique instantané. Les autorités maximales résiduelles de freinage/lacet restent non évaluées. Aucun seuil ci-dessus n'est assoupli.
+Note d'implémentation (G3-PREP-01) : l'apparition physique `t_p` est enregistrée séparément du diagnostic livré `t_flag`. Les conventions sont précisées dans [le protocole Gate 3](gate3.fr.md). Le diagnostic à oracle affine ne démontre pas l'enveloppe non linéaire à 15% ; une entrée immédiate dans la bande ne signifie pas un rétablissement physique instantané. L'[étude complémentaire](gate3_assessment.fr.md) fournit désormais des témoins conservatifs d'autorité non linéaire et des contrôles d'enveloppe échantillonnée, pas des maxima globaux ni une conformité complète. Voir le [registre actuel](project_status.fr.md) pour les résultats. Aucun seuil ci-dessus n'est assoupli.
 
 `straight_braking_screening()` donne environ 32,5 % du freinage nominal après perte d'un coin avant, avec braquage nul, moment de lacet exactement nul et transfert longitudinal. Ce calcul volontairement restreint n'est pas le maximum assisté par direction active ; il explique pourquoi la force brute de 69,7 % ne prouve pas à elle seule REQ-03a.

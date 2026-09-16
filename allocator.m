@@ -1,4 +1,4 @@
-function [u,exitflag,info] = allocator(demand,delta_act_lin,opts,mask,u_prev,dt,state)
+function [u,exitflag,info] = allocator(demand,delta_act_lin,opts,mask,u_prev,dt,state,p)
 % QP: four brakes + one shared rack angle; six health channels [FL FR RL RR A B].
 % Optional 13-state input enables the affine map y ~= offset+B*u obtained
 % from the nonlinear plant. Omit it for legacy static screening only.
@@ -11,7 +11,8 @@ if nargin < 5, u_prev=[]; end
 if nargin < 6, dt=[]; end
 if nargin < 7, state=[]; end
 [channels,effectors]=normalize_actuator_mask(mask);
-p=get_params(); demand=demand(:);
+if nargin<8 || isempty(p), p=get_params(); end
+demand=demand(:);
 if numel(demand)~=2 || any(~isfinite(demand))
     error('allocator:Demand','Demand must be finite [Fx; Mz].');
 end
@@ -70,10 +71,19 @@ lower=physicalMin; upper=physicalMax; rateOverride=false;
 % Static authority screening retains full theoretical capacity.
 if ~isempty(state)
     lower(1:4)=p.allocation_friction_fraction*physicalMin(1:4);
+    % Keep lateral support at the rear when a single front brake is lost.
+    % Reserve controller grip, without changing the physical tire model.
+    if sum(channels(1:2))==1 && all(channels(3:4)==1)
+        lower(3:4)=p.fault_rear_friction_fraction*physicalMin(3:4);
+    end
 end
 allocationMin=lower; allocationMax=upper;
 if ~isempty(u_prev)
     rate=[repmat(p.Fx_rate,4,1);min(p.delta_rate,sum(p.steering_channel_rate.*channels(5:6)))];
+    % A newly increased controller reserve is a soft grip policy, not a
+    % physical force limit. Approach it at the allowed release rate; only
+    % physical infeasibility may override an otherwise healthy channel rate.
+    lower=max(physicalMin,min(lower,u_prev+rate*dt));
     lower=max(lower,u_prev-rate*dt); upper=min(upper,u_prev+rate*dt);
     conflict=lower>upper;
     rateOverride=any(conflict & effectors==1);

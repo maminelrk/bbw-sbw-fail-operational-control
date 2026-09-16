@@ -1,6 +1,6 @@
 function [metrics,comparison] = evaluate_fault_result(result,nominal)
 s=result.series; n=nominal.series(1:height(s),:); p=result.p; scenario=result.scenario;
-assert(isequal(s.Time_s,n.Time_s),'Nominal and faulted time grids must match.');
+assert(time_grids_match(s.Time_s,n.Time_s),'Nominal and faulted time grids must match.');
 physical=s{:,startsWith(s.Properties.VariableNames,'Physical_')};
 known=s{:,startsWith(s.Properties.VariableNames,'Known_')};
 onset=find(any(physical==0,2),1); flag=find(any(known==0,2),1);

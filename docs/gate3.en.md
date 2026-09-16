@@ -32,6 +32,8 @@ Complete drive loss is an effector-level backup challenge, **not automatically a
 
 Nominal paths include one extra second of coasting beyond the 6 s fault record. This gives slightly faster faulted vehicles a complete equal-distance reference without extrapolation; time-based comparisons still use the common first 6 s.
 
+Time-grid matching permits only floating-point roundoff (`64*eps` at the time-vector scale). MATLAB may represent common samples slightly differently when the full records end at 6 s and 7 s. This check rejects shifted samples, unequal lengths and nonfinite/nonmonotonic grids; it does not resample signals or relax behavioral thresholds. A regression test covers different-duration grids and rejects both a 2 ms shift and a 10 ns shift.
+
 Precisely, the lateral comparison is expressed in the nominal vehicle-heading frame: `e_lat = -(X_f-X_n)*sin(psi_n) + (Y_f-Y_n)*cos(psi_n)` at matched travelled distance. With nonzero sideslip this is not exactly the shortest geometric distance to the path.
 
 1. **Mask timing:** record onset, delivered diagnosis and applied mask. The 10 ms mask-reconfiguration target starts at the delivered diagnosis. Physical onset-to-response includes detection separately. The simulation currently applies an available flag in the same control sample; this says nothing about real ECU scheduling.
