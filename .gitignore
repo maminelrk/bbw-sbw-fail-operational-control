@@ -43,3 +43,11 @@ desktop.ini
 *.log
 *.bak
 *.inspect.ndjson
+
+# LaTeX build intermediates (published sources and root PDFs are retained)
+/docs/final-report/latex/*.aux
+/docs/final-report/latex/*.lof
+/docs/final-report/latex/*.lot
+/docs/final-report/latex/*.out
+/docs/final-report/latex/*.pdf
+/docs/final-report/latex/*.toc
