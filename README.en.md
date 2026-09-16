@@ -35,7 +35,7 @@ Implemented:
 
 Still pending:
 
-- supervisor review of Gate 2, report-figure formatting, and execution of the Gate 3 campaign with the corrected allocator;
+- supervisor review of the completed Gate 2 evidence package and execution of the Gate 3 campaign with the corrected allocator;
 - nonlinear operational-envelope and maximum residual-authority assessment;
 - resolution of sensor/path semantics and uncovered fault modes;
 - review of the local FMEA/FTA/DFA drafts and hardware-independence evidence;
@@ -130,6 +130,7 @@ run_plant_validation.m            Allocator-free plant validation entry point
 - [Gate 3 delayed-fault campaign](docs/gate3.en.md)
 - [Shared glossary and notation](docs/glossary.en.md)
 - [Current Gate 2 architecture, maneuvers and evidence](docs/gate2.en.md)
+- [Verified Gate 2 evidence and presentation workflow](docs/gate2_evidence.en.md)
 
 - [Numerical requirements baseline](docs/requirements_baseline.en.md)
 - [Reference vehicle and plant parameters](docs/parameters.en.md)

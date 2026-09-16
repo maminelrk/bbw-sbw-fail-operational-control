@@ -164,47 +164,7 @@ series.MotorB_radps=state(:,13);
 writetable(series,fullfile(scenarioDirectory,'timeseries.csv'));
 save(fullfile(scenarioDirectory,'result.mat'),'series','metrics','scenario','p');
 
-for language=["en","fr"]
-if language=="en"
-    figureName=scenario.Name; timeLabel='Time [s]'; commandLabels={'Command','Actual'};
-    axleLabels={'Front','Rear'};
-else
-    figureName=scenario.NameFR; timeLabel='Temps [s]'; commandLabels={'Consigne','Mesure simulée'};
-    axleLabels={'Avant','Arrière'};
-end
-figure('Visible','off');
-tiledlayout(3,1);
-nexttile; plot(time,state(:,1),'LineWidth',1.2); ylabel('v_x [m/s]'); grid on;
-title(figureName);
-nexttile; plot(time,state(:,3),'LineWidth',1.2); ylabel('r [rad/s]'); grid on;
-nexttile; plot(state(:,4),state(:,5),'LineWidth',1.2); ...
-    xlabel('X [m]'); ylabel('Y [m]'); axis equal; grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'vehicle_response_'+language+'.png'));
-close(gcf);
-
-figure('Visible','off');
-tiledlayout(3,1);
-nexttile; plot(time,rad2deg([deltaCommand,state(:,7)]),'LineWidth',1.2); ...
-    ylabel('\delta [deg]'); legend(commandLabels,'Location','best'); grid on;
-nexttile; plot(time,state(:,8:11),'LineWidth',1.1); ylabel('F_x [N]'); ...
-    legend('FL','FR','RL','RR','Location','best'); grid on;
-nexttile; plot(time,normalLoads,'LineWidth',1.1); ylabel('F_z [N]'); ...
-    xlabel(timeLabel); legend('FL','FR','RL','RR','Location','best'); grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'actuators_and_loads_'+language+'.png'));
-close(gcf);
-
-figure('Visible','off');
-tiledlayout(2,1);
-nexttile; plot(time,lateralForce,'LineWidth',1.2); hold on; ...
-    plot(time,lateralCapacity,'--','LineWidth',1.0); ...
-    plot(time,-lateralCapacity,'--','LineWidth',1.0); ...
-    ylabel('F_y [N]'); grid on;
-nexttile; plot(time,rad2deg(alpha),'LineWidth',1.2); ...
-    ylabel('\alpha [deg]'); xlabel(timeLabel); ...
-    legend(axleLabels,'Location','best'); grid on;
-exportgraphics(gcf,fullfile(scenarioDirectory,'tire_response_'+language+'.png'));
-close(gcf);
-end
+plot_plant_result(series,scenario,scenarioDirectory);
 
 result = struct('metrics',metrics,'series',series);
 

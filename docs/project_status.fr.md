@@ -5,7 +5,7 @@ Mise à jour du 16 septembre 2026. L'état dépend des preuves disponibles, pas 
 | Jalon / livrable | Travail disponible | État / acceptation restante |
 |---|---|---|
 | G1 / D1 | Rapport initial et addendum de clôture LaTeX FR/EN ; référence numérique ; sémantique des défauts et dépendances D4 précisées | Décisions documentées ; revue encadrant et périmètre capteurs/voies en attente |
-| G2 / D2 | Plante non linéaire à 13 états, QP intégré, bancs plante/direction, cinq manœuvres, génération de preuves FR/EN ; première exécution MATLAB conservée | 36 tests unitaires, 3 cas plante, 4 cas direction, 5 manœuvres et convergence réussis ; revue encadrant et mise en forme des figures en attente |
+| G2 / D2 | Plante non linéaire à 13 états, QP intégré, bancs plante/direction, cinq manœuvres, génération de preuves FR/EN ; première exécution MATLAB conservée | 36 tests unitaires, 3 cas plante, 4 cas direction, 5 manœuvres et convergence réussis ; archives locales vérifiées, 46 figures bilingues prêtes pour le rapport et deux rapports LaTeX de 17 pages disponibles ; revue encadrant en attente |
 | G3 / D3 | Campagne de 30 pannes retardées, quatre références nominales, comparaisons et figures FR/EN ; contrôle numérique indépendant | Préliminaire ; MATLAB, enveloppe/autorité et modes non couverts restent ouverts |
 | G3 / D4 | Registre AMDEC, logique d'arbre de défaillances et huit dépendances DFA | Brouillon prêt pour revue ; indépendance et cartographie matérielle non démontrées |
 | G4 / D5 | Matière de rapport bilingue, plan de preuves et consignes de reproduction | Résultats finaux, discussion et soutenance à terminer |
@@ -45,7 +45,7 @@ Chaque chapitre possède des sources FR/EN. Chaque légende doit préciser moteu
 
 ## Suite des travaux MATLAB
 
-1. Revoir les preuves Gate 2 corrigées du 15 septembre 2026 à 23:33:46 UTC. Les conserver séparément de l'échec initial. Réexporter les figures du rapport avec un thème clair homogène : le thème sombre MATLAB a affecté les axes/textes. Les contrôles numériques ont réussi ; l'acceptation de l'encadrant reste en attente.
+1. Revoir le dossier Gate 2 achevé du 15 septembre 2026 à 23:33:46 UTC. Les deux archives téléchargées, les empreintes sources et les données brutes sont vérifiées. Les 46 figures finales bilingues affichent les CSV MATLAB authentiques via Matplotlib, sans nouvelle simulation ; le réexport MATLAB natif est conservé séparément. Deux rapports LaTeX de 17 pages sont prêts localement. L'acceptation de l'encadrant reste en attente.
 2. Exécuter `run_gate3_validation()`. Comparer les résultats aux contrôles préliminaires et examiner les écarts, sans présumer l'équivalence des solveurs.
 3. Résoudre enveloppe/autorité non linéaires, sémantique capteurs/voies et revue de sécurité. MATLAB seul ne clôt pas ces questions d'ingénierie.
 4. Remplacer ou accompagner les figures préliminaires de preuves MATLAB vérifiées, soumettre D2–D4 à la revue, puis assembler rapport final et soutenance.

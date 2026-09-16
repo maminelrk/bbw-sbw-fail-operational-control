@@ -35,7 +35,7 @@ Ce dépôt contient l'implémentation Gate 2 et la préparation de la campagne d
 
 Éléments restant à réaliser :
 
-- revue encadrant de Gate 2, mise en forme des figures de rapport et exécution de Gate 3 avec l'allocateur corrigé ;
+- revue encadrant du dossier de preuves Gate 2 achevé et exécution de Gate 3 avec l'allocateur corrigé ;
 - évaluation de l'enveloppe opérationnelle non linéaire et de l'autorité résiduelle maximale ;
 - clarification du périmètre capteurs/trajectoire et des modes de défaut non couverts ;
 - revue des brouillons locaux AMDEC/arbre de défaillances/DFA et des preuves d'indépendance matérielle ;
@@ -130,6 +130,7 @@ run_plant_validation.m            Point d'entrée de validation sans allocateur
 - [Campagne Gate 3 avec diagnostic retardé](docs/gate3.fr.md)
 - [Glossaire et notation communs](docs/glossary.fr.md)
 - [Architecture, manœuvres et preuves Gate 2 courantes](docs/gate2.fr.md)
+- [Preuves Gate 2 vérifiées et procédure de présentation](docs/gate2_evidence.fr.md)
 
 - [Référence numérique des exigences](docs/requirements_baseline.fr.md)
 - [Paramètres du véhicule et du modèle](docs/parameters.fr.md)

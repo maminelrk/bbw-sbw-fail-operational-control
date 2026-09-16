@@ -5,7 +5,7 @@ Updated 16 September 2026. Status is based on available evidence, not the origin
 | Gate / deliverable | Work available | Gate status / remaining acceptance |
 |---|---|---|
 | G1 / D1 | Original architecture report plus bilingual LaTeX closure addendum; numerical baseline; fault semantics and D4 dependencies clarified | Decisions documented; supervisor review and sensor/path scope decisions pending |
-| G2 / D2 | Nonlinear 13-state plant, nominal QP integration, plant/steering benches, five maneuvers, bilingual evidence runner; first MATLAB run preserved | 36 unit tests, 3 plant cases, 4 steering cases, 5 maneuvers and convergence passed; supervisor review and report-figure formatting pending |
+| G2 / D2 | Nonlinear 13-state plant, nominal QP integration, plant/steering benches, five maneuvers, bilingual evidence runner; first MATLAB run preserved | 36 unit tests, 3 plant cases, 4 steering cases, 5 maneuvers and convergence passed; verified local archives, 46 report-ready bilingual figures and two 17-page LaTeX reports available; supervisor review pending |
 | G3 / D3 | 30-case delayed-fault campaign, four matched nominal references, comparison metrics and bilingual figures; independent numerical cross-check | Preliminary work; MATLAB, operational-envelope/authority assessment and uncovered fault modes remain open |
 | G3 / D4 | FMEA register, qualitative fault-tree logic and eight-entry dependency register | Draft complete for review; independence and hardware mappings not demonstrated |
 | G4 / D5 | Bilingual report material, evidence plan and reproducibility instructions | Final results, discussion and defense slides pending |
@@ -45,7 +45,7 @@ Use French and English sources for every chapter. Every figure caption must iden
 
 ## MATLAB continuation
 
-1. Review the corrected Gate 2 evidence from 15 September 2026, 23:33:46 UTC. Preserve it separately from the failed baseline. Re-export report figures with a consistent light theme: MATLAB's dark theme affected axes/text styling. Numerical checks passed; supervisor acceptance remains pending.
+1. Review the completed Gate 2 package from 15 September 2026, 23:33:46 UTC. Both downloaded archives, source hashes and raw data are verified. The final 46 bilingual figures display authentic MATLAB CSV data using Matplotlib, with no new simulation; the native MATLAB re-export is retained separately. Two 17-page LaTeX reports are ready locally. Supervisor acceptance remains pending.
 2. Run `run_gate3_validation()`. Compare MATLAB results against the preliminary checks; inspect differences rather than assuming the solvers are equivalent.
 3. Resolve the remaining nonlinear envelope/authority tests, sensor/path semantics and safety-analysis review. MATLAB availability alone does not close these engineering questions.
 4. Replace or accompany preliminary figures with verified MATLAB evidence, then submit D2–D4 for review and assemble the final report and defense.

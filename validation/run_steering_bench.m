@@ -31,13 +31,7 @@ for j=1:4
     series=array2table([t history],'VariableNames',{'Time_s','Delta_rad', ...
         'MotorA_radps','MotorB_radps','RackRate_radps','ContributionA_radps','ContributionB_radps'});
     writetable(series,fullfile(folder,names(j)+".csv"));
-    for language=["en","fr"]
-        f=figure('Visible','off','Color','white'); tiledlayout(2,1);
-        nexttile; plot(t,rad2deg(history(:,1))); ylabel('\delta [deg]'); title(names(j),'Interpreter','none'); grid on;
-        nexttile; plot(t,rad2deg(history(:,4:6))); ylabel('d\delta/dt [deg/s]'); legend('A+B','A','B'); grid on;
-        if language=="fr", xlabel('Temps [s]'); else, xlabel('Time [s]'); end
-        exportgraphics(f,fullfile(folder,names(j)+"_"+language+".png"),'Resolution',180); close(f);
-    end
+    plot_steering_result(series,names(j),folder);
 end
 summary=cell2table(vertcat(rows{:}),'VariableNames', ...
     {'Fault','AngleRangeRatio','PeakRateRatio','ChannelBoundsPass','OverallPass'});

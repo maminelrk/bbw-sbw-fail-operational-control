@@ -17,12 +17,14 @@ for language=["en" "fr"]
     nexttile; plot(s.Time_s,[s.MzDemand_Nm s.MzActual_Nm],'LineWidth',1.1); ylabel('M_z [N m]'); legend(legends); grid on;
     nexttile; plot(s.X_m,s.Y_m,'LineWidth',1.1); xlabel('X [m]'); ylabel('Y [m]'); axis equal; grid on;
     nexttile; plot(s.Time_s,rad2deg([s.CmdDelta_rad s.Delta_rad]),'LineWidth',1.1); ylabel(angleLabel); xlabel(timeLabel); legend(legends); grid on;
-    exportgraphics(f,fullfile(folder,'response_'+language+'.png'),'Resolution',180); close(f);
+    style_report_figure(f);
+    exportgraphics(f,fullfile(folder,'response_'+language+'.png'),'Resolution',180,'BackgroundColor','white'); close(f);
     f=figure('Visible','off','Color','white','Position',[50 50 1100 850]);
     tiledlayout(3,1,'TileSpacing','compact');
     nexttile; plot(s.Time_s,s{:,{'CmdFL_N','CmdFR_N','CmdRL_N','CmdRR_N'}},'LineWidth',1.1); ylabel('F_x [N]'); legend('FL','FR','RL','RR'); grid on;
     nexttile; plot(s.Time_s,s{:,{'FzFL_N','FzFR_N','FzRL_N','FzRR_N'}},'LineWidth',1.1); ylabel('F_z [N]'); grid on;
     nexttile; plot(s.Time_s,rad2deg(s{:,{'ContributionA_radps','ContributionB_radps','RackRate_radps'}}),'LineWidth',1.1); ylabel(rateLabel); xlabel(timeLabel); legend('A','B','A+B'); grid on;
-    exportgraphics(f,fullfile(folder,'actuators_'+language+'.png'),'Resolution',180); close(f);
+    style_report_figure(f);
+    exportgraphics(f,fullfile(folder,'actuators_'+language+'.png'),'Resolution',180,'BackgroundColor','white'); close(f);
 end
 end
